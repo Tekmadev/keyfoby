@@ -183,7 +183,7 @@ export const businessData = {
       title: "KeyFoby - Hamilton's #1 Key Fob & Locksmith Services",
       description:
         "🔑 EMERGENCY KEY SERVICES ⚡ Lost car keys? House lockouts? ⚡ Hamilton's fastest locksmith! Licensed ✅ Insured ✅ 24/7 Emergency ✅ Call NOW!",
-      image: "/images/carkey.webp",
+      image: "/images/keyfobykeys.png?v=2025",
       type: "business.business",
     },
 

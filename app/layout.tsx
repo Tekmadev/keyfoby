@@ -81,7 +81,7 @@ export const metadata: Metadata = {
         url: businessData.seo.openGraph.image,
         width: 1200,
         height: 630,
-        alt: "KeyFoby - Hamilton Key Fob Services",
+        alt: "KeyFoby Keys - Professional Key Fob and Locksmith Services in Hamilton",
       },
     ],
     locale: "en_CA",

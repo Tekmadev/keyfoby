@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thank You - KeyFoby</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        background-color: #f8fafc;
+      }
+
+      .email-container {
+        max-width: 600px;
+        margin: 0 auto;
+        background-color: #ffffff;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .header {
+        background: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
+        padding: 30px 20px;
+        text-align: center;
+        color: white;
+      }
+
+      .logo {
+        width: 120px;
+        height: auto;
+        margin-bottom: 15px;
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.1);
+        padding: 10px;
+      }
+
+      .header h1 {
+        font-size: 28px;
+        font-weight: 700;
+        margin-bottom: 8px;
+      }
+
+      .header p {
+        font-size: 16px;
+        opacity: 0.9;
+      }
+
+      .content {
+        padding: 40px 30px;
+      }
+
+      .greeting {
+        font-size: 20px;
+        font-weight: 600;
+        color: #1e293b;
+        margin-bottom: 20px;
+      }
+
+      .message {
+        font-size: 16px;
+        color: #475569;
+        margin-bottom: 25px;
+        line-height: 1.7;
+      }
+
+      .highlight-box {
+        background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+        border-left: 4px solid #3b82f6;
+        padding: 20px;
+        border-radius: 8px;
+        margin: 25px 0;
+      }
+
+      .highlight-box h3 {
+        color: #1e40af;
+        font-size: 18px;
+        margin-bottom: 10px;
+      }
+
+      .highlight-box p {
+        color: #1e40af;
+        font-size: 14px;
+        margin: 5px 0;
+      }
+
+      .services-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+        margin: 25px 0;
+      }
+
+      .service-item {
+        background: #f8fafc;
+        padding: 15px;
+        border-radius: 8px;
+        border: 1px solid #e2e8f0;
+        text-align: center;
+      }
+
+      .service-item .icon {
+        font-size: 24px;
+        margin-bottom: 8px;
+      }
+
+      .service-item h4 {
+        font-size: 14px;
+        font-weight: 600;
+        color: #1e293b;
+      }
+
+      .contact-info {
+        background: #1e293b;
+        color: white;
+        padding: 25px;
+        border-radius: 8px;
+        margin: 25px 0;
+      }
+
+      .contact-info h3 {
+        font-size: 18px;
+        margin-bottom: 15px;
+        color: #60a5fa;
+      }
+
+      .contact-item {
+        display: flex;
+        align-items: center;
+        margin: 10px 0;
+        font-size: 14px;
+      }
+
+      .contact-item .icon {
+        width: 20px;
+        margin-right: 10px;
+        color: #60a5fa;
+      }
+
+      .btn {
+        display: inline-block;
+        background: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
+        color: white;
+        padding: 12px 25px;
+        text-decoration: none;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 16px;
+        margin: 10px 5px;
+        transition: transform 0.2s;
+      }
+
+      .btn:hover {
+        transform: translateY(-2px);
+      }
+
+      .btn-whatsapp {
+        background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+      }
+
+      .footer {
+        background: #f1f5f9;
+        padding: 25px;
+        text-align: center;
+        border-top: 1px solid #e2e8f0;
+      }
+
+      .footer p {
+        font-size: 14px;
+        color: #64748b;
+        margin: 5px 0;
+      }
+
+      .social-links {
+        margin: 15px 0;
+      }
+
+      .social-links a {
+        display: inline-block;
+        margin: 0 10px;
+        padding: 8px;
+        background: #3b82f6;
+        color: white;
+        border-radius: 50%;
+        width: 36px;
+        height: 36px;
+        text-align: center;
+        text-decoration: none;
+      }
+
+      @media (max-width: 600px) {
+        .email-container {
+          margin: 10px;
+          border-radius: 8px;
+        }
+
+        .content {
+          padding: 25px 20px;
+        }
+
+        .services-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .header h1 {
+          font-size: 24px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="email-container">
+      <!-- Header with Logo -->
+      <div class="header">
+        <img
+          src="https://www.keyfoby.com/images/KeyFoby-logo/keyfobylogo.svg"
+          alt="KeyFoby Logo"
+          class="logo"
+        />
+        <h1>Thank You, {{name}}!</h1>
+        <p>Your inquiry has been received</p>
+      </div>
+
+      <!-- Main Content -->
+      <div class="content">
+        <div class="greeting">Hi {{name}},</div>
+
+        <div class="message">
+          Thank you for contacting <strong>KeyFoby</strong>! We've received your
+          inquiry about our key services and we're excited to help you with your
+          needs.
+        </div>
+
+        <div class="highlight-box">
+          <h3>📋 Your Inquiry Details:</h3>
+          <p><strong>Service:</strong> {{service}}</p>
+          <p><strong>Email:</strong> {{email}}</p>
+          <p><strong>Phone:</strong> {{phone}}</p>
+          <p><strong>Date:</strong> {{date}} at {{time}}</p>
+          {{#if message}}
+          <p><strong>Message:</strong> {{message}}</p>
+          {{/if}}
+        </div>
+
+        <div class="message">
+          <strong>What happens next?</strong><br />
+          Our expert technicians will review your request and contact you within
+          <strong>2 hours</strong> (during business hours) with a personalized
+          quote and solution for your key needs.
+        </div>
+
+        <!-- Services Grid -->
+        <div class="services-grid">
+          <div class="service-item">
+            <div class="icon">🚗</div>
+            <h4>Car Key Programming</h4>
+          </div>
+          <div class="service-item">
+            <div class="icon">🏠</div>
+            <h4>House Key Duplication</h4>
+          </div>
+          <div class="service-item">
+            <div class="icon">⚡</div>
+            <h4>Emergency Service</h4>
+          </div>
+          <div class="service-item">
+            <div class="icon">🔧</div>
+            <h4>Key Fob Repair</h4>
+          </div>
+        </div>
+
+        <!-- Contact Information -->
+        <div class="contact-info">
+          <h3>Need Immediate Assistance?</h3>
+          <div class="contact-item">
+            <span class="icon">📞</span>
+            <span>Call us: <strong>(905) 467-6860</strong></span>
+          </div>
+          <div class="contact-item">
+            <span class="icon">📧</span>
+            <span>Email: <strong>keyfoby@gmail.com</strong></span>
+          </div>
+          <div class="contact-item">
+            <span class="icon">📍</span>
+            <span
+              >Address:
+              <strong>40 Courtland Ave, Hamilton, ON L9B 1X6</strong></span
+            >
+          </div>
+          <div class="contact-item">
+            <span class="icon">🕒</span>
+            <span>Hours: <strong>Mon-Fri 8AM-6PM, Sat 9AM-4PM</strong></span>
+          </div>
+        </div>
+
+        <!-- Call to Action Buttons -->
+        <div style="text-align: center; margin: 30px 0">
+          <a href="tel:+19054676860" class="btn">📞 Call Now</a>
+          <a
+            href="https://wa.me/19054676860?text=Hi%20KeyFoby!%20I%20just%20submitted%20an%20inquiry%20and%20wanted%20to%20follow%20up."
+            class="btn btn-whatsapp"
+            >💬 WhatsApp</a
+          >
+        </div>
+
+        <div class="message">
+          <strong>Why choose KeyFoby?</strong><br />
+          ✅ Licensed & Insured Professionals<br />
+          ✅ Same-Day Service Available<br />
+          ✅ All Makes & Models Supported<br />
+          ✅ 100% Satisfaction Guarantee<br />
+          ✅ Serving Hamilton & Greater Toronto Area
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="footer">
+        <div class="social-links">
+          <a href="https://www.facebook.com/keyfoby" title="Facebook">📘</a>
+          <a href="https://wa.me/19054676860" title="WhatsApp">💬</a>
+          <a href="mailto:keyfoby@gmail.com" title="Email">📧</a>
+        </div>
+        <p><strong>KeyFoby - Professional Key Services</strong></p>
+        <p>Hamilton's #1 Key Fob & Locksmith Specialists</p>
+        <p>40 Courtland Ave, Hamilton, ON L9B 1X6</p>
+        <p style="margin-top: 15px; font-size: 12px; color: #94a3b8">
+          This email was sent because you submitted an inquiry on our
+          website.<br />
+          If you did not make this request, please contact us immediately.
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
