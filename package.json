@@ -5,20 +5,32 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
+    "export": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "deploy": "next build && next export",
+    "deploy:all": "npm run build && firebase deploy",
+    "verify": "node scripts/verify-build.js"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
+    "@tabler/icons-react": "^3.34.0",
+    "@tailwindcss/cli": "^4.1.10",
+    "clsx": "^2.1.1",
+    "firebase": "^11.9.1",
+    "libphonenumber-js": "^1.12.9",
+    "motion": "^12.19.1",
+    "next": "15.3.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "next": "15.3.4"
+    "tailwind-merge": "^3.3.1"
   },
   "devDependencies": {
-    "typescript": "^5",
+    "@tailwindcss/postcss": "^4.1.10",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "@tailwindcss/postcss": "^4",
-    "tailwindcss": "^4"
+    "tailwindcss": "^4.1.10",
+    "typescript": "^5"
   }
 }

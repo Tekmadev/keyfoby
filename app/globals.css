@@ -1,5 +1,18 @@
 @import "tailwindcss";
 
+@theme inline {
+  /* Configure your theme variables here */
+  --font-display: "Inter", "sans-serif";
+  --color-primary-500: oklch(0.84 0.18 117.33);
+  --spacing: 0.25rem;
+
+  /* KeyFoby custom colors */
+  --color-keyfoby-blue: #3b82f6;
+  --color-keyfoby-cyan: #06b6d4;
+  --color-keyfoby-dark: #1e293b;
+  --color-keyfoby-darker: #0f172a;
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -22,5 +35,50 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+}
+
+/* Custom scrollbar for webkit browsers */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1e293b;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #3b82f6, #06b6d4);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #2563eb, #0891b2);
+}
+
+/* Smooth animations for reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Focus ring improvements */
+.focus-visible {
+  @apply outline-none ring-2 ring-blue-500/50 ring-offset-2 ring-offset-slate-900;
+}
+
+/* Neon glow utility */
+.neon-glow {
+  box-shadow: 0 0 5px theme("colors.blue.500"),
+    0 0 20px theme("colors.blue.500"), 0 0 35px theme("colors.blue.500");
+}
+
+.neon-glow-cyan {
+  box-shadow: 0 0 5px theme("colors.cyan.400"),
+    0 0 20px theme("colors.cyan.400"), 0 0 35px theme("colors.cyan.400");
 }

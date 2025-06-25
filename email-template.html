@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>New KeyFoby Contact Request</title>
+  </head>
+  <body
+    style="
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f8fafc;
+    "
+  >
+    <div
+      style="
+        max-width: 600px;
+        margin: 0 auto;
+        background-color: #ffffff;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      "
+    >
+      <!-- Header with KeyFoby Branding -->
+      <div
+        style="
+          background: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
+          padding: 30px 40px;
+          text-align: center;
+        "
+      >
+        <div
+          style="
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+          "
+        >
+          <div
+            style="
+              width: 50px;
+              height: 50px;
+              background-color: rgba(255, 255, 255, 0.2);
+              border-radius: 12px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              margin-right: 15px;
+            "
+          >
+            <span style="font-size: 24px; color: white">🔑</span>
+          </div>
+          <h1
+            style="color: white; margin: 0; font-size: 28px; font-weight: bold"
+          >
+            KeyFoby
+          </h1>
+        </div>
+        <p style="color: rgba(255, 255, 255, 0.9); margin: 0; font-size: 16px">
+          New Customer Inquiry Received
+        </p>
+      </div>
+
+      <!-- Alert Banner -->
+      <div
+        style="
+          background-color: #fef3c7;
+          border-left: 4px solid #f59e0b;
+          padding: 20px 40px;
+        "
+      >
+        <div style="display: flex; align-items: center">
+          <span style="font-size: 20px; margin-right: 12px">⚡</span>
+          <p
+            style="margin: 0; color: #92400e; font-weight: 600; font-size: 14px"
+          >
+            URGENT: New customer inquiry requires your attention
+          </p>
+        </div>
+      </div>
+
+      <!-- Main Content -->
+      <div style="padding: 40px">
+        <h2
+          style="
+            color: #1e293b;
+            margin: 0 0 25px 0;
+            font-size: 22px;
+            font-weight: 600;
+          "
+        >
+          Customer Contact Details
+        </h2>
+
+        <!-- Customer Info Card -->
+        <div
+          style="
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 30px;
+          "
+        >
+          <div
+            style="display: flex; align-items: flex-start; margin-bottom: 20px"
+          >
+            <div
+              style="
+                width: 60px;
+                height: 60px;
+                background: linear-gradient(135deg, #3b82f6, #06b6d4);
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-right: 20px;
+                flex-shrink: 0;
+              "
+            >
+              <span style="font-size: 24px; color: white">👤</span>
+            </div>
+            <div style="flex: 1">
+              <h3
+                style="
+                  margin: 0 0 8px 0;
+                  color: #1e293b;
+                  font-size: 20px;
+                  font-weight: 600;
+                "
+              >
+                {{name}}
+              </h3>
+              <p style="margin: 0; color: #64748b; font-size: 14px">
+                Submitted on {{date}} at {{time}}
+              </p>
+            </div>
+          </div>
+
+          <!-- Contact Information Grid -->
+          <div
+            style="
+              display: grid;
+              grid-template-columns: 1fr 1fr;
+              gap: 20px;
+              margin-bottom: 25px;
+            "
+          >
+            <div
+              style="
+                background-color: white;
+                padding: 15px;
+                border-radius: 8px;
+                border: 1px solid #e2e8f0;
+              "
+            >
+              <div
+                style="display: flex; align-items: center; margin-bottom: 8px"
+              >
+                <span style="font-size: 16px; margin-right: 8px">📧</span>
+                <span
+                  style="
+                    color: #64748b;
+                    font-size: 12px;
+                    font-weight: 600;
+                    text-transform: uppercase;
+                    letter-spacing: 0.5px;
+                  "
+                  >Email</span
+                >
+              </div>
+              <a
+                href="mailto:{{email}}"
+                style="
+                  color: #3b82f6;
+                  text-decoration: none;
+                  font-weight: 500;
+                  font-size: 14px;
+                "
+              >
+                {{email}}
+              </a>
+            </div>
+            <div
+              style="
+                background-color: white;
+                padding: 15px;
+                border-radius: 8px;
+                border: 1px solid #e2e8f0;
+              "
+            >
+              <div
+                style="display: flex; align-items: center; margin-bottom: 8px"
+              >
+                <span style="font-size: 16px; margin-right: 8px">📱</span>
+                <span
+                  style="
+                    color: #64748b;
+                    font-size: 12px;
+                    font-weight: 600;
+                    text-transform: uppercase;
+                    letter-spacing: 0.5px;
+                  "
+                  >Phone</span
+                >
+              </div>
+              <a
+                href="tel:{{phone}}"
+                style="
+                  color: #3b82f6;
+                  text-decoration: none;
+                  font-weight: 500;
+                  font-size: 14px;
+                "
+              >
+                {{phone}}
+              </a>
+            </div>
+          </div>
+
+          <!-- Service Type -->
+          <div
+            style="
+              background-color: white;
+              padding: 15px;
+              border-radius: 8px;
+              border: 1px solid #e2e8f0;
+            "
+          >
+            <div style="display: flex; align-items: center; margin-bottom: 8px">
+              <span style="font-size: 16px; margin-right: 8px">🔧</span>
+              <span
+                style="
+                  color: #64748b;
+                  font-size: 12px;
+                  font-weight: 600;
+                  text-transform: uppercase;
+                  letter-spacing: 0.5px;
+                "
+                >Service Needed</span
+              >
+            </div>
+            <span
+              style="
+                background-color: #eff6ff;
+                color: #1d4ed8;
+                padding: 6px 12px;
+                border-radius: 20px;
+                font-size: 12px;
+                font-weight: 600;
+              "
+            >
+              {{service}}
+            </span>
+          </div>
+        </div>
+
+        <!-- Message Section -->
+        <div
+          style="
+            background-color: #ffffff;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 25px;
+          "
+        >
+          <h3
+            style="
+              margin: 0 0 15px 0;
+              color: #1e293b;
+              font-size: 18px;
+              font-weight: 600;
+              display: flex;
+              align-items: center;
+            "
+          >
+            <span style="font-size: 18px; margin-right: 10px">💬</span>
+            Customer Message
+          </h3>
+          <div
+            style="
+              background-color: #f8fafc;
+              padding: 20px;
+              border-radius: 8px;
+              border-left: 4px solid #3b82f6;
+            "
+          >
+            <p
+              style="
+                margin: 0;
+                color: #374151;
+                font-size: 15px;
+                line-height: 1.6;
+                font-style: italic;
+              "
+            >
+              "{{message}}"
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div
+        style="
+          background-color: #f8fafc;
+          padding: 30px 40px;
+          text-align: center;
+          border-top: 1px solid #e2e8f0;
+        "
+      >
+        <h3
+          style="
+            margin: 0 0 20px 0;
+            color: #1e293b;
+            font-size: 18px;
+            font-weight: 600;
+          "
+        >
+          Quick Actions
+        </h3>
+        <div
+          style="
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+          "
+        >
+          <a
+            href="mailto:{{email}}"
+            style="
+              background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+              color: white;
+              padding: 12px 24px;
+              border-radius: 8px;
+              text-decoration: none;
+              font-weight: 600;
+              font-size: 14px;
+              display: inline-flex;
+              align-items: center;
+            "
+          >
+            <span style="margin-right: 8px">📧</span>
+            Reply via Email
+          </a>
+          <a
+            href="tel:{{phone}}"
+            style="
+              background: linear-gradient(135deg, #10b981, #059669);
+              color: white;
+              padding: 12px 24px;
+              border-radius: 8px;
+              text-decoration: none;
+              font-weight: 600;
+              font-size: 14px;
+              display: inline-flex;
+              align-items: center;
+            "
+          >
+            <span style="margin-right: 8px">📞</span>
+            Call Customer
+          </a>
+          <a
+            href="https://wa.me/{{phone_clean}}?text=Hi {{name}}! Thank you for contacting KeyFoby. I received your inquiry about {{service}} and I'm ready to help you."
+            style="
+              background: linear-gradient(135deg, #22c55e, #16a34a);
+              color: white;
+              padding: 12px 24px;
+              border-radius: 8px;
+              text-decoration: none;
+              font-weight: 600;
+              font-size: 14px;
+              display: inline-flex;
+              align-items: center;
+            "
+          >
+            <span style="margin-right: 8px">💬</span>
+            WhatsApp
+          </a>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div
+        style="
+          background-color: #1e293b;
+          padding: 25px 40px;
+          text-align: center;
+        "
+      >
+        <div style="margin-bottom: 15px">
+          <span style="color: #3b82f6; font-size: 24px; margin-right: 10px"
+            >🔑</span
+          >
+          <span style="color: white; font-size: 18px; font-weight: bold"
+            >KeyFoby</span
+          >
+        </div>
+        <p style="margin: 0 0 10px 0; color: #94a3b8; font-size: 14px">
+          Your trusted local key fob specialists
+        </p>
+        <p style="margin: 0; color: #64748b; font-size: 12px">
+          Hamilton, ON | (905) 467-6860 | keyfoby@gmail.com
+        </p>
+        <div
+          style="
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #374151;
+          "
+        >
+          <p style="margin: 0; color: #64748b; font-size: 11px">
+            This email was automatically generated from your KeyFoby website
+            contact form.
+          </p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
