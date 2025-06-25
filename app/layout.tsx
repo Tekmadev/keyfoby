@@ -19,6 +19,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://keyfoby.com"),
   title: businessData.seo.title,
   description: businessData.seo.description,
   keywords: businessData.seo.keywords.join(", "),
@@ -128,6 +129,25 @@ export default function RootLayout({
         <link
           rel="manifest"
           href="/images/KeyFoby-logo/favicons/site.webmanifest"
+        />
+
+        {/* Structured Data for SEO */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(businessData.seo.schema),
+          }}
+        />
+
+        {/* Google Analytics - Add your tracking ID */}
+        {/* <script async src="https://www.googletagmanager.com/gtag/js?id=GA_TRACKING_ID"></script> */}
+
+        {/* Preconnect to external domains for performance */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
         />
       </head>
       <body

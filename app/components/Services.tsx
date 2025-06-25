@@ -52,14 +52,26 @@ export default function Services() {
       className="py-20 px-4 sm:px-6 lg:px-8 bg-slate-50 dark:bg-slate-900"
     >
       <div className="max-w-6xl mx-auto">
-        {/* Section header */}
+        {/* Section header - SEO Enhanced */}
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white mb-6">
-            What We Offer
+            Professional Key Fob & Locksmith Services in Hamilton
           </h2>
-          <p className="text-lg sm:text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto">
-            Professional key services for your vehicle and home security needs
+          <p className="text-lg sm:text-xl text-slate-600 dark:text-slate-300 max-w-4xl mx-auto mb-4">
+            <strong>Hamilton's Premier Key Specialists</strong> - Expert
+            automotive key programming, house key duplication, and emergency
+            lockout services. Serving Hamilton, Burlington, Oakville, and
+            Greater Toronto Area with same-day solutions.
           </p>
+
+          {/* Additional SEO content */}
+          <div className="text-base text-slate-500 dark:text-slate-400 max-w-3xl mx-auto">
+            <p>
+              🔧 All Makes & Models • 🚗 Transponder Keys • 🏠 Residential Keys
+              • 📱 Smart Key Programming • ⚡ Emergency Service • 🛡️ Licensed &
+              Insured
+            </p>
+          </div>
         </div>
 
         {/* Services grid */}

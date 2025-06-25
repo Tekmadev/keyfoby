@@ -58,12 +58,21 @@ export default function Hero() {
           {/* Enhanced Description - SEO Content */}
           <div className="max-w-3xl mx-auto space-y-4 sm:space-y-6">
             <p className="text-base sm:text-lg md:text-xl text-slate-300 leading-relaxed px-2">
-              Professional key fob programming and duplication services in{" "}
-              {businessData.contact.address.city},{" "}
-              {businessData.contact.address.state}. Fast, reliable, and
-              affordable solutions for car keys, house keys, and emergency
-              lockout situations.
+              <strong>Hamilton's #1 Locksmith & Key Fob Specialists</strong> -
+              Professional automotive key replacement, house key duplication,
+              and emergency lockout services. Serving Hamilton, Burlington,
+              Oakville, and Greater Toronto Area with <em>same-day service</em>{" "}
+              and <em>100% satisfaction guarantee</em>.
             </p>
+
+            {/* Additional SEO-rich content */}
+            <div className="text-sm sm:text-base text-slate-400 leading-relaxed px-2">
+              <p>
+                ✓ Car Key Programming (All Makes & Models) ✓ Transponder Keys ✓
+                Smart Key Replacement ✓ Key Fob Shell Repair ✓ Emergency Car
+                Lockout ✓ House Key Cutting ✓ 24/7 Mobile Service
+              </p>
+            </div>
 
             {/* Key benefits for SEO - Mobile optimized */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 mt-6 sm:mt-8 px-2">
