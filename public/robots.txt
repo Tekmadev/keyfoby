@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://keyfoby.com/sitemap.xml
+Sitemap: https://www.keyfoby.com/sitemap.xml
 
 # Crawl-delay for respectful crawling
 Crawl-delay: 1

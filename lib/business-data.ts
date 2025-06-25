@@ -183,7 +183,7 @@ export const businessData = {
       title: "KeyFoby - Hamilton's #1 Key Fob & Locksmith Services",
       description:
         "🔑 EMERGENCY KEY SERVICES ⚡ Lost car keys? House lockouts? ⚡ Hamilton's fastest locksmith! Licensed ✅ Insured ✅ 24/7 Emergency ✅ Call NOW!",
-      image: "/images/keyfoby-og-image.jpg",
+      image: "/images/carkey.webp",
       type: "business.business",
     },
 
@@ -195,7 +195,7 @@ export const businessData = {
       alternateName: "Key Fob Pro",
       description:
         "Professional locksmith and key fob services in Hamilton, Ontario. Specializing in car key replacement, house key duplication, and emergency lockout services.",
-      url: "https://keyfoby.com",
+      url: "https://www.keyfoby.com",
       telephone: "+1-905-467-6860",
       email: "keyfoby@gmail.com",
       address: {

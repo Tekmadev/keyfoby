@@ -11,7 +11,7 @@ export default function LocalBusinessSchema() {
     alternateName: businessData.legalName,
     description:
       "Professional locksmith and key fob services in Hamilton, Ontario. Specializing in automotive key programming, house key duplication, emergency lockout services, and transponder key replacement.",
-    url: "https://keyfoby.com",
+    url: "https://www.keyfoby.com",
     telephone: businessData.contact.phone,
     email: businessData.contact.email,
     priceRange: "$$",

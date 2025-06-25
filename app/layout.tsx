@@ -19,7 +19,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://keyfoby.com"),
+  metadataBase: new URL("https://www.keyfoby.com"),
   title: businessData.seo.title,
   description: businessData.seo.description,
   keywords: businessData.seo.keywords.join(", "),
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: "https://keyfoby.com",
+    canonical: "https://www.keyfoby.com",
   },
   icons: {
     icon: [
@@ -74,7 +74,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: businessData.seo.openGraph.title,
     description: businessData.seo.openGraph.description,
-    url: "https://keyfoby.com",
+    url: "https://www.keyfoby.com",
     siteName: businessData.name,
     images: [
       {
