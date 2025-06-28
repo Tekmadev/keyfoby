@@ -8,6 +8,7 @@ import {
   isValidPhoneNumber,
   formatIncompletePhoneNumber,
 } from "libphonenumber-js";
+import { trackContactFormSubmit, trackWhatsAppClick } from "@/lib/analytics";
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
@@ -308,6 +309,9 @@ export default function ContactForm() {
         EMAILJS_PUBLIC_KEY
       );
 
+      // Track successful form submission
+      trackContactFormSubmit(formData.service || "General Inquiry");
+
       setSubmitMessage("Thank you! We'll get back to you within 2 hours.");
       setFormData({ name: "", email: "", phone: "", service: "", message: "" });
     } catch (error) {
@@ -321,6 +325,9 @@ export default function ContactForm() {
   };
 
   const handleWhatsApp = () => {
+    // Track WhatsApp click
+    trackWhatsAppClick();
+
     const message = encodeURIComponent(
       `Hi ${businessData.name}! I'm interested in your key services. ${
         formData.message ? `Message: ${formData.message}` : ""

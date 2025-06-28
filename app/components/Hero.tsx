@@ -40,19 +40,19 @@ export default function Hero() {
           {/* Main Headline - SEO Optimized */}
           <div className="space-y-3 sm:space-y-4">
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-tight">
-              <span className="block">Lost Keys??</span>
+              <span className="block">Lost Keys?</span>
               <span className="block bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-500 bg-clip-text text-transparent">
-                Need a Spare??
+                Need a Spare?
               </span>
               <span className="block text-2xl sm:text-3xl md:text-4xl lg:text-5xl mt-2 sm:mt-4">
                 We've Got You..
               </span>
             </h1>
 
-            {/* SEO-friendly subtitle */}
+            {/* SEO-friendly subtitle
             <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-slate-200 font-medium max-w-4xl mx-auto leading-relaxed">
               {businessData.tagline}
-            </p>
+            </p> */}
           </div>
 
           {/* Enhanced Description - SEO Content */}

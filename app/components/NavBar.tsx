@@ -11,6 +11,7 @@ import {
 import { useState } from "react";
 import { businessData } from "@/lib/business-data";
 import Image from "next/image";
+import { trackPhoneClick, trackWhatsAppClick } from "@/lib/analytics";
 
 export default function NavBar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -80,6 +81,9 @@ export default function NavBar() {
     children?: React.ReactNode;
   }) => {
     const handleClick = () => {
+      // Track WhatsApp click
+      trackWhatsAppClick();
+
       // WhatsApp message with business inquiry
       const message = encodeURIComponent(
         `Hi ${businessData.name}! I'm interested in your key fob services. Could you please provide me with more information and a quote?`
@@ -144,6 +148,9 @@ export default function NavBar() {
     onClick?: () => void;
   }) => {
     const handleClick = () => {
+      // Track WhatsApp click
+      trackWhatsAppClick();
+
       const message = encodeURIComponent(
         `Hi ${businessData.name}! I'm interested in your key fob services. Could you please provide me with more information and a quote?`
       );
@@ -179,6 +186,7 @@ export default function NavBar() {
           <div className="flex items-center gap-4 ml-auto">
             <a
               href={`tel:${businessData.contact.phone}`}
+              onClick={() => trackPhoneClick()}
               className="hidden lg:flex items-center space-x-2 px-4 py-2 text-sm text-white hover:text-blue-300 transition-colors duration-200 rounded-lg hover:bg-white/10 whitespace-nowrap"
             >
               <svg

@@ -2,7 +2,7 @@
 export const businessData = {
   // Business Identity
   name: "KeyFoby",
-  legalName: "Key Fob Pro",
+  legalName: "KeyFob Pro",
   tagline: "Lost Keys? Need a Spare? We've Got You.",
   description:
     "Custom key fobs for cars and homes – built with speed and precision.",

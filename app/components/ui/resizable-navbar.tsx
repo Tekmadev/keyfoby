@@ -9,6 +9,7 @@ import {
 } from "motion/react";
 
 import React, { useRef, useState } from "react";
+import { trackNavigation } from "@/lib/analytics";
 
 interface NavbarProps {
   children: React.ReactNode;
@@ -126,7 +127,10 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
       {items.map((item, idx) => (
         <a
           onMouseEnter={() => setHovered(idx)}
-          onClick={onItemClick}
+          onClick={() => {
+            trackNavigation(item.name);
+            onItemClick?.();
+          }}
           className="relative px-5 py-2 text-slate-700 dark:text-slate-300 hover:text-blue-500 dark:hover:text-blue-400 transition-colors duration-200 rounded-lg"
           key={`link-${idx}`}
           href={item.link}
