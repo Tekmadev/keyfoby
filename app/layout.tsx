@@ -42,6 +42,10 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       {
+        url: "/favicon.ico",
+        sizes: "any",
+      },
+      {
         url: "/images/KeyFoby-logo/favicons/favicon-16x16.png",
         sizes: "16x16",
         type: "image/png",
@@ -51,7 +55,6 @@ export const metadata: Metadata = {
         sizes: "32x32",
         type: "image/png",
       },
-      { url: "/images/KeyFoby-logo/favicons/favicon.ico", sizes: "any" },
     ],
     apple: [
       {
@@ -62,12 +65,8 @@ export const metadata: Metadata = {
     ],
     other: [
       {
-        rel: "android-chrome-192x192",
-        url: "/images/KeyFoby-logo/favicons/android-chrome-192x192.png",
-      },
-      {
-        rel: "android-chrome-512x512",
-        url: "/images/KeyFoby-logo/favicons/android-chrome-512x512.png",
+        rel: "manifest",
+        url: "/images/KeyFoby-logo/favicons/site.webmanifest",
       },
     ],
   },
@@ -106,32 +105,6 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <head>
-        <link
-          rel="icon"
-          href="/images/KeyFoby-logo/favicons/favicon.ico"
-          sizes="any"
-        />
-        <link
-          rel="icon"
-          href="/images/KeyFoby-logo/favicons/favicon-16x16.png"
-          type="image/png"
-          sizes="16x16"
-        />
-        <link
-          rel="icon"
-          href="/images/KeyFoby-logo/favicons/favicon-32x32.png"
-          type="image/png"
-          sizes="32x32"
-        />
-        <link
-          rel="apple-touch-icon"
-          href="/images/KeyFoby-logo/favicons/apple-touch-icon.png"
-        />
-        <link
-          rel="manifest"
-          href="/images/KeyFoby-logo/favicons/site.webmanifest"
-        />
-
         {/* Structured Data for SEO */}
         <script
           type="application/ld+json"
