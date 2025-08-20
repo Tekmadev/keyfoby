@@ -9,6 +9,7 @@ import {
   formatIncompletePhoneNumber,
 } from "libphonenumber-js";
 import { trackContactFormSubmit, trackWhatsAppClick } from "@/lib/analytics";
+import { IconKey, IconPower } from "@tabler/icons-react";
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
@@ -16,6 +17,7 @@ export default function ContactForm() {
     email: "",
     phone: "",
     service: "",
+    ignitionType: "",
     message: "",
   });
 
@@ -296,6 +298,7 @@ export default function ContactForm() {
         phone: formData.phone,
         phone_clean: formData.phone.replace(/\D/g, ""), // Clean phone number for WhatsApp
         service: formData.service || "General Inquiry",
+        ignitionType: formData.ignitionType || "",
         message: formData.message,
         date: new Date().toLocaleDateString(),
         time: new Date().toLocaleTimeString(),
@@ -313,7 +316,14 @@ export default function ContactForm() {
       trackContactFormSubmit(formData.service || "General Inquiry");
 
       setSubmitMessage("Thank you! We'll get back to you within 2 hours.");
-      setFormData({ name: "", email: "", phone: "", service: "", message: "" });
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        service: "",
+        ignitionType: "",
+        message: "",
+      });
     } catch (error) {
       console.error("EmailJS error:", error);
       setSubmitMessage(
@@ -575,6 +585,51 @@ export default function ContactForm() {
                     </option>
                   ))}
                 </select>
+              </div>
+
+              {/* Ignition Type */}
+              <div>
+                <span className="block text-sm font-medium text-slate-300 mb-2">
+                  Ignition Type
+                </span>
+                <div className="grid grid-cols-2 gap-3">
+                  <label
+                    className={`flex items-center gap-3 p-3 rounded-xl border cursor-pointer transition-colors ${
+                      formData.ignitionType === "Key Start"
+                        ? "border-blue-500 bg-slate-700/60"
+                        : "border-slate-600 bg-slate-700"
+                    }`}
+                  >
+                    <input
+                      type="radio"
+                      name="ignitionType"
+                      value="Key Start"
+                      checked={formData.ignitionType === "Key Start"}
+                      onChange={handleChange}
+                      className="sr-only"
+                    />
+                    <IconKey className="w-5 h-5 text-blue-400" />
+                    <span className="text-slate-200">Key Start</span>
+                  </label>
+                  <label
+                    className={`flex items-center gap-3 p-3 rounded-xl border cursor-pointer transition-colors ${
+                      formData.ignitionType === "Push Button Start"
+                        ? "border-blue-500 bg-slate-700/60"
+                        : "border-slate-600 bg-slate-700"
+                    }`}
+                  >
+                    <input
+                      type="radio"
+                      name="ignitionType"
+                      value="Push Button Start"
+                      checked={formData.ignitionType === "Push Button Start"}
+                      onChange={handleChange}
+                      className="sr-only"
+                    />
+                    <IconPower className="w-5 h-5 text-blue-400" />
+                    <span className="text-slate-200">Push Button Start</span>
+                  </label>
+                </div>
               </div>
 
               <div>
