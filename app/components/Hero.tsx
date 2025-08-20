@@ -1,6 +1,7 @@
 "use client";
 
 import { businessData } from "@/lib/business-data";
+import { IconCheck } from "@tabler/icons-react";
 
 export default function Hero() {
   const scrollToContact = () => {
@@ -57,50 +58,33 @@ export default function Hero() {
 
           {/* Enhanced Description - SEO Content */}
           <div className="max-w-3xl mx-auto space-y-4 sm:space-y-6">
-            <p className="text-base sm:text-lg md:text-xl text-slate-300 leading-relaxed px-2">
-              <strong>Hamilton's #1 Locksmith & Key Fob Specialists</strong> -
-              Professional automotive key replacement, house key duplication,
-              and emergency lockout services. Serving Hamilton, Burlington,
-              Oakville, and Greater Toronto Area with <em>same-day service</em>{" "}
-              and <em>100% satisfaction guarantee</em>.
+            <p className="text-lg sm:text-xl text-slate-300 mb-8 max-w-2xl">
+              Professional automotive key replacement, key fob programming, and
+              emergency lockout services in Hamilton and surrounding areas.
             </p>
 
-            {/* Additional SEO-rich content */}
-            <div className="text-sm sm:text-base text-slate-400 leading-relaxed px-2">
-              <p>
-                ✓ Car Key Programming (All Makes & Models) ✓ Transponder Keys ✓
-                Smart Key Replacement ✓ Key Fob Shell Repair ✓ Emergency Car
-                Lockout ✓ House Key Cutting ✓ 24/7 Mobile Service
-              </p>
-            </div>
-
-            {/* Key benefits for SEO - Mobile optimized */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 mt-6 sm:mt-8 px-2">
-              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3 sm:p-4 border border-white/20">
-                <h3 className="text-white font-semibold text-base sm:text-lg mb-1 sm:mb-2">
-                  Fast Service
-                </h3>
-                <p className="text-slate-300 text-xs sm:text-sm">
-                  Same-day key programming and duplication
-                </p>
-              </div>
-              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3 sm:p-4 border border-white/20">
-                <h3 className="text-white font-semibold text-base sm:text-lg mb-1 sm:mb-2">
-                  Expert Technicians
-                </h3>
-                <p className="text-slate-300 text-xs sm:text-sm">
-                  Certified professionals with latest equipment
-                </p>
-              </div>
-              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3 sm:p-4 border border-white/20">
-                <h3 className="text-white font-semibold text-base sm:text-lg mb-1 sm:mb-2">
-                  Local Service
-                </h3>
-                <p className="text-slate-300 text-xs sm:text-sm">
-                  Serving {businessData.contact.address.city} and surrounding
-                  areas
-                </p>
-              </div>
+            {/* Trust indicators */}
+            <div className="flex flex-wrap justify-center gap-4 mb-8 text-sm text-slate-200">
+              <span className="flex items-center gap-1">
+                <IconCheck className="w-4 h-4 text-green-400" />
+                Licensed & Insured
+              </span>
+              <span className="flex items-center gap-1">
+                <IconCheck className="w-4 h-4 text-green-400" />
+                Same-Day Service
+              </span>
+              <span className="flex items-center gap-1">
+                <IconCheck className="w-4 h-4 text-green-400" />
+                Emergency Car Lockout
+              </span>
+              <span className="flex items-center gap-1">
+                <IconCheck className="w-4 h-4 text-green-400" />
+                Automotive Key Programming
+              </span>
+              <span className="flex items-center gap-1">
+                <IconCheck className="w-4 h-4 text-green-400" />
+                24/7 Mobile Service
+              </span>
             </div>
           </div>
 

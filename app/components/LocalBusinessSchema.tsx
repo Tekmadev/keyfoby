@@ -10,7 +10,7 @@ export default function LocalBusinessSchema() {
     name: businessData.name,
     alternateName: businessData.legalName,
     description:
-      "Professional locksmith and key fob services in Hamilton, Ontario. Specializing in automotive key programming, house key duplication, emergency lockout services, and transponder key replacement.",
+      "Professional locksmith and key fob services in Hamilton, Ontario. Specializing in automotive key programming, car key replacement, emergency lockout services, and transponder key replacement.",
     url: "https://www.keyfoby.com",
     telephone: businessData.contact.phone,
     email: businessData.contact.email,
@@ -58,7 +58,6 @@ export default function LocalBusinessSchema() {
       "Car Key Programming",
       "Transponder Key Replacement",
       "Key Fob Programming",
-      "House Key Duplication",
       "Emergency Lockout Service",
       "Key Cutting",
       "Smart Key Programming",
@@ -85,17 +84,7 @@ export default function LocalBusinessSchema() {
             "@type": "Service",
             name: "Emergency Lockout Service",
             description:
-              "24/7 emergency car and house lockout services in Hamilton and surrounding areas",
-            areaServed: businessData.seo.localSeo.serviceArea,
-          },
-        },
-        {
-          "@type": "Offer",
-          itemOffered: {
-            "@type": "Service",
-            name: "House Key Duplication",
-            description:
-              "Residential key cutting and duplication services with custom engraving options",
+              "24/7 emergency car lockout services in Hamilton and surrounding areas",
             areaServed: businessData.seo.localSeo.serviceArea,
           },
         },

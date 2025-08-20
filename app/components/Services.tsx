@@ -21,28 +21,6 @@ export default function Services() {
           />
         </svg>
       ),
-      comingSoon: businessData.services.car.comingSoon,
-    },
-    {
-      title: businessData.services.house.title,
-      description: businessData.services.house.description,
-      features: businessData.services.house.features,
-      icon: (
-        <svg
-          className="w-8 h-8"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
-          />
-        </svg>
-      ),
-      comingSoon: null,
     },
   ];
 
@@ -59,23 +37,22 @@ export default function Services() {
           </h2>
           <p className="text-lg sm:text-xl text-slate-600 dark:text-slate-300 max-w-4xl mx-auto mb-4">
             <strong>Hamilton's Premier Key Specialists</strong> - Expert
-            automotive key programming, house key duplication, and emergency
-            lockout services. Serving Hamilton, Burlington, Oakville, and
-            Greater Toronto Area with same-day solutions.
+            automotive key programming and emergency lockout services. Serving
+            Hamilton, Burlington, Oakville, and Greater Toronto Area with
+            same-day solutions.
           </p>
 
           {/* Additional SEO content */}
           <div className="text-base text-slate-500 dark:text-slate-400 max-w-3xl mx-auto">
             <p>
-              🔧 All Makes & Models • 🚗 Transponder Keys • 🏠 Residential Keys
-              • 📱 Smart Key Programming • ⚡ Emergency Service • 🛡️ Licensed &
-              Insured
+              🔧 All Makes & Models • 🚗 Transponder Keys • 📱 Smart Key
+              Programming • ⚡ Emergency Service • 🛡️ Licensed & Insured
             </p>
           </div>
         </div>
 
         {/* Services grid */}
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
+        <div className="grid lg:grid-cols-1 gap-8 lg:gap-12 max-w-3xl mx-auto">
           {services.map((service, index) => (
             <div
               key={index}
@@ -112,14 +89,6 @@ export default function Services() {
                     </li>
                   ))}
                 </ul>
-
-                {/* Coming soon badge */}
-                {service.comingSoon && (
-                  <div className="inline-flex items-center px-3 py-1 bg-gradient-to-r from-blue-500/10 to-cyan-400/10 text-blue-600 dark:text-blue-400 text-sm font-medium rounded-full border border-blue-200 dark:border-blue-800">
-                    <span className="w-2 h-2 bg-blue-500 rounded-full mr-2 animate-pulse"></span>
-                    Coming Soon: {service.comingSoon}
-                  </div>
-                )}
               </div>
             </div>
           ))}

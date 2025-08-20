@@ -569,15 +569,11 @@ export default function ContactForm() {
                   className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
                 >
                   <option value="">Select a service</option>
-                  <option value="Car Key Fob Programming">
-                    Car Key Fob Programming
-                  </option>
-                  <option value="House Key Duplication">
-                    House Key Duplication
-                  </option>
-                  <option value="Emergency Lockout">Emergency Lockout</option>
-                  <option value="Key Replacement">Key Replacement</option>
-                  <option value="Other">Other</option>
+                  {businessData.serviceOptions.map((option) => (
+                    <option key={option} value={option}>
+                      {option}
+                    </option>
+                  ))}
                 </select>
               </div>
 

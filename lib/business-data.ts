@@ -2,7 +2,7 @@
 export const businessData = {
   // Business Identity
   name: "KeyFoby",
-  legalName: "KeyFob Pro",
+  legalName: "KeyFoby",
   tagline: "Lost Keys? Need a Spare? We've Got You.",
   description:
     "Custom key fobs for cars and homes – built with speed and precision.",
@@ -53,20 +53,23 @@ export const businessData = {
         "Shell replacement",
         "Remote programming",
         "Transponder keys",
-      ],
-      comingSoon: "Smart key programming",
-    },
-    house: {
-      title: "House Key Fobs",
-      description: "Secure home access solutions tailored to your needs",
-      features: [
-        "Spare key cutting",
-        "Custom engraving",
-        "Access key cards",
-        "Mailbox keys",
+        "Smart key programming",
+        "All key(s) lost/stolen",
       ],
     },
   },
+
+  // Form Service Options
+  serviceOptions: [
+    "Car Key Replacement",
+    "Car Key Duplication",
+    "Key Fob Programming",
+    "Emergency Lockout",
+    "Transponder Keys",
+    "Smart Key Programming",
+    "All key(s) lost/stolen",
+    "General Inquiry",
+  ],
 
   // Features/Why Choose Us
   features: [
@@ -118,9 +121,9 @@ export const businessData = {
   // SEO & Meta - Advanced SEO Strategy
   seo: {
     title:
-      "KeyFoby - #1 Key Fob Services Hamilton | Car & House Keys | 24/7 Emergency",
+      "KeyFoby - #1 Car Key Fob Services Hamilton | Automotive Keys | 24/7 Emergency",
     description:
-      "🔑 Hamilton's TOP-RATED key fob experts! Lost car keys? Need house key duplicates? ⚡ 15-min service ⚡ Licensed locksmith ⚡ 100% satisfaction. Call (905) 467-6860!",
+      "🔑 Hamilton's TOP-RATED key fob experts! Lost car keys? Need automotive key programming? ⚡ 15-min service ⚡ Licensed locksmith ⚡ 100% satisfaction. Call (905) 467-6860!",
     keywords: [
       // Primary Keywords (High Volume)
       "key fob Hamilton",
@@ -132,7 +135,7 @@ export const businessData = {
       // Long-tail Keywords (High Intent)
       "24 hour locksmith Hamilton Ontario",
       "emergency car key replacement Hamilton",
-      "house key cutting Hamilton",
+
       "car key programming Hamilton",
       "automotive locksmith Hamilton",
 
@@ -182,7 +185,7 @@ export const businessData = {
     openGraph: {
       title: "KeyFoby - Hamilton's #1 Key Fob & Locksmith Services",
       description:
-        "🔑 EMERGENCY KEY SERVICES ⚡ Lost car keys? House lockouts? ⚡ Hamilton's fastest locksmith! Licensed ✅ Insured ✅ 24/7 Emergency ✅ Call NOW!",
+        "🔑 EMERGENCY KEY SERVICES ⚡ Lost car keys? Need automotive key programming? ⚡ Hamilton's fastest locksmith! Licensed ✅ Insured ✅ 24/7 Emergency ✅ Call NOW!",
       image: "/images/keyfobykeys.png?v=2025",
       type: "business.business",
     },
@@ -194,7 +197,7 @@ export const businessData = {
       name: "KeyFoby",
       alternateName: "Key Fob Pro",
       description:
-        "Professional locksmith and key fob services in Hamilton, Ontario. Specializing in car key replacement, house key duplication, and emergency lockout services.",
+        "Professional locksmith and key fob services in Hamilton, Ontario. Specializing in automotive key programming, car key replacement, and emergency lockout services.",
       url: "https://www.keyfoby.com",
       telephone: "+1-905-467-6860",
       email: "keyfoby@gmail.com",
@@ -239,14 +242,6 @@ export const businessData = {
               name: "Car Key Replacement",
               description:
                 "Professional automotive key replacement and programming services",
-            },
-          },
-          {
-            "@type": "Offer",
-            itemOffered: {
-              "@type": "Service",
-              name: "House Key Duplication",
-              description: "Residential key cutting and duplication services",
             },
           },
         ],

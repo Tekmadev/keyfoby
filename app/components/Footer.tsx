@@ -1,5 +1,6 @@
 import { businessData } from "@/lib/business-data";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Footer() {
   return (
@@ -60,39 +61,41 @@ export default function Footer() {
 
           {/* Services */}
           <div>
-            <h4 className="text-white font-semibold mb-6">Services</h4>
-            <ul className="space-y-3 text-slate-400">
+            <h4 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">
+              Our Services
+            </h4>
+            <ul className="space-y-2 text-slate-600 dark:text-slate-300">
               <li>
-                <a
+                <Link
                   href="#services"
-                  className="hover:text-white transition-colors duration-200"
+                  className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
                 >
                   {businessData.services.car.title}
-                </a>
+                </Link>
               </li>
               <li>
-                <a
+                <Link
                   href="#services"
-                  className="hover:text-white transition-colors duration-200"
+                  className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
                 >
-                  {businessData.services.house.title}
-                </a>
+                  Emergency Lockout
+                </Link>
               </li>
               <li>
-                <a
+                <Link
                   href="#services"
-                  className="hover:text-white transition-colors duration-200"
+                  className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
                 >
-                  Key Duplication
-                </a>
+                  Smart Key Programming
+                </Link>
               </li>
               <li>
-                <a
-                  href="#contact"
-                  className="hover:text-white transition-colors duration-200"
+                <Link
+                  href="#services"
+                  className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
                 >
-                  Emergency Service
-                </a>
+                  Transponder Keys
+                </Link>
               </li>
             </ul>
           </div>
