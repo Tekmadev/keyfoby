@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { businessData } from "@/lib/business-data";
 import emailjs from "@emailjs/browser";
 import {
@@ -10,6 +10,7 @@ import {
 } from "libphonenumber-js";
 import { trackContactFormSubmit, trackWhatsAppClick } from "@/lib/analytics";
 import { IconKey, IconPower } from "@tabler/icons-react";
+import CarSelector from "./CarSelector";
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
@@ -18,6 +19,9 @@ export default function ContactForm() {
     phone: "",
     service: "",
     ignitionType: "",
+    vehicleYear: "",
+    vehicleMake: "",
+    vehicleModel: "",
     message: "",
   });
 
@@ -28,6 +32,35 @@ export default function ContactForm() {
   const [emailError, setEmailError] = useState("");
   const [isValidatingEmail, setIsValidatingEmail] = useState(false);
   const phoneInputRef = useRef<HTMLInputElement>(null);
+  const mapContainerRef = useRef<HTMLDivElement>(null);
+  const [shouldLoadMap, setShouldLoadMap] = useState(false);
+
+  // Lazy load Google Maps only when visible to reduce HTTP requests
+  useEffect(() => {
+    if (!mapContainerRef.current || shouldLoadMap) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // Load map when it's about to be visible (50% threshold)
+            setShouldLoadMap(true);
+            observer.disconnect();
+          }
+        });
+      },
+      {
+        rootMargin: "200px", // Start loading 200px before it's visible
+        threshold: 0.1,
+      }
+    );
+
+    observer.observe(mapContainerRef.current);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [shouldLoadMap]);
 
   // EmailJS configuration - Replace these with your actual EmailJS credentials
   const EMAILJS_SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || "";
@@ -291,6 +324,22 @@ export default function ContactForm() {
         );
       }
 
+      // Format vehicle info for email
+      let vehicleInfo = "";
+      if (
+        formData.vehicleYear ||
+        formData.vehicleMake ||
+        formData.vehicleModel
+      ) {
+        vehicleInfo = [
+          formData.vehicleYear,
+          formData.vehicleMake,
+          formData.vehicleModel,
+        ]
+          .filter(Boolean)
+          .join(" ");
+      }
+
       // Prepare template parameters for EmailJS
       const templateParams = {
         name: formData.name,
@@ -299,6 +348,10 @@ export default function ContactForm() {
         phone_clean: formData.phone.replace(/\D/g, ""), // Clean phone number for WhatsApp
         service: formData.service || "General Inquiry",
         ignitionType: formData.ignitionType || "",
+        vehicleInfo: vehicleInfo || "Not specified",
+        vehicleYear: formData.vehicleYear || "",
+        vehicleMake: formData.vehicleMake || "",
+        vehicleModel: formData.vehicleModel || "",
         message: formData.message,
         date: new Date().toLocaleDateString(),
         time: new Date().toLocaleTimeString(),
@@ -322,6 +375,9 @@ export default function ContactForm() {
         phone: "",
         service: "",
         ignitionType: "",
+        vehicleYear: "",
+        vehicleMake: "",
+        vehicleModel: "",
         message: "",
       });
     } catch (error) {
@@ -632,6 +688,40 @@ export default function ContactForm() {
                 </div>
               </div>
 
+              {/* Vehicle Information - NHTSA API Integration */}
+              <div className="border-t border-slate-700 pt-6">
+                <h3 className="text-lg font-semibold text-slate-200 mb-4 flex items-center gap-2">
+                  <svg
+                    className="w-5 h-5 text-blue-400"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                    />
+                  </svg>
+                  Vehicle Information
+                </h3>
+                <CarSelector
+                  year={formData.vehicleYear}
+                  make={formData.vehicleMake}
+                  model={formData.vehicleModel}
+                  onYearChange={(year) =>
+                    setFormData((prev) => ({ ...prev, vehicleYear: year }))
+                  }
+                  onMakeChange={(make) =>
+                    setFormData((prev) => ({ ...prev, vehicleMake: make }))
+                  }
+                  onModelChange={(model) =>
+                    setFormData((prev) => ({ ...prev, vehicleModel: model }))
+                  }
+                />
+              </div>
+
               <div>
                 <label
                   htmlFor="message"
@@ -646,7 +736,7 @@ export default function ContactForm() {
                   onChange={handleChange}
                   rows={4}
                   className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-xl text-white placeholder-slate-400 resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
-                  placeholder="Describe your key needs (car make/model, type of key, etc.)"
+                  placeholder="Describe your needs if you need Urgent Service please Call Us at 905-467-6860"
                 ></textarea>
               </div>
 
@@ -805,19 +895,49 @@ export default function ContactForm() {
                 We serve Hamilton and the Greater Toronto Area
               </p>
 
-              {/* Google Map */}
-              <div className="relative overflow-hidden rounded-2xl border border-slate-600">
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1472086.7806840392!2d-80.61776837742386!3d43.89375619295225!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882b2a1d7471156d%3A0x4ecad8e272e4c2a2!2sGreater%20Toronto%20Area%2C%20ON!5e0!3m2!1sen!2sca!4v1750819492723!5m2!1sen!2sca"
-                  width="100%"
-                  height="300"
-                  style={{ border: 0 }}
-                  allowFullScreen
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  className="w-full h-[300px] rounded-xl"
-                  title="KeyFoby Service Area - Hamilton and Greater Toronto Area"
-                ></iframe>
+              {/* Google Map - Lazy loaded to reduce HTTP requests */}
+              <div
+                ref={mapContainerRef}
+                className="relative overflow-hidden rounded-2xl border border-slate-600"
+              >
+                {shouldLoadMap ? (
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1472086.7806840392!2d-80.61776837742386!3d43.89375619295225!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882b2a1d7471156d%3A0x4ecad8e272e4c2a2!2sGreater%20Toronto%20Area%2C%20ON!5e0!3m2!1sen!2sca!4v1750819492723!5m2!1sen!2sca"
+                    width="100%"
+                    height="300"
+                    style={{ border: 0 }}
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    className="w-full h-[300px] rounded-xl"
+                    title="KeyFoby Service Area - Hamilton and Greater Toronto Area"
+                  />
+                ) : (
+                  <div className="w-full h-[300px] rounded-xl bg-slate-700 flex items-center justify-center">
+                    <div className="text-center text-slate-300">
+                      <svg
+                        className="w-12 h-12 mx-auto mb-2 text-slate-400"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                        />
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                        />
+                      </svg>
+                      <p className="text-sm">Map loading...</p>
+                    </div>
+                  </div>
+                )}
               </div>
 
               {/* Service area details */}

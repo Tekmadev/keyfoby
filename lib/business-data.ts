@@ -120,8 +120,7 @@ export const businessData = {
 
   // SEO & Meta - Advanced SEO Strategy
   seo: {
-    title:
-      "KeyFoby - #1 Car Key Fob Services Hamilton | Automotive Keys | 24/7 Emergency",
+    title: "KeyFoby - Car Key Fob Services Hamilton | 24/7",
     description:
       "🔑 Hamilton's TOP-RATED key fob experts! Lost car keys? Need automotive key programming? ⚡ 15-min service ⚡ Licensed locksmith ⚡ 100% satisfaction. Call (905) 467-6860!",
     keywords: [

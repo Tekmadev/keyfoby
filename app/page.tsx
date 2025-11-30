@@ -1,10 +1,22 @@
+import { lazy, Suspense } from "react";
 import NavBar from "./components/NavBar";
 import Hero from "./components/Hero";
-import Services from "./components/Services";
-import Features from "./components/Features";
-import ContactForm from "./components/ContactForm";
-import Footer from "./components/Footer";
 import LocalBusinessSchema from "./components/LocalBusinessSchema";
+
+// Lazy load below-the-fold components to reduce initial bundle size and HTTP requests
+const Services = lazy(() => import("./components/Services"));
+const Features = lazy(() => import("./components/Features"));
+const ContactFormWrapper = lazy(
+  () => import("./components/ContactFormWrapper")
+);
+const Footer = lazy(() => import("./components/Footer"));
+
+// Loading placeholder component
+const SectionLoader = () => (
+  <div className="min-h-[400px] flex items-center justify-center">
+    <div className="animate-pulse text-slate-400">Loading...</div>
+  </div>
+);
 
 export default function Home() {
   return (
@@ -13,10 +25,18 @@ export default function Home() {
       <NavBar />
       <main className="min-h-screen">
         <Hero />
-        <Services />
-        <Features />
-        <ContactForm />
-        <Footer />
+        <Suspense fallback={<SectionLoader />}>
+          <Services />
+        </Suspense>
+        <Suspense fallback={<SectionLoader />}>
+          <Features />
+        </Suspense>
+        <Suspense fallback={<SectionLoader />}>
+          <ContactFormWrapper />
+        </Suspense>
+        <Suspense fallback={null}>
+          <Footer />
+        </Suspense>
       </main>
     </>
   );

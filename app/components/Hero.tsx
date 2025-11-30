@@ -22,13 +22,16 @@ export default function Hero() {
     <section
       id="hero"
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
-      style={{
-        backgroundImage: "url(/images/herobannerKF.webp)",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-      }}
     >
+      {/* Optimized background image with loading priority */}
+      <div
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: "url(/images/herobannerKF.webp)",
+          willChange: "transform", // Optimize for animations
+        }}
+        aria-hidden="true"
+      />
       {/* Dark overlay for better text readability */}
       <div className="absolute inset-0 bg-black/50 z-10"></div>
 
@@ -38,10 +41,12 @@ export default function Hero() {
       {/* Hero Content */}
       <div className="relative z-30 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-20">
         <div className="space-y-6 sm:space-y-8">
-          {/* Main Headline - SEO Optimized */}
+          {/* Main Headline - SEO Optimized - Critical for LCP */}
           <div className="space-y-3 sm:space-y-4">
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-tight">
-              <span className="block">Lost Keys?</span>
+              <span className="block" style={{ contentVisibility: "auto" }}>
+                Lost Keys?
+              </span>
               <span className="block bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-500 bg-clip-text text-transparent">
                 Need a Spare?
               </span>

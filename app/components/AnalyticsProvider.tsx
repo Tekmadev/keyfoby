@@ -22,9 +22,22 @@ export default function AnalyticsProvider({
   children,
 }: AnalyticsProviderProps) {
   useEffect(() => {
-    // Track initial page view
-    if (analytics) {
-      trackPageView("KeyFoby Landing Page");
+    // Defer analytics loading to prevent render blocking
+    // Use requestIdleCallback for non-critical analytics
+    const loadAnalytics = () => {
+      if (analytics) {
+        trackPageView("KeyFoby Landing Page");
+      }
+    };
+
+    // Load analytics after page is interactive
+    if (typeof window !== "undefined") {
+      if ("requestIdleCallback" in window) {
+        requestIdleCallback(loadAnalytics, { timeout: 2000 });
+      } else {
+        // Fallback for browsers without requestIdleCallback
+        setTimeout(loadAnalytics, 1000);
+      }
     }
 
     // Track page visibility changes

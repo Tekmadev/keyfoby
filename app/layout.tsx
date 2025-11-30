@@ -7,11 +7,15 @@ import AnalyticsProvider from "@/app/components/AnalyticsProvider";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+  display: "swap", // Prevent render blocking
+  preload: false, // Don't preload to reduce initial load
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  display: "swap", // Prevent render blocking
+  preload: false, // Don't preload to reduce initial load
 });
 
 export const viewport: Viewport = {
@@ -105,28 +109,37 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <head>
-        {/* Structured Data for SEO */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(businessData.seo.schema),
-          }}
-        />
+        {/* DNS prefetch for external domains - non-blocking */}
+        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+        <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
 
-        {/* Google Analytics - Add your tracking ID */}
-        {/* <script async src="https://www.googletagmanager.com/gtag/js?id=GA_TRACKING_ID"></script> */}
-
-        {/* Preconnect to external domains for performance */}
+        {/* Preconnect to CDN for faster asset loading */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"
           href="https://fonts.gstatic.com"
           crossOrigin="anonymous"
         />
+
+        {/* Preload critical hero image for faster LCP */}
+        <link
+          rel="preload"
+          href="/images/herobannerKF.webp"
+          as="image"
+          type="image/webp"
+          fetchPriority="high"
+        />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        {/* Structured Data for SEO - Moved to body to prevent render blocking */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(businessData.seo.schema),
+          }}
+        />
         <AnalyticsProvider>{children}</AnalyticsProvider>
       </body>
     </html>
