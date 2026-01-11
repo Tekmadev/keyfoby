@@ -533,7 +533,6 @@ export default function TermsOfService() {
                     "3 months of warranty coverage",
                     "Covers: Key fob not working, car won't start, or lock/unlock not working",
                     "YOU MUST test everything before our technician leaves",
-                    "After we leave: Only key fob problems are covered",
                   ].map((item, index) => (
                     <li key={index} className="flex items-start">
                       <span className="text-blue-500 mr-2 mt-1">✓</span>
