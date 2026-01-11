@@ -136,7 +136,7 @@ export default function Footer() {
               </a>
             </p>
           </div>
-          <div className="flex space-x-6 mt-4 sm:mt-0">
+          <div className="flex flex-wrap gap-x-6 gap-y-2 mt-4 sm:mt-0 justify-center sm:justify-end">
             <Link
               href="/privacy-policy"
               className="text-slate-400 hover:text-white text-sm transition-colors duration-200"
@@ -148,6 +148,12 @@ export default function Footer() {
               className="text-slate-400 hover:text-white text-sm transition-colors duration-200"
             >
               Terms of Service
+            </Link>
+            <Link
+              href="/warranty"
+              className="text-slate-400 hover:text-white text-sm transition-colors duration-200"
+            >
+              Warranty
             </Link>
             <a
               href="#contact"

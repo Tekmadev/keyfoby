@@ -155,7 +155,7 @@ export default function LocalBusinessSchema() {
         name: "Do you provide emergency lockout services?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Yes! KeyFoby provides 24/7 emergency lockout services for cars and homes in Hamilton, Burlington, Oakville, and surrounding areas. Call (905) 467-6860 for immediate assistance.",
+          text: "Yes! KeyFoby provides 24/7 emergency lockout services for cars and homes in Hamilton, Burlington, Oakville, and surrounding areas. Call (438) 797-7776 for immediate assistance.",
         },
       },
       {

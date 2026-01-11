@@ -88,6 +88,7 @@ export default function TermsOfService() {
                 "Acceptable Use",
                 "Service Availability",
                 "User Content and Data",
+                "Service Warranty",
                 "Intellectual Property",
                 "Limitation of Liability",
                 "Indemnification",
@@ -503,11 +504,154 @@ export default function TermsOfService() {
             </div>
           </section>
 
+          {/* Service Warranty */}
+          <section
+            id="service-warranty"
+            className="mb-12 scroll-mt-8 bg-slate-50 dark:bg-slate-800/50 rounded-xl p-8"
+          >
+            <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-6 flex items-center">
+              <span className="text-blue-500 mr-3">🛡️</span>
+              7. Service Warranty & Disclaimers
+            </h2>
+
+            <div className="space-y-6">
+              <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-6 border border-blue-200 dark:border-blue-800">
+                <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4 flex items-center">
+                  <span className="text-2xl mr-2">✅</span>
+                  Warranty Overview
+                </h3>
+                <p className="text-slate-700 dark:text-slate-300 mb-4 leading-relaxed">
+                  KeyFoby provides a{" "}
+                  <strong className="text-blue-600 dark:text-blue-400">
+                    3-month warranty
+                  </strong>{" "}
+                  on all key fob services. This warranty covers problems that
+                  happen because of our work.
+                </p>
+                <ul className="space-y-2 text-slate-700 dark:text-slate-300">
+                  {[
+                    "3 months of warranty coverage",
+                    "Covers: Key fob not working, car won't start, or lock/unlock not working",
+                    "YOU MUST test everything before our technician leaves",
+                    "After we leave: Only key fob problems are covered",
+                  ].map((item, index) => (
+                    <li key={index} className="flex items-start">
+                      <span className="text-blue-500 mr-2 mt-1">✓</span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="bg-slate-100 dark:bg-slate-800 rounded-lg p-6 border-2 border-slate-300 dark:border-slate-600">
+                <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4 flex items-center">
+                  <span className="text-2xl mr-2">⚖️</span>
+                  What Happens After We Leave
+                </h3>
+                <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
+                  KeyFoby works on key fobs. After our technician leaves,
+                  KeyFoby is{" "}
+                  <strong>
+                    only responsible for problems with the key fob not working
+                  </strong>
+                  , including if the fob won't start your car or the lock/unlock
+                  buttons don't work. KeyFoby is{" "}
+                  <strong>
+                    NOT responsible for any other problems, damage, car issues,
+                    problems that already existed, or anything else
+                  </strong>{" "}
+                  that happens after our technician leaves. By using our
+                  service, you agree to these terms.
+                </p>
+              </div>
+
+              <div className="bg-red-50 dark:bg-red-900/20 rounded-lg p-6 border border-red-200 dark:border-red-800">
+                <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4 flex items-center">
+                  <span className="text-2xl mr-2">❌</span>
+                  Warranty Exclusions
+                </h3>
+                <p className="text-slate-700 dark:text-slate-300 mb-4">
+                  The following are <strong>NOT covered</strong> under warranty:
+                </p>
+                <ul className="space-y-2 text-slate-700 dark:text-slate-300">
+                  {[
+                    "Water damage (if it gets wet)",
+                    "Drops, cracks, or physical damage",
+                    "If you take it apart or someone else fixes it",
+                    "Car problems, electrical issues, or problems that were already there",
+                    "Any other problems or damage after we leave",
+                    "Anything you didn't test before we left",
+                  ].map((item, index) => (
+                    <li key={index} className="flex items-start">
+                      <span className="text-red-500 mr-2 mt-1">✕</span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="bg-amber-50 dark:bg-amber-900/20 rounded-lg p-6 border border-amber-200 dark:border-amber-800">
+                <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4 flex items-center">
+                  <span className="text-2xl mr-2">🔧</span>
+                  We Only Work On Key Fobs
+                </h3>
+                <p className="text-slate-700 dark:text-slate-300 mb-3">
+                  <strong>KeyFoby does NOT fix cars.</strong> We only work on
+                  key fobs only. We do NOT work on cars. We are not responsible
+                  for:
+                </p>
+                <ul className="space-y-2 text-slate-700 dark:text-slate-300 text-sm">
+                  <li className="flex items-start">
+                    <span className="mr-2">•</span>
+                    <span>
+                      Problems with your car's ignition (where the key goes)
+                    </span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="mr-2">•</span>
+                    <span>Car door lock problems</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="mr-2">•</span>
+                    <span>
+                      Car electrical, engine, or transmission problems
+                    </span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="mr-2">•</span>
+                    <span>Any car problems (we only fix key fobs)</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div className="bg-gradient-to-r from-blue-500 to-cyan-500 rounded-xl p-6 text-white">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h3 className="text-xl font-bold mb-2">
+                      Complete Warranty Details
+                    </h3>
+                    <p className="text-blue-100 text-sm">
+                      For full warranty terms, coverage details, claim
+                      procedures, and important disclaimers, please review our
+                      comprehensive warranty policy.
+                    </p>
+                  </div>
+                  <Link
+                    href="/warranty"
+                    className="bg-white text-blue-600 px-6 py-3 rounded-lg font-bold hover:bg-blue-50 transition-all duration-300 hover:scale-105 whitespace-nowrap ml-4"
+                  >
+                    View Full Warranty →
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </section>
+
           {/* Limitation of Liability */}
           <section id="limitation-of-liability" className="mb-12 scroll-mt-8">
             <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-6 flex items-center">
               <span className="text-blue-500 mr-3">⚖️</span>
-              7. Limitation of Liability
+              8. Limitation of Liability
             </h2>
 
             <div className="bg-red-50 dark:bg-red-900/20 border-2 border-red-300 dark:border-red-800 rounded-xl p-8">
@@ -597,7 +741,7 @@ export default function TermsOfService() {
           >
             <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-6 flex items-center">
               <span className="text-blue-500 mr-3">🛡️</span>
-              8. Indemnification
+              9. Indemnification
             </h2>
             <div className="prose prose-slate dark:prose-invert max-w-none">
               <p className="text-slate-700 dark:text-slate-300 mb-4">
@@ -629,7 +773,7 @@ export default function TermsOfService() {
           <section id="termination" className="mb-12 scroll-mt-8">
             <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-6 flex items-center">
               <span className="text-blue-500 mr-3">🚪</span>
-              9. Account Termination
+              10. Account Termination
             </h2>
 
             <div className="space-y-6">
@@ -722,7 +866,7 @@ export default function TermsOfService() {
           >
             <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-6 flex items-center">
               <span className="text-blue-500 mr-3">🔄</span>
-              10. Changes to Terms of Service
+              11. Changes to Terms of Service
             </h2>
             <div className="prose prose-slate dark:prose-invert max-w-none">
               <p className="text-slate-700 dark:text-slate-300 mb-4">
@@ -758,7 +902,7 @@ export default function TermsOfService() {
           <section id="governing-law" className="mb-12 scroll-mt-8">
             <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-6 flex items-center">
               <span className="text-blue-500 mr-3">⚖️</span>
-              11. Governing Law and Dispute Resolution
+              12. Governing Law and Dispute Resolution
             </h2>
 
             <div className="space-y-6">
@@ -831,7 +975,7 @@ export default function TermsOfService() {
           >
             <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-6 flex items-center">
               <span className="text-blue-500 mr-3">📋</span>
-              12. Miscellaneous Provisions
+              13. Miscellaneous Provisions
             </h2>
 
             <div className="space-y-6">
@@ -886,7 +1030,7 @@ export default function TermsOfService() {
           >
             <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-6 flex items-center">
               <span className="text-blue-500 mr-3">📞</span>
-              13. Contact Information
+              14. Contact Information
             </h2>
             <p className="text-slate-700 dark:text-slate-300 mb-6">
               If you have any questions about these Terms of Service, please

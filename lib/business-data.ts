@@ -9,10 +9,10 @@ export const businessData = {
 
   // Contact Information
   contact: {
-    phone: "+1 (905) 467-6860",
-    phoneDisplay: "+1 (905) 467-6860",
+    phone: "+1 (438) 797-7776",
+    phoneDisplay: "+1 (438) 797-7776",
     email: "keyfoby@gmail.com",
-    whatsapp: "+19054676860", // WhatsApp format (no spaces, + prefix)
+    whatsapp: "+14387977776", // WhatsApp format (no spaces, + prefix)
     address: {
       street: "40 Courtland Ave",
       city: "Hamilton",
@@ -122,7 +122,7 @@ export const businessData = {
   seo: {
     title: "KeyFoby - Car Key Fob Services Hamilton | 24/7",
     description:
-      "🔑 Hamilton's TOP-RATED key fob experts! Lost car keys? Need automotive key programming? ⚡ 15-min service ⚡ Licensed locksmith ⚡ 100% satisfaction. Call (905) 467-6860!",
+      "🔑 Hamilton's TOP-RATED key fob experts! Lost car keys? Need automotive key programming? ⚡ 15-min service ⚡ Licensed locksmith ⚡ 100% satisfaction. Call (438) 797-7776!",
     keywords: [
       // Primary Keywords (High Volume)
       "key fob Hamilton",
@@ -198,7 +198,7 @@ export const businessData = {
       description:
         "Professional locksmith and key fob services in Hamilton, Ontario. Specializing in automotive key programming, car key replacement, and emergency lockout services.",
       url: "https://www.keyfoby.com",
-      telephone: "+1-905-467-6860",
+      telephone: "+1-438-797-7776",
       email: "keyfoby@gmail.com",
       address: {
         "@type": "PostalAddress",

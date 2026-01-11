@@ -75,6 +75,11 @@ const nextConfig: NextConfig = {
   experimental: {
     // Remove any server-side features if present
   },
+
+  // Turbopack configuration (Next.js 16+)
+  // Empty config acknowledges Turbopack is being used
+  // Webpack config above is kept as fallback for compatibility
+  turbopack: {},
 };
 
 export default nextConfig;

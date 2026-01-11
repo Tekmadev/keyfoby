@@ -22,14 +22,14 @@ export const trackQuoteRequest = (serviceType: string) => {
 export const trackPhoneClick = () => {
   trackEvent("phone_click", {
     contact_method: "phone",
-    phone_number: "+1 (905) 467-6860",
+    phone_number: "+1 (438) 797-7776",
   });
 };
 
 export const trackWhatsAppClick = () => {
   trackEvent("whatsapp_click", {
     contact_method: "whatsapp",
-    phone_number: "+19054676860",
+    phone_number: "+14387977776",
   });
 };
 

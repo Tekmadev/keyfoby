@@ -35,6 +35,7 @@ export default function ContactForm() {
   const [isValidatingPhone, setIsValidatingPhone] = useState(false);
   const [emailError, setEmailError] = useState("");
   const [isValidatingEmail, setIsValidatingEmail] = useState(false);
+  const [termsAccepted, setTermsAccepted] = useState(false);
   const phoneInputRef = useRef<HTMLInputElement>(null);
   const mapContainerRef = useRef<HTMLDivElement>(null);
   const [shouldLoadMap, setShouldLoadMap] = useState(false);
@@ -50,6 +51,7 @@ export default function ContactForm() {
     formData.vehicleMake !== "" &&
     formData.vehicleModel !== "" &&
     formData.message.trim() !== "" &&
+    termsAccepted &&
     !phoneError &&
     !emailError &&
     !isValidatingPhone &&
@@ -400,6 +402,7 @@ export default function ContactForm() {
         vehicleModel: "",
         message: "",
       });
+      setTermsAccepted(false);
     } catch (error) {
       console.error("EmailJS error:", error);
       setSubmitMessage(
@@ -770,8 +773,51 @@ export default function ContactForm() {
                   rows={4}
                   required
                   className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-xl text-white placeholder-slate-400 resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
-                  placeholder="Describe your needs if you need Urgent Service please Call Us at 905-467-6860"
+                  placeholder="Describe your needs if you need Urgent Service please Call Us at 438-797-7776"
                 ></textarea>
+              </div>
+
+              {/* Terms and Warranty Acceptance */}
+              <div className="border-t border-slate-700 pt-6">
+                <label className="flex items-start cursor-pointer group">
+                  <div className="flex items-center h-6">
+                    <input
+                      type="checkbox"
+                      checked={termsAccepted}
+                      onChange={(e) => setTermsAccepted(e.target.checked)}
+                      required
+                      className="w-5 h-5 rounded border-slate-600 bg-slate-700 text-blue-500 focus:ring-2 focus:ring-blue-500 focus:ring-offset-0 focus:ring-offset-slate-800 cursor-pointer transition-all"
+                    />
+                  </div>
+                  <span className="ml-3 text-sm text-slate-300 leading-relaxed">
+                    I have read and agree to the{" "}
+                    <a
+                      href="/terms-of-service"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-400 hover:text-blue-300 underline font-medium"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      Terms of Service
+                    </a>
+                    {" "}and{" "}
+                    <a
+                      href="/warranty"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-400 hover:text-blue-300 underline font-medium"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      Warranty Policy
+                    </a>
+                    <span className="text-red-400 ml-1">*</span>
+                  </span>
+                </label>
+                {!termsAccepted && (
+                  <p className="mt-2 ml-8 text-xs text-slate-400">
+                    You must accept the terms and warranty policy to submit your request
+                  </p>
+                )}
               </div>
 
               <button
