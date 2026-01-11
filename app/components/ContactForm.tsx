@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { businessData } from "@/lib/business-data";
+import { useServiceTypes } from "@/hooks/useServiceTypes";
 import emailjs from "@emailjs/browser";
 import {
   parsePhoneNumber,
@@ -13,6 +14,9 @@ import { IconKey, IconPower } from "@tabler/icons-react";
 import CarSelector from "./CarSelector";
 
 export default function ContactForm() {
+  // Fetch service types from Supabase
+  const { services, isLoading: servicesLoading } = useServiceTypes();
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -34,6 +38,22 @@ export default function ContactForm() {
   const phoneInputRef = useRef<HTMLInputElement>(null);
   const mapContainerRef = useRef<HTMLDivElement>(null);
   const [shouldLoadMap, setShouldLoadMap] = useState(false);
+
+  // Check if all required fields are filled
+  const isFormValid =
+    formData.name.trim() !== "" &&
+    formData.email.trim() !== "" &&
+    formData.phone.trim() !== "" &&
+    formData.service !== "" &&
+    formData.ignitionType !== "" &&
+    formData.vehicleYear !== "" &&
+    formData.vehicleMake !== "" &&
+    formData.vehicleModel !== "" &&
+    formData.message.trim() !== "" &&
+    !phoneError &&
+    !emailError &&
+    !isValidatingPhone &&
+    !isValidatingEmail;
 
   // Lazy load Google Maps only when visible to reduce HTTP requests
   useEffect(() => {
@@ -431,7 +451,7 @@ export default function ContactForm() {
                   htmlFor="name"
                   className="block text-sm font-medium text-slate-300 mb-2"
                 >
-                  Your Name
+                  Your Name <span className="text-red-400">*</span>
                 </label>
                 <input
                   type="text"
@@ -450,7 +470,7 @@ export default function ContactForm() {
                   htmlFor="email"
                   className="block text-sm font-medium text-slate-300 mb-2"
                 >
-                  Email Address
+                  Email Address <span className="text-red-400">*</span>
                 </label>
                 <div className="relative">
                   <input
@@ -535,7 +555,7 @@ export default function ContactForm() {
                   htmlFor="phone"
                   className="block text-sm font-medium text-slate-300 mb-2"
                 >
-                  Phone Number
+                  Phone Number <span className="text-red-400">*</span>
                   <span className="text-slate-400 text-xs ml-2">
                     (Canadian format)
                   </span>
@@ -624,7 +644,7 @@ export default function ContactForm() {
                   htmlFor="service"
                   className="block text-sm font-medium text-slate-300 mb-2"
                 >
-                  Service Needed
+                  Service Needed <span className="text-red-400">*</span>
                 </label>
                 <select
                   id="service"
@@ -632,60 +652,20 @@ export default function ContactForm() {
                   value={formData.service}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                  disabled={servicesLoading}
+                  className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  <option value="">Select a service</option>
-                  {businessData.serviceOptions.map((option) => (
-                    <option key={option} value={option}>
-                      {option}
+                  <option value="">
+                    {servicesLoading
+                      ? "Loading services..."
+                      : "Select a service"}
+                  </option>
+                  {services.map((service) => (
+                    <option key={service.id} value={service.name}>
+                      {service.name}
                     </option>
                   ))}
                 </select>
-              </div>
-
-              {/* Ignition Type */}
-              <div>
-                <span className="block text-sm font-medium text-slate-300 mb-2">
-                  Ignition Type
-                </span>
-                <div className="grid grid-cols-2 gap-3">
-                  <label
-                    className={`flex items-center gap-3 p-3 rounded-xl border cursor-pointer transition-colors ${
-                      formData.ignitionType === "Key Start"
-                        ? "border-blue-500 bg-slate-700/60"
-                        : "border-slate-600 bg-slate-700"
-                    }`}
-                  >
-                    <input
-                      type="radio"
-                      name="ignitionType"
-                      value="Key Start"
-                      checked={formData.ignitionType === "Key Start"}
-                      onChange={handleChange}
-                      className="sr-only"
-                    />
-                    <IconKey className="w-5 h-5 text-blue-400" />
-                    <span className="text-slate-200">Key Start</span>
-                  </label>
-                  <label
-                    className={`flex items-center gap-3 p-3 rounded-xl border cursor-pointer transition-colors ${
-                      formData.ignitionType === "Push Button Start"
-                        ? "border-blue-500 bg-slate-700/60"
-                        : "border-slate-600 bg-slate-700"
-                    }`}
-                  >
-                    <input
-                      type="radio"
-                      name="ignitionType"
-                      value="Push Button Start"
-                      checked={formData.ignitionType === "Push Button Start"}
-                      onChange={handleChange}
-                      className="sr-only"
-                    />
-                    <IconPower className="w-5 h-5 text-blue-400" />
-                    <span className="text-slate-200">Push Button Start</span>
-                  </label>
-                </div>
               </div>
 
               {/* Vehicle Information - NHTSA API Integration */}
@@ -705,7 +685,60 @@ export default function ContactForm() {
                     />
                   </svg>
                   Vehicle Information
+                  {/* <span className="text-red-400 text-sm">*</span> */}
                 </h3>
+
+                {/* Ignition Type */}
+                <div className="mb-4">
+                  <span className="block text-sm font-medium text-slate-300 mb-2">
+                    Ignition Type <span className="text-red-400">*</span>
+                  </span>
+                  <div className="grid grid-cols-2 gap-3">
+                    <label
+                      className={`flex items-center gap-3 p-3 rounded-xl border cursor-pointer transition-colors ${
+                        formData.ignitionType === "Key Start"
+                          ? "border-blue-500 bg-slate-700/60"
+                          : "border-slate-600 bg-slate-700 hover:border-slate-500"
+                      }`}
+                    >
+                      <input
+                        type="radio"
+                        name="ignitionType"
+                        value="Key Start"
+                        checked={formData.ignitionType === "Key Start"}
+                        onChange={handleChange}
+                        className="sr-only"
+                        required
+                      />
+                      <IconKey className="w-5 h-5 text-blue-400" />
+                      <span className="text-slate-200">Key Start</span>
+                    </label>
+                    <label
+                      className={`flex items-center gap-3 p-3 rounded-xl border cursor-pointer transition-colors ${
+                        formData.ignitionType === "Push Button Start"
+                          ? "border-blue-500 bg-slate-700/60"
+                          : "border-slate-600 bg-slate-700 hover:border-slate-500"
+                      }`}
+                    >
+                      <input
+                        type="radio"
+                        name="ignitionType"
+                        value="Push Button Start"
+                        checked={formData.ignitionType === "Push Button Start"}
+                        onChange={handleChange}
+                        className="sr-only"
+                      />
+                      <IconPower className="w-5 h-5 text-blue-400" />
+                      <span className="text-slate-200">Push Button Start</span>
+                    </label>
+                  </div>
+                  {!formData.ignitionType && (
+                    <p className="mt-2 text-xs text-slate-400">
+                      Please select your vehicle's ignition type
+                    </p>
+                  )}
+                </div>
+
                 <CarSelector
                   year={formData.vehicleYear}
                   make={formData.vehicleMake}
@@ -727,7 +760,7 @@ export default function ContactForm() {
                   htmlFor="message"
                   className="block text-sm font-medium text-slate-300 mb-2"
                 >
-                  What do you need?
+                  What do you need? <span className="text-red-400">*</span>
                 </label>
                 <textarea
                   id="message"
@@ -735,6 +768,7 @@ export default function ContactForm() {
                   value={formData.message}
                   onChange={handleChange}
                   rows={4}
+                  required
                   className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-xl text-white placeholder-slate-400 resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
                   placeholder="Describe your needs if you need Urgent Service please Call Us at 905-467-6860"
                 ></textarea>
@@ -742,13 +776,7 @@ export default function ContactForm() {
 
               <button
                 type="submit"
-                disabled={
-                  isSubmitting ||
-                  phoneError !== "" ||
-                  isValidatingPhone ||
-                  emailError !== "" ||
-                  isValidatingEmail
-                }
+                disabled={isSubmitting || !isFormValid}
                 className="w-full bg-gradient-to-r from-blue-500 to-cyan-400 text-white font-semibold py-4 px-6 rounded-xl hover:from-blue-600 hover:to-cyan-500 focus:outline-none focus:ring-4 focus:ring-blue-500/50 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-blue-500/25 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
               >
                 {isSubmitting ? (
@@ -760,6 +788,13 @@ export default function ContactForm() {
                   "Send Quote Request"
                 )}
               </button>
+
+              {/* Form completion helper */}
+              {!isFormValid && !isSubmitting && (
+                <p className="text-center text-sm text-slate-400 mt-2">
+                  Please fill in all required fields to submit
+                </p>
+              )}
 
               {/* Success/Error Message */}
               {submitMessage && (

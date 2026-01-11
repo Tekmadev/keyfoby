@@ -6,6 +6,8 @@ import LocalBusinessSchema from "./components/LocalBusinessSchema";
 // Lazy load below-the-fold components to reduce initial bundle size and HTTP requests
 const Services = lazy(() => import("./components/Services"));
 const Features = lazy(() => import("./components/Features"));
+const AppPromo = lazy(() => import("./components/AppPromo"));
+const GoogleReviews = lazy(() => import("./components/GoogleReviews"));
 const ContactFormWrapper = lazy(
   () => import("./components/ContactFormWrapper")
 );
@@ -30,6 +32,12 @@ export default function Home() {
         </Suspense>
         <Suspense fallback={<SectionLoader />}>
           <Features />
+        </Suspense>
+        <Suspense fallback={<SectionLoader />}>
+          <AppPromo />
+        </Suspense>
+        <Suspense fallback={<SectionLoader />}>
+          <GoogleReviews />
         </Suspense>
         <Suspense fallback={<SectionLoader />}>
           <ContactFormWrapper />

@@ -127,7 +127,7 @@ export default function CarSelector({
           htmlFor="vehicle-year"
           className="block text-sm font-medium text-slate-300 mb-2"
         >
-          Vehicle Year <span className="text-slate-500">(Optional)</span>
+          Vehicle Year <span className="text-red-400">*</span>
         </label>
         <select
           id="vehicle-year"
@@ -151,8 +151,12 @@ export default function CarSelector({
           htmlFor="vehicle-make"
           className="block text-sm font-medium text-slate-300 mb-2"
         >
-          Vehicle Make{" "}
-          <span className="text-slate-500">(Select year first)</span>
+          Vehicle Make <span className="text-red-400">*</span>
+          {!year && (
+            <span className="text-slate-500 text-xs ml-1">
+              (Select year first)
+            </span>
+          )}
         </label>
 
         {/* Search input for makes (if list is long) */}
@@ -180,8 +184,8 @@ export default function CarSelector({
               ? "Loading makes..."
               : "Select Make"}
           </option>
-          {filteredMakes.map((m) => (
-            <option key={m.id} value={m.name}>
+          {filteredMakes.map((m, index) => (
+            <option key={`${m.id}-${m.name}-${index}`} value={m.name}>
               {m.name}
             </option>
           ))}
@@ -207,8 +211,12 @@ export default function CarSelector({
             htmlFor="vehicle-model"
             className="block text-sm font-medium text-slate-300"
           >
-            Vehicle Model{" "}
-            <span className="text-slate-500">(Select make first)</span>
+            Vehicle Model <span className="text-red-400">*</span>
+            {!make && (
+              <span className="text-slate-500 text-xs ml-1">
+                (Select make first)
+              </span>
+            )}
           </label>
 
           {/* Manual entry toggle - only show if make is selected */}
@@ -297,8 +305,8 @@ export default function CarSelector({
                   ? "Loading models..."
                   : "Select Model"}
               </option>
-              {filteredModels.map((m) => (
-                <option key={m.id} value={m.name}>
+              {filteredModels.map((m, index) => (
+                <option key={`${m.id}-${m.name}-${index}`} value={m.name}>
                   {m.name}
                 </option>
               ))}

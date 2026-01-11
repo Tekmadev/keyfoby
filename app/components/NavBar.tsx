@@ -19,22 +19,27 @@ export default function NavBar() {
   const navItems = [
     {
       name: "Services",
-      link: "#services",
+      link: "/#services",
     },
     {
       name: "Why KeyFoby",
-      link: "#features",
+      link: "/#features",
     },
     {
       name: "Contact",
-      link: "#contact",
+      link: "/#contact",
+    },
+    {
+      name: "📱 App",
+      link: "https://app.keyfoby.com",
+      external: true, // Flag to indicate external link
     },
   ];
 
   const KeyFobyLogo = () => {
     return (
       <a
-        href="#"
+        href="/"
         className="relative z-20 mr-6 flex items-center space-x-3 px-2 py-1"
       >
         {/* KeyFoby Logo */}
@@ -56,7 +61,7 @@ export default function NavBar() {
 
   const MobileKeyFobyLogo = () => {
     return (
-      <a href="#" className="relative z-20 flex items-center px-2 py-1">
+      <a href="/" className="relative z-20 flex items-center px-2 py-1">
         {/* KeyFoby Logo - Mobile (logo only) */}
         <div className="relative w-10 h-10 flex items-center justify-center">
           <Image
@@ -234,6 +239,8 @@ export default function NavBar() {
                 key={`mobile-link-${idx}`}
                 href={item.link}
                 onClick={() => setIsMobileMenuOpen(false)}
+                target={item.external ? "_blank" : undefined}
+                rel={item.external ? "noopener noreferrer" : undefined}
                 className="relative text-white hover:text-blue-300 font-medium py-3 px-2 rounded-lg hover:bg-white/10 transition-all duration-200 block"
               >
                 <span className="block">{item.name}</span>
