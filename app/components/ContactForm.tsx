@@ -346,6 +346,20 @@ export default function ContactForm() {
         );
       }
 
+      // Also send structured intake payload to the server-side automation pipeline.
+      // IMPORTANT: We do NOT return AI output to the customer from this request.
+      const intakePayload = {
+        ignitionType: formData.ignitionType,
+        vehicleYear: formData.vehicleYear,
+        vehicleMake: formData.vehicleMake,
+        vehicleModel: formData.vehicleModel,
+        serviceRequested: formData.service,
+        customerMessage: formData.message,
+        customerEmail: formData.email,
+        customerPhone: formData.phone,
+        customerName: formData.name,
+      };
+
       // Format vehicle info for email
       let vehicleInfo = "";
       if (
@@ -379,13 +393,35 @@ export default function ContactForm() {
         time: new Date().toLocaleTimeString(),
       };
 
-      // Send email using EmailJS
-      await emailjs.send(
-        EMAILJS_SERVICE_ID,
-        EMAILJS_TEMPLATE_ID,
-        templateParams,
-        EMAILJS_PUBLIC_KEY
-      );
+      // Send email using EmailJS and also submit to `/api/intake`.
+      // EmailJS is customer-facing success criteria; intake automation is best-effort here.
+      const [emailResult, intakeResult] = await Promise.allSettled([
+        emailjs.send(
+          EMAILJS_SERVICE_ID,
+          EMAILJS_TEMPLATE_ID,
+          templateParams,
+          EMAILJS_PUBLIC_KEY
+        ),
+        // Avoid 308 redirect because `trailingSlash: true` is enabled.
+        fetch("/api/intake/", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(intakePayload),
+        }),
+      ]);
+
+      if (intakeResult.status === "fulfilled") {
+        // We intentionally do not show AI details to the customer.
+        if (!intakeResult.value.ok) {
+          console.warn("Intake API responded with error:", intakeResult.value.status);
+        }
+      } else {
+        console.warn("Intake API request failed:", intakeResult.reason);
+      }
+
+      if (emailResult.status === "rejected") {
+        throw emailResult.reason;
+      }
 
       // Track successful form submission
       trackContactFormSubmit(formData.service || "General Inquiry");
