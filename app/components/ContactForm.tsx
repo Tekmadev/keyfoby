@@ -9,7 +9,13 @@ import {
   isValidPhoneNumber,
   formatIncompletePhoneNumber,
 } from "libphonenumber-js";
-import { trackContactFormSubmit, trackWhatsAppClick } from "@/lib/analytics";
+import {
+  trackContactFormSubmit,
+  trackWhatsAppClick,
+  trackGoogleAdsLeadFormSubmit,
+  trackGoogleAdsContact,
+  trackGoogleAdsRequestQuote,
+} from "@/lib/analytics";
 import { IconKey, IconPower } from "@tabler/icons-react";
 import CarSelector from "./CarSelector";
 
@@ -425,6 +431,9 @@ export default function ContactForm() {
 
       // Track successful form submission
       trackContactFormSubmit(formData.service || "General Inquiry");
+      trackGoogleAdsLeadFormSubmit();
+      trackGoogleAdsContact();
+      trackGoogleAdsRequestQuote();
 
       setSubmitMessage("Thank you! We'll get back to you within 2 hours.");
       setFormData({

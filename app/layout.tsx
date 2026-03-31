@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { businessData } from "@/lib/business-data";
 import AnalyticsProvider from "@/app/components/AnalyticsProvider";
+import Script from "next/script";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -141,6 +142,21 @@ export default function RootLayout({
           }}
         />
         <AnalyticsProvider>{children}</AnalyticsProvider>
+
+        {/* Google Ads tag */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=AW-17289404018"
+          strategy="afterInteractive"
+        />
+        <Script id="google-ads-config" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'AW-17289404018');
+            gtag('event', 'conversion', {'send_to': 'AW-17289404018/xI8ECM7q0ZEcEPK8nbRA'});
+          `}
+        </Script>
       </body>
     </html>
   );

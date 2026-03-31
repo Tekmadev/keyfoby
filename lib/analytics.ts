@@ -1,6 +1,36 @@
 import { analytics } from "./firebase";
 import { logEvent } from "firebase/analytics";
 
+// Google Ads gtag conversion helper
+declare global {
+  interface Window {
+    gtag?: (...args: unknown[]) => void;
+    dataLayer?: unknown[];
+  }
+}
+
+const fireGtagConversion = (sendTo: string) => {
+  if (typeof window !== "undefined" && typeof window.gtag === "function") {
+    window.gtag("event", "conversion", { send_to: sendTo });
+  }
+};
+
+export const trackGoogleAdsPageView = () => {
+  fireGtagConversion("AW-17289404018/xI8ECM7q0ZEcEPK8nbRA");
+};
+
+export const trackGoogleAdsLeadFormSubmit = () => {
+  fireGtagConversion("AW-17289404018/pbByCMvq0ZEcEPK8nbRA");
+};
+
+export const trackGoogleAdsContact = () => {
+  fireGtagConversion("AW-17289404018/eKQgCNfq0ZEcEPK8nbRA");
+};
+
+export const trackGoogleAdsRequestQuote = () => {
+  fireGtagConversion("AW-17289404018/aXiECNTq0ZEcEPK8nbRA");
+};
+
 // Custom event tracking functions for KeyFoby
 export const trackEvent = (
   eventName: string,
