@@ -5,12 +5,15 @@ import NavBar from "@/app/components/NavBar";
 import Footer from "@/app/components/Footer";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | KeyFoby - Mobile App & Services",
+  title: "Privacy Policy | KeyFoby Automotive Locksmith Hamilton",
   description:
-    "Privacy Policy for KeyFoby mobile application and services. Learn how we collect, use, and protect your personal information.",
+    "KeyFoby privacy policy: how we collect, use, and protect your personal information for our automotive locksmith and key fob services in Hamilton, Ontario.",
   robots: {
     index: true,
     follow: true,
+  },
+  alternates: {
+    canonical: "https://www.keyfoby.com/privacy-policy/",
   },
 };
 

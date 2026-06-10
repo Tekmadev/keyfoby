@@ -5,12 +5,15 @@ import NavBar from "@/app/components/NavBar";
 import Footer from "@/app/components/Footer";
 
 export const metadata: Metadata = {
-  title: "Service Warranty Policy | KeyFoby - Automotive Locksmith",
+  title: "3-Month Service Warranty | KeyFoby Automotive Locksmith Hamilton",
   description:
-    "KeyFoby warranty policy for key fob services and automotive locksmith services. Learn about our 3-month warranty coverage and terms.",
+    "KeyFoby provides a 3-month warranty on all car key replacement and key fob programming services in Hamilton, Ontario. Learn what's covered.",
   robots: {
     index: true,
     follow: true,
+  },
+  alternates: {
+    canonical: "https://www.keyfoby.com/warranty/",
   },
 };
 

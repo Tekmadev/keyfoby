@@ -4,10 +4,10 @@ Allow: /
 # Sitemap
 Sitemap: https://www.keyfoby.com/sitemap.xml
 
-# Crawl-delay for respectful crawling
+# Respectful crawl delay
 Crawl-delay: 1
 
-# Allow all major search engines
+# Major search engines
 User-agent: Googlebot
 Allow: /
 
@@ -20,7 +20,35 @@ Allow: /
 User-agent: DuckDuckBot
 Allow: /
 
-# Block unwanted bots
+# AI / Generative Engine crawlers - allowed for GEO visibility
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+User-agent: GoogleOther
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: meta-externalagent
+Allow: /
+
+# Block aggressive scrapers
 User-agent: AhrefsBot
 Disallow: /
 
@@ -28,4 +56,4 @@ User-agent: MJ12bot
 Disallow: /
 
 User-agent: SemrushBot
-Disallow: / 
+Disallow: /

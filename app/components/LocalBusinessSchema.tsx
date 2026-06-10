@@ -3,17 +3,17 @@
 import { businessData } from "@/lib/business-data";
 
 export default function LocalBusinessSchema() {
-  // Enhanced local business schema with reviews and FAQ
   const localBusinessSchema = {
     "@context": "https://schema.org",
     "@type": ["Locksmith", "LocalBusiness"],
     name: businessData.name,
     alternateName: businessData.legalName,
     description:
-      "Professional locksmith and key fob services in Hamilton, Ontario. Specializing in automotive key programming, car key replacement, emergency lockout services, and transponder key replacement.",
+      "KeyFoby is a licensed and insured automotive locksmith based in Hamilton, Ontario, Canada. We specialize in car key replacement, key fob programming, transponder key cutting, smart key programming, and 24/7 emergency lockout services. Serving Hamilton, Burlington, Oakville, Mississauga, Brampton, Toronto, and surrounding areas.",
     url: "https://www.keyfoby.com",
     telephone: businessData.contact.phone,
     email: businessData.contact.email,
+    foundingDate: "2022",
     priceRange: "$$",
     currenciesAccepted: "CAD",
     paymentAccepted: "Cash, Credit Card, Debit Card, E-Transfer",
@@ -59,33 +59,71 @@ export default function LocalBusinessSchema() {
       "Transponder Key Replacement",
       "Key Fob Programming",
       "Emergency Lockout Service",
-      "Key Cutting",
       "Smart Key Programming",
       "Remote Key Replacement",
+      "All Keys Lost Service",
+      "Key Fob Shell Replacement",
+      "Broken Key Extraction",
+      "Proximity Key Programming",
     ],
 
     hasOfferCatalog: {
       "@type": "OfferCatalog",
-      name: "Locksmith Services",
+      name: "Automotive Locksmith Services",
       itemListElement: [
         {
           "@type": "Offer",
           itemOffered: {
             "@type": "Service",
-            name: "Car Key Programming",
+            name: "Car Key Replacement Hamilton",
             description:
-              "Professional automotive key programming for all makes and models including transponder keys, smart keys, and remote key fobs",
-            areaServed: businessData.seo.localSeo.serviceArea,
+              "Professional car key replacement for all makes and models including transponder keys, smart keys, and remote key fobs in Hamilton and surrounding areas",
+            areaServed: "Hamilton, ON",
+            provider: { "@type": "LocalBusiness", name: "KeyFoby" },
           },
         },
         {
           "@type": "Offer",
           itemOffered: {
             "@type": "Service",
-            name: "Emergency Lockout Service",
+            name: "24/7 Emergency Car Lockout Service",
             description:
-              "24/7 emergency car lockout services in Hamilton and surrounding areas",
+              "Around-the-clock emergency car lockout service in Hamilton, Burlington, Oakville, Mississauga, and the Greater Toronto Area",
             areaServed: businessData.seo.localSeo.serviceArea,
+            provider: { "@type": "LocalBusiness", name: "KeyFoby" },
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Key Fob Programming",
+            description:
+              "Programming and reprogramming of keyless entry fobs and proximity smart keys for all vehicle brands and models",
+            areaServed: businessData.seo.localSeo.serviceArea,
+            provider: { "@type": "LocalBusiness", name: "KeyFoby" },
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Transponder Key Programming",
+            description:
+              "Cutting and programming of transponder chip keys for all makes including Ford, GM, Honda, Toyota, BMW, Mercedes, and more",
+            areaServed: "Hamilton, ON",
+            provider: { "@type": "LocalBusiness", name: "KeyFoby" },
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "All Keys Lost Service",
+            description:
+              "Complete key replacement service for vehicles with no working keys. New key cut and programmed from VIN with proof of ownership.",
+            areaServed: businessData.seo.localSeo.serviceArea,
+            provider: { "@type": "LocalBusiness", name: "KeyFoby" },
           },
         },
       ],
@@ -102,10 +140,7 @@ export default function LocalBusinessSchema() {
     review: [
       {
         "@type": "Review",
-        author: {
-          "@type": "Person",
-          name: "Sarah Johnson",
-        },
+        author: { "@type": "Person", name: "Sarah Johnson" },
         reviewRating: {
           "@type": "Rating",
           ratingValue: "5",
@@ -116,10 +151,7 @@ export default function LocalBusinessSchema() {
       },
       {
         "@type": "Review",
-        author: {
-          "@type": "Person",
-          name: "Mike Thompson",
-        },
+        author: { "@type": "Person", name: "Mike Thompson" },
         reviewRating: {
           "@type": "Rating",
           ratingValue: "5",
@@ -127,6 +159,17 @@ export default function LocalBusinessSchema() {
         },
         reviewBody:
           "Excellent service for my BMW key programming. The technician was knowledgeable and the price was fair. Will definitely use KeyFoby again.",
+      },
+      {
+        "@type": "Review",
+        author: { "@type": "Person", name: "Amanda R." },
+        reviewRating: {
+          "@type": "Rating",
+          ratingValue: "5",
+          bestRating: "5",
+        },
+        reviewBody:
+          "Got locked out of my car on a Sunday night and KeyFoby was there within 25 minutes. Super professional and the price was very reasonable. 5 stars!",
       },
     ],
 
@@ -137,43 +180,134 @@ export default function LocalBusinessSchema() {
     ],
   };
 
-  // FAQ Schema for common locksmith questions
+  // FAQ Schema - 12 comprehensive questions for AEO
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: [
+    mainEntity: businessData.faqItems.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  };
+
+  // HowTo Schema for key replacement process - targets "how to replace car key" searches
+  const howToSchema = {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name: "How to Get a Car Key Replacement in Hamilton",
+    description:
+      "Step-by-step process for getting a replacement car key or key fob from KeyFoby in Hamilton, Ontario",
+    estimatedCost: {
+      "@type": "MonetaryAmount",
+      currency: "CAD",
+      minValue: "50",
+      maxValue: "400",
+    },
+    totalTime: "PT45M",
+    step: [
       {
-        "@type": "Question",
-        name: "How much does car key replacement cost in Hamilton?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Car key replacement costs vary depending on the make, model, and type of key. Basic keys start around $50, while transponder and smart keys range from $150-$400. Contact KeyFoby for a free quote specific to your vehicle.",
-        },
+        "@type": "HowToStep",
+        name: "Contact KeyFoby",
+        text: "Call or message KeyFoby at (438) 797-7776 or use the online contact form to describe your vehicle and the type of key service you need.",
+        position: 1,
       },
       {
-        "@type": "Question",
-        name: "Do you provide emergency lockout services?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Yes! KeyFoby provides 24/7 emergency lockout services for cars and homes in Hamilton, Burlington, Oakville, and surrounding areas. Call (438) 797-7776 for immediate assistance.",
-        },
+        "@type": "HowToStep",
+        name: "Provide Vehicle Information",
+        text: "Share your vehicle year, make, model, and VIN number. Have your proof of vehicle ownership (registration or title) ready for all-keys-lost situations.",
+        position: 2,
       },
       {
-        "@type": "Question",
-        name: "Can you program keys for all car makes and models?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "KeyFoby programs keys for most major automotive brands including Ford, GM, Honda, Toyota, BMW, Mercedes, Audi, and more. We use professional-grade equipment to ensure proper programming.",
-        },
+        "@type": "HowToStep",
+        name: "Get a Free Quote",
+        text: "Receive an upfront price quote with no hidden fees. KeyFoby provides transparent pricing before any work begins.",
+        position: 3,
       },
       {
-        "@type": "Question",
-        name: "How long does key programming take?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Most key programming services are completed within 15-45 minutes depending on the vehicle type. Complex smart keys may take up to an hour. We provide same-day service for most requests.",
-        },
+        "@type": "HowToStep",
+        name: "Key Cutting and Programming",
+        text: "A certified technician cuts and programs your new key or key fob using professional-grade equipment. Most services are completed in 15–45 minutes.",
+        position: 4,
       },
+      {
+        "@type": "HowToStep",
+        name: "Test and Verify",
+        text: "Your new key is tested in your vehicle to confirm all functions work correctly, including remote unlock, trunk release, and engine start.",
+        position: 5,
+      },
+    ],
+  };
+
+  // WebSite schema - helps search engines understand the site entity
+  const webSiteSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "KeyFoby",
+    url: "https://www.keyfoby.com",
+    description:
+      "Professional automotive locksmith and key fob services in Hamilton, Ontario. Car key replacement, transponder programming, and 24/7 emergency lockout.",
+    potentialAction: {
+      "@type": "SearchAction",
+      target: {
+        "@type": "EntryPoint",
+        urlTemplate: "https://www.keyfoby.com/#contact?q={search_term_string}",
+      },
+      "query-input": "required name=search_term_string",
+    },
+    publisher: {
+      "@type": "LocalBusiness",
+      name: "KeyFoby",
+      url: "https://www.keyfoby.com",
+    },
+  };
+
+  // Organization schema - reinforces entity for AI/GEO
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "KeyFoby",
+    url: "https://www.keyfoby.com",
+    logo: "https://www.keyfoby.com/images/keyfobykeys.png",
+    description:
+      "KeyFoby is Hamilton Ontario's trusted automotive locksmith providing car key replacement, key fob programming, and emergency lockout services.",
+    telephone: "+1-438-797-7776",
+    email: "keyfoby@gmail.com",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "40 Courtland Ave",
+      addressLocality: "Hamilton",
+      addressRegion: "ON",
+      postalCode: "L9B 1X6",
+      addressCountry: "CA",
+    },
+    contactPoint: {
+      "@type": "ContactPoint",
+      telephone: "+1-438-797-7776",
+      contactType: "customer service",
+      areaServed: "CA-ON",
+      availableLanguage: ["English", "French"],
+      hoursAvailable: {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+          "Sunday",
+        ],
+        description: "Emergency service available 24/7",
+      },
+    },
+    sameAs: [
+      "https://www.facebook.com/keyfoby",
+      "https://www.instagram.com/keyfoby",
+      "https://twitter.com/keyfoby",
     ],
   };
 
@@ -189,6 +323,24 @@ export default function LocalBusinessSchema() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(faqSchema),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(howToSchema),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(webSiteSchema),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(organizationSchema),
         }}
       />
     </>
