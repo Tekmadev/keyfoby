@@ -8,6 +8,7 @@ const Services = lazy(() => import("./components/Services"));
 const Features = lazy(() => import("./components/Features"));
 const AppPromo = lazy(() => import("./components/AppPromo"));
 const GoogleReviews = lazy(() => import("./components/GoogleReviews"));
+const FAQSection = lazy(() => import("./components/FAQSection"));
 const ContactFormWrapper = lazy(
   () => import("./components/ContactFormWrapper")
 );
@@ -38,6 +39,9 @@ export default function Home() {
         </Suspense>
         <Suspense fallback={<SectionLoader />}>
           <GoogleReviews />
+        </Suspense>
+        <Suspense fallback={<SectionLoader />}>
+          <FAQSection />
         </Suspense>
         <Suspense fallback={<SectionLoader />}>
           <ContactFormWrapper />

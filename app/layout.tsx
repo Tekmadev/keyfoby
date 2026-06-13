@@ -108,7 +108,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en-CA" className="scroll-smooth">
       <head>
         {/* DNS prefetch for external domains - non-blocking */}
         <link rel="dns-prefetch" href="https://fonts.googleapis.com" />

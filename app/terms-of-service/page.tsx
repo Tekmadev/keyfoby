@@ -5,12 +5,15 @@ import NavBar from "@/app/components/NavBar";
 import Footer from "@/app/components/Footer";
 
 export const metadata: Metadata = {
-  title: "Terms of Service | KeyFoby - Mobile App & Services",
+  title: "Terms of Service | KeyFoby Automotive Locksmith Hamilton",
   description:
-    "Terms of Service for KeyFoby mobile application and services. Review the terms and conditions for using our business management platform.",
+    "Terms of service for KeyFoby key fob and locksmith services in Hamilton, Ontario. Review our service terms, warranty, and conditions.",
   robots: {
     index: true,
     follow: true,
+  },
+  alternates: {
+    canonical: "https://www.keyfoby.com/terms-of-service/",
   },
 };
 

@@ -1,5 +1,18 @@
 import { businessData } from "@/lib/business-data";
 
+const serviceAreaDetails = [
+  { city: "Hamilton", detail: "Primary service hub, fastest response" },
+  { city: "Burlington", detail: "Same-day service available" },
+  { city: "Oakville", detail: "Same-day service available" },
+  { city: "Mississauga", detail: "Mobile service available" },
+  { city: "Brampton", detail: "Mobile service available" },
+  { city: "Toronto", detail: "Mobile service available" },
+  { city: "Ancaster", detail: "Same-day service available" },
+  { city: "Dundas", detail: "Same-day service available" },
+  { city: "Stoney Creek", detail: "Same-day service available" },
+  { city: "Grimsby", detail: "Mobile service available" },
+];
+
 export default function Services() {
   const services = [
     {
@@ -92,6 +105,32 @@ export default function Services() {
               </div>
             </div>
           ))}
+        </div>
+        {/* Service Areas */}
+        <div className="mt-16 pt-12 border-t border-slate-200 dark:border-slate-700">
+          <h3 className="text-2xl font-bold text-slate-900 dark:text-white text-center mb-3">
+            Areas We Serve
+          </h3>
+          <p className="text-slate-600 dark:text-slate-400 text-center mb-8 max-w-2xl mx-auto">
+            KeyFoby provides mobile locksmith services across Hamilton and the
+            surrounding communities. We come to you, so there is no need to tow your
+            vehicle.
+          </p>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+            {serviceAreaDetails.map(({ city, detail }) => (
+              <div
+                key={city}
+                className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-4 text-center hover:border-blue-400 dark:hover:border-blue-500 transition-colors duration-200"
+              >
+                <p className="font-semibold text-slate-900 dark:text-white text-sm">
+                  {city}
+                </p>
+                <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
+                  {detail}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
