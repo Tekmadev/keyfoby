@@ -3,6 +3,9 @@ import { processIntake } from "@/automation/ai/intakeAgent";
 import { getIntakeStore } from "@/automation/services/intakeStore";
 import type { IntakePayload, IgnitionType } from "@/automation/types/intake";
 
+// API routes are not served from the static export — required for build compatibility
+export const dynamic = "force-static";
+
 function getOwnerToken(): string | undefined {
   const v = process.env.AUTOMATION_OWNER_TOKEN;
   return v && v.trim() ? v.trim() : undefined;
