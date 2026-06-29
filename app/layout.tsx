@@ -143,18 +143,24 @@ export default function RootLayout({
         />
         <AnalyticsProvider>{children}</AnalyticsProvider>
 
-        {/* Google Ads tag */}
+        {/* Google tag (gtag.js) - loads the shared gtag library once for
+            both Google Ads (AW-) and Google Analytics 4 (G-) */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=AW-17289404018"
           strategy="afterInteractive"
         />
-        <Script id="google-ads-config" strategy="afterInteractive">
+        <Script id="gtag-config" strategy="afterInteractive">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
+
+            // Google Ads conversion tracking
             gtag('config', 'AW-17289404018');
             gtag('event', 'conversion', {'send_to': 'AW-17289404018/xI8ECM7q0ZEcEPK8nbRA'});
+
+            // Google Analytics 4 (GA4)
+            gtag('config', 'G-BDZE2T9HR0');
           `}
         </Script>
       </body>
