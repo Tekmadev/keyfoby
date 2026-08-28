@@ -67,9 +67,9 @@ KeyFoby serves Hamilton, ON and surrounding areas, including:
 
 ## Contact
 
-- **Phone**: +1 (438) 797-7776
+- **Phone**: +1 (905) 467-6860
 - **Email**: keyfoby@gmail.com
-- **WhatsApp**: +14387977776
+- **WhatsApp**: +19054676860
 - **Address**: 40 Courtland Ave, Hamilton, ON L9B 1X6, Canada
 - **Website**: https://www.keyfoby.com
 

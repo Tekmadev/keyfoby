@@ -212,7 +212,7 @@ export default function LocalBusinessSchema() {
       {
         "@type": "HowToStep",
         name: "Contact KeyFoby",
-        text: "Call or message KeyFoby at (438) 797-7776 or use the online contact form to describe your vehicle and the type of key service you need.",
+        text: "Call or message KeyFoby at (905) 467-6860 or use the online contact form to describe your vehicle and the type of key service you need.",
         position: 1,
       },
       {
@@ -274,7 +274,7 @@ export default function LocalBusinessSchema() {
     logo: "https://www.keyfoby.com/images/keyfobykeys.png",
     description:
       "KeyFoby is Hamilton Ontario's trusted automotive locksmith providing car key replacement, key fob programming, and emergency lockout services.",
-    telephone: "+1-438-797-7776",
+    telephone: "+1-905-467-6860",
     email: "keyfoby@gmail.com",
     address: {
       "@type": "PostalAddress",
@@ -286,7 +286,7 @@ export default function LocalBusinessSchema() {
     },
     contactPoint: {
       "@type": "ContactPoint",
-      telephone: "+1-438-797-7776",
+      telephone: "+1-905-467-6860",
       contactType: "customer service",
       areaServed: "CA-ON",
       availableLanguage: ["English", "French"],

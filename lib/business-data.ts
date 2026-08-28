@@ -9,10 +9,10 @@ export const businessData = {
 
   // Contact Information
   contact: {
-    phone: "+1 (438) 797-7776",
-    phoneDisplay: "+1 (438) 797-7776",
+    phone: "+1 (905) 467-6860",
+    phoneDisplay: "+1 (905) 467-6860",
     email: "keyfoby@gmail.com",
-    whatsapp: "+14387977776",
+    whatsapp: "+19054676860",
     address: {
       street: "40 Courtland Ave",
       city: "Hamilton",
@@ -123,12 +123,12 @@ export const businessData = {
     {
       question: "How much does car key replacement cost in Hamilton?",
       answer:
-        "Car key replacement in Hamilton typically costs between $50 and $400 depending on the type of key. Basic cut keys start around $50, transponder keys range from $100–$200, and proximity smart keys (push-button start) range from $200–$400. Contact KeyFoby at (438) 797-7776 for a free quote specific to your vehicle make and model.",
+        "Car key replacement in Hamilton typically costs between $50 and $400 depending on the type of key. Basic cut keys start around $50, transponder keys range from $100–$200, and proximity smart keys (push-button start) range from $200–$400. Contact KeyFoby at (905) 467-6860 for a free quote specific to your vehicle make and model.",
     },
     {
       question: "Do you provide 24/7 emergency lockout services?",
       answer:
-        "Yes. KeyFoby offers 24/7 emergency car lockout services across Hamilton, Burlington, Oakville, Mississauga, and the Greater Toronto Area. If you are locked out of your vehicle at any time, call (438) 797-7776 for immediate assistance.",
+        "Yes. KeyFoby offers 24/7 emergency car lockout services across Hamilton, Burlington, Oakville, Mississauga, and the Greater Toronto Area. If you are locked out of your vehicle at any time, call (905) 467-6860 for immediate assistance.",
     },
     {
       question: "What car makes and models can you program keys for?",
@@ -186,7 +186,7 @@ export const businessData = {
   seo: {
     title: "KeyFoby – Car Key Fob & Locksmith Services Hamilton, ON | 24/7",
     description:
-      "Hamilton's trusted car key replacement & locksmith experts. Lost car keys, key fob programming, transponder keys & emergency lockouts. Licensed & insured. Call (438) 797-7776.",
+      "Hamilton's trusted car key replacement & locksmith experts. Lost car keys, key fob programming, transponder keys & emergency lockouts. Licensed & insured. Call (905) 467-6860.",
     keywords: [
       // Primary - High Volume
       "key fob Hamilton",
@@ -268,7 +268,7 @@ export const businessData = {
     openGraph: {
       title: "KeyFoby – Hamilton's Car Key & Locksmith Experts | 24/7 Service",
       description:
-        "Lost car keys? Key fob not working? KeyFoby provides fast, professional automotive key programming, key fob replacement, and emergency lockout services across Hamilton, Burlington, Oakville & GTA. Licensed & insured. Call (438) 797-7776.",
+        "Lost car keys? Key fob not working? KeyFoby provides fast, professional automotive key programming, key fob replacement, and emergency lockout services across Hamilton, Burlington, Oakville & GTA. Licensed & insured. Call (905) 467-6860.",
       image: "/images/keyfobykeys.png?v=2025",
       type: "business.business",
     },
@@ -282,7 +282,7 @@ export const businessData = {
       description:
         "KeyFoby is a licensed and insured automotive locksmith based in Hamilton, Ontario, specializing in car key replacement, key fob programming, transponder keys, smart key programming, and 24/7 emergency lockout services. Serving Hamilton, Burlington, Oakville, Mississauga, Brampton, Toronto, and surrounding communities.",
       url: "https://www.keyfoby.com",
-      telephone: "+1-438-797-7776",
+      telephone: "+1-905-467-6860",
       email: "keyfoby@gmail.com",
       foundingDate: "2022",
       address: {
