@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     follow: true,
   },
   alternates: {
-    canonical: "https://www.keyfoby.com/terms-of-service/",
+    canonical: "https://www.keyfoby.com/terms-of-service",
   },
 };
 
@@ -1065,7 +1065,7 @@ export default function TermsOfService() {
                   </h3>
                 </div>
                 <a
-                  href={`tel:${businessData.contact.phone}`}
+                  href={businessData.contact.phoneHref}
                   className="text-blue-600 dark:text-blue-400 hover:underline text-lg font-medium"
                 >
                   {businessData.contact.phoneDisplay}

@@ -12,8 +12,9 @@ const nextConfig: NextConfig = {
   // Set base path if deploying to subdirectory (optional)
   // basePath: '/keyfoby',
 
-  // Ensure trailing slash consistency
-  trailingSlash: true,
+  // One URL form: no trailing slash (e.g. /warranty). Matches Firebase
+  // Hosting's cleanUrls + trailingSlash: false, so canonicals never 301.
+  trailingSlash: false,
 
   // Performance optimizations
   compress: true, // Enable gzip compression
