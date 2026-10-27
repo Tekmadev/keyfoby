@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
+  <!-- Homepage -->
+  <url>
+    <loc>https://www.keyfoby.com/</loc>
+    <lastmod>2025-06-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://www.keyfoby.com/images/herobannerKF.webp</image:loc>
+      <image:title>KeyFoby – Car Key Fob &amp; Locksmith Services Hamilton</image:title>
+      <image:caption>Professional automotive locksmith and key fob services in Hamilton, Ontario – car key replacement, transponder programming, emergency lockout</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.keyfoby.com/images/carkey.webp</image:loc>
+      <image:title>Car Key Replacement Hamilton Ontario</image:title>
+      <image:caption>Professional car key cutting and programming for all makes and models in Hamilton, ON</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.keyfoby.com/images/keyfobykeys.png</image:loc>
+      <image:title>KeyFoby – Hamilton's Trusted Key Fob Experts</image:title>
+      <image:caption>KeyFoby provides licensed, insured automotive locksmith services across Hamilton, Burlington, Oakville, and the GTA</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Privacy Policy -->
+  <url>
+    <loc>https://www.keyfoby.com/privacy-policy/</loc>
+    <lastmod>2025-06-10</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <!-- Terms of Service -->
+  <url>
+    <loc>https://www.keyfoby.com/terms-of-service/</loc>
+    <lastmod>2025-06-10</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <!-- Warranty -->
+  <url>
+    <loc>https://www.keyfoby.com/warranty/</loc>
+    <lastmod>2025-06-10</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+
+</urlset>

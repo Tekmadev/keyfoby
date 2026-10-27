@@ -25,24 +25,27 @@ export default function Footer() {
               </h3>
             </div>
             <p className="text-slate-400 mb-6 max-w-md leading-relaxed">
-              Your trusted local key fob specialists. Fast, reliable, and secure
-              key services for cars and homes.
+              Mobile car key and key fob service based in Hamilton, Ontario.
+              Car keys only: replacement, programming, all keys lost and
+              lockouts, done at your car.
             </p>
             <div className="flex space-x-4">
-              {/* Social media links */}
-              <a
-                href={businessData.social.facebook}
-                className="w-10 h-10 bg-slate-800 hover:bg-blue-600 rounded-full flex items-center justify-center transition-colors duration-200"
-                title="Follow us on Facebook"
-              >
-                <svg
-                  className="w-5 h-5 text-slate-400 hover:text-white"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
+              {/* Social media links (only profiles that exist) */}
+              {businessData.social.facebook && (
+                <a
+                  href={businessData.social.facebook}
+                  className="w-10 h-10 bg-slate-800 hover:bg-blue-600 rounded-full flex items-center justify-center transition-colors duration-200"
+                  title="Follow us on Facebook"
                 >
-                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-                </svg>
-              </a>
+                  <svg
+                    className="w-5 h-5 text-slate-400 hover:text-white"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                  </svg>
+                </a>
+              )}
               <a
                 href={`https://wa.me/${businessData.contact.whatsapp}?text=Hi! I'd like to get a quote for key fob services.`}
                 className="w-10 h-10 bg-slate-800 hover:bg-green-600 rounded-full flex items-center justify-center transition-colors duration-200"
@@ -61,38 +64,38 @@ export default function Footer() {
 
           {/* Services */}
           <div>
-            <h4 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">
+            <h4 className="text-lg font-semibold text-white mb-4">
               Our Services
             </h4>
-            <ul className="space-y-2 text-slate-600 dark:text-slate-300">
+            <ul className="space-y-2 text-slate-400">
               <li>
                 <Link
-                  href="#services"
-                  className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                  href="/#services"
+                  className="hover:text-blue-400 transition-colors"
                 >
                   {businessData.services.car.title}
                 </Link>
               </li>
               <li>
                 <Link
-                  href="#services"
-                  className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                  href="/#services"
+                  className="hover:text-blue-400 transition-colors"
                 >
                   Emergency Lockout
                 </Link>
               </li>
               <li>
                 <Link
-                  href="#services"
-                  className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                  href="/#services"
+                  className="hover:text-blue-400 transition-colors"
                 >
                   Smart Key Programming
                 </Link>
               </li>
               <li>
                 <Link
-                  href="#services"
-                  className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                  href="/#services"
+                  className="hover:text-blue-400 transition-colors"
                 >
                   Transponder Keys
                 </Link>
@@ -100,20 +103,28 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Coming Soon */}
+          {/* Contact: phone, hours and area as real text */}
           <div>
-            <h4 className="text-white font-semibold mb-6">Coming Soon</h4>
-            <ul className="space-y-3 text-slate-400">
-              {businessData.comingSoon.map((item, index) => (
-                <li key={index} className="flex items-center space-x-2">
-                  <div
-                    className={`w-2 h-2 rounded-full animate-pulse ${
-                      index % 2 === 0 ? "bg-blue-400" : "bg-cyan-400"
-                    }`}
-                  ></div>
-                  <span>{item}</span>
-                </li>
-              ))}
+            <h4 className="text-lg font-semibold text-white mb-4">Contact</h4>
+            <ul className="space-y-2 text-slate-400">
+              <li>
+                <a
+                  href={businessData.contact.phoneHref}
+                  className="hover:text-blue-400 transition-colors"
+                >
+                  {businessData.contact.phoneDisplay}
+                </a>
+              </li>
+              <li>
+                <a
+                  href={`mailto:${businessData.contact.email}`}
+                  className="hover:text-blue-400 transition-colors"
+                >
+                  {businessData.contact.email}
+                </a>
+              </li>
+              <li>{businessData.hours.summary} for emergencies</li>
+              <li>Mobile service across Hamilton and nearby cities</li>
             </ul>
           </div>
         </div>
@@ -122,7 +133,8 @@ export default function Footer() {
         <div className="border-t border-slate-800 mt-12 pt-8 flex flex-col sm:flex-row justify-between items-center">
           <div className="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-4">
             <p className="text-slate-400 text-sm">
-              © 2025 {businessData.legalName}. All rights reserved.
+              © {new Date().getFullYear()} {businessData.legalName}. All rights
+              reserved.
             </p>
             <p className="text-slate-400 text-sm">
               Developed By{" "}
@@ -156,7 +168,7 @@ export default function Footer() {
               Warranty
             </Link>
             <a
-              href="#contact"
+              href="/#contact"
               className="text-slate-400 hover:text-white text-sm transition-colors duration-200"
             >
               Contact

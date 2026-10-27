@@ -1,33 +1,75 @@
 // KeyFoby Business Data - Centralized configuration
+//
+// Single source of truth for every fact the site states (hours, phone, area,
+// rating, claims). Values here were confirmed by the client on 2026-10-26
+// (Truth Table in docs/PHASE0_PLAN.md). Anything not confirmed is marked
+// TODO(confirm) and must not be shown as a claim.
+
+const SITE_URL = "https://www.keyfoby.com";
+
+// Google Business Profile (Maps place 0x85d362d9688716f5:0xd2b2f9b7710cb4a0)
+const GOOGLE_MAPS_URL = "https://www.google.com/maps?cid=15182471860090352800";
+
+// Confirmed service area. Hamilton is the home base; all 10 are served.
+const serviceArea = [
+  "Hamilton",
+  "Ancaster",
+  "Dundas",
+  "Stoney Creek",
+  "Burlington",
+  "Grimsby",
+  "Oakville",
+  "Mississauga",
+  "Brampton",
+  "Toronto",
+];
+
 export const businessData = {
   // Business Identity
   name: "KeyFoby",
   legalName: "KeyFoby",
-  tagline: "Lost Keys? Need a Spare? We've Got You.",
+  url: SITE_URL,
+  tagline: "Car keys and key fobs, made and programmed at your car.",
   description:
-    "Custom key fobs for cars and homes – built with speed and precision.",
+    "Mobile automotive locksmith in Hamilton, Ontario. Car keys and key fobs only: replacement, programming, all keys lost and lockouts.",
 
   // Contact Information
   contact: {
     phone: "+1 (905) 467-6860",
-    phoneDisplay: "+1 (905) 467-6860",
+    phoneDisplay: "(905) 467-6860",
+    phoneHref: "tel:+19054676860",
+    phoneSchema: "+1-905-467-6860",
     email: "keyfoby@gmail.com",
     whatsapp: "+19054676860",
+    // Mobile service: the street address is not customer-facing, so it is not
+    // published in page text or structured data. The legal pages still show it
+    // as the privacy/legal contact address.
     address: {
       street: "40 Courtland Ave",
       city: "Hamilton",
       state: "ON",
       zip: "L9B 1X6",
+      country: "CA",
       full: "40 Courtland Ave, Hamilton, ON L9B 1X6",
     },
   },
 
-  // Business Hours
+  // Business Hours (matches the Google Business Profile: open 24 hours)
   hours: {
-    weekdays: "Mon-Fri: 8AM-6PM",
-    weekend: "Sat: 9AM-4PM",
-    sunday: "Sun: Closed",
-    emergency: "24/7 Emergency Service Available",
+    summary: "Open 24/7",
+    detail: "Emergency calls 24/7. Most jobs are booked during the day.",
+    afterHours:
+      "After-hours emergency calls include a surcharge. We tell you the amount on the phone before we head out.",
+  },
+
+  // Reviews: summary of the Google Business Profile. Update when it changes.
+  // Shown as text only; never as aggregateRating markup (self-serving
+  // LocalBusiness ratings earn no stars and must not contradict GBP).
+  reviews: {
+    rating: "4.9",
+    countLabel: "200+",
+    source: "Google",
+    url: GOOGLE_MAPS_URL,
   },
 
   // Brand Colors
@@ -42,19 +84,20 @@ export const businessData = {
     black: "#000000",
   },
 
-  // Services
+  // Services (car keys only: no house, business or safe locks)
   services: {
     car: {
-      title: "Car Key Fobs",
+      title: "Car Keys & Key Fobs",
       description:
-        "Professional automotive key solutions for all makes and models",
+        "Mobile automotive key service for most makes and models. We come to your car.",
       features: [
-        "Key duplication",
-        "Shell replacement",
-        "Remote programming",
-        "Transponder keys",
-        "Smart key programming",
-        "All key(s) lost/stolen",
+        "Car key replacement and duplication",
+        "Key fob programming",
+        "All keys lost",
+        "Transponder and smart key programming",
+        "Key fob shell replacement",
+        "Emergency car lockouts",
+        "Broken key extraction",
       ],
     },
   },
@@ -74,303 +117,187 @@ export const businessData = {
   // Features/Why Choose Us
   features: [
     {
-      title: "Fast Service",
+      title: "We Come to You",
       description:
-        "Most key duplications completed within 15-30 minutes. No waiting around.",
+        "A mobile service: keys are cut and programmed at your car, at home, at work or wherever it's parked.",
     },
     {
-      title: "Personalization",
+      title: "Quoted on the Phone",
       description:
-        "Custom engraving, color options, and personalized key chains available.",
+        "Every job is priced on the phone first, based on your car's year, make, model and key type.",
     },
     {
-      title: "Mobile-Friendly",
+      title: "24/7 for Emergencies",
       description:
-        "Easy online quotes and communication. We come to you when possible.",
+        "Locked out or lost every key? Call any time. After-hours calls include a surcharge, quoted upfront.",
     },
     {
-      title: "Secure Process",
+      title: "Licensed & Insured",
       description:
-        "Verified locksmith services with proper licensing and insurance coverage.",
+        "Licence and insurance details are available on request. Every job carries a 3-month warranty.",
     },
   ],
 
-  // Trust Indicators
+  // Trust Indicators (confirmed by the client)
   stats: {
-    keysMade: "100+",
+    keysMade: "1,500+",
+    yearsInBusiness: "3",
     support: "24/7",
     satisfaction: "100%",
   },
 
-  // Social Media
+  // Social Media. Empty until the real profile URLs are confirmed.
+  // TODO(confirm): Facebook page URL (GBP links a Facebook profile).
   social: {
-    twitter: "#",
-    facebook: "#",
-    instagram: "#",
-    linkedin: "#",
+    facebook: "",
+    instagram: "",
   },
 
-  // Coming Soon Features
-  comingSoon: [
-    "Online Ordering",
-    "Smart Key Programming",
-    "Mobile App",
-    "24/7 Service",
-  ],
+  serviceArea,
 
-  // FAQ Items - used in schema and visible FAQ section
+  // FAQ Items - used in schema and visible FAQ section (answers must match).
   faqItems: [
     {
       question: "How much does car key replacement cost in Hamilton?",
       answer:
-        "Car key replacement in Hamilton typically costs between $50 and $400 depending on the type of key. Basic cut keys start around $50, transponder keys range from $100–$200, and proximity smart keys (push-button start) range from $200–$400. Contact KeyFoby at (905) 467-6860 for a free quote specific to your vehicle make and model.",
+        "It depends on your car's year, make and model and the type of key: a basic cut key, a transponder key, a remote or a push-to-start smart key. Call (905) 467-6860 with your vehicle details and we'll quote the price on the phone before we book.",
     },
     {
       question: "Do you provide 24/7 emergency lockout services?",
       answer:
-        "Yes. KeyFoby offers 24/7 emergency car lockout services across Hamilton, Burlington, Oakville, Mississauga, and the Greater Toronto Area. If you are locked out of your vehicle at any time, call (905) 467-6860 for immediate assistance.",
+        "Yes. We take emergency calls 24/7 across Hamilton and nearby cities. Most jobs are booked during the day; after-hours emergency calls include a surcharge, and we tell you the amount on the phone before we head out.",
+    },
+    {
+      question: "Do you charge extra after hours?",
+      answer:
+        "Yes. After-hours emergency calls include a surcharge. We tell you the amount on the phone before we head out, so you can decide before we come.",
     },
     {
       question: "What car makes and models can you program keys for?",
       answer:
-        "KeyFoby programs keys for virtually all major automotive brands, including Ford, GM, Chevrolet, Honda, Toyota, Hyundai, Kia, BMW, Mercedes-Benz, Audi, Volkswagen, Subaru, Mazda, Jeep, Dodge, Ram, Chrysler, Nissan, and more. We use professional-grade diagnostic equipment for accurate programming.",
+        "Most makes sold in Canada, including Honda, Toyota, Hyundai, Kia, Ford, Chevrolet, GMC, Dodge, Ram, Jeep, Chrysler, Nissan, Mazda, Subaru and Volkswagen. Call with your year, make and model and we'll confirm before we book.",
     },
     {
+      // TODO(confirm): typical job durations by key type before stating times.
       question: "How long does key programming take?",
       answer:
-        "Most key programming services are completed in 15 to 45 minutes. Standard transponder key programming typically takes 15–20 minutes, while proximity smart keys and push-button start systems may take 30–45 minutes. We provide same-day service for the vast majority of vehicles.",
+        "It depends on the car and the type of key. We give you a time estimate on the phone when we book, and the work is done at your car.",
     },
     {
       question: "What areas do you serve?",
       answer:
-        "KeyFoby serves Hamilton, Burlington, Oakville, Mississauga, Brampton, Toronto, Ancaster, Dundas, Stoney Creek, and Grimsby in Ontario, Canada. Mobile service is available; we come directly to your location.",
+        "We're based in Hamilton and come to you across Hamilton, Ancaster, Dundas, Stoney Creek, Burlington, Grimsby, Oakville, Mississauga, Brampton and Toronto. It's a mobile service: we work at your car.",
     },
     {
       question: "Can you replace a car key when I have lost all my keys?",
       answer:
-        "Yes. KeyFoby specializes in all-keys-lost situations. Even if you have no working key, our technicians can cut and program a new key from scratch using your vehicle identification number (VIN) and proof of ownership. This service is available for all makes and models.",
+        "Yes. Even with no working key, we can cut and program a new key using your vehicle identification number (VIN) and proof of ownership. Have your registration and photo ID ready.",
     },
     {
       question: "What types of car keys do you replace and program?",
       answer:
-        "KeyFoby replaces and programs all key types: basic cut keys, transponder chip keys, remote head keys, key fobs (keyless entry remotes), proximity keys (push-button start), switchblade flip keys, and smart keys. We also replace key fob shells and repair broken remote buttons.",
+        "Basic cut keys, transponder chip keys, remote head keys, key fobs (keyless entry remotes), flip keys and push-to-start smart (proximity) keys. We also replace worn or broken key fob shells.",
     },
     {
       question: "How do I know if my key fob needs replacement?",
       answer:
-        "Common signs your key fob needs replacement include: buttons that don't respond, the vehicle not unlocking from a normal distance, inconsistent remote start, a cracked or broken shell, or a dead battery that still fails after replacement. KeyFoby can diagnose the issue and replace or reprogram your fob on the spot.",
+        "Common signs: buttons that don't respond, the car not unlocking from a normal distance, inconsistent remote start, a cracked or broken shell, or a fob that still fails after a new battery. We can check it and replace or reprogram it at your car.",
     },
     {
       question: "Is KeyFoby licensed and insured?",
       answer:
-        "Yes. KeyFoby is a fully licensed and insured locksmith service operating in Hamilton, Ontario. All technicians are trained and certified, and every job is backed by our satisfaction guarantee.",
+        "Yes. KeyFoby is licensed and insured, and we can share the details on request. Every job is backed by our 100% satisfaction guarantee and a 3-month warranty.",
     },
     {
-      question: "Do you offer same-day car key service?",
+      question: "How quickly can you get to me?",
       answer:
-        "Yes. KeyFoby provides same-day key cutting and programming for most vehicles. For non-emergency requests, we aim to complete service within a few hours of booking. Emergency lockout calls are typically handled within 30 minutes.",
+        "Call (905) 467-6860 and we'll give you an arrival time on the phone. Emergency calls are taken 24/7.",
     },
     {
-      question: "What payment methods do you accept?",
+      question: "Do you work on house or business locks?",
       answer:
-        "KeyFoby accepts cash, all major credit cards (Visa, Mastercard, American Express), debit cards, and e-transfer. Payment is collected after service is completed to your satisfaction.",
+        "No. KeyFoby works on cars only: car keys, key fobs, programming and car lockouts.",
     },
     {
       question: "Do you offer a warranty on key programming services?",
       answer:
-        "Yes. All KeyFoby key programming and replacement services come with a 3-month warranty covering defects in parts and workmanship. If your new key has any issues within 90 days, we will repair or replace it at no additional charge.",
+        "Yes. Key programming and replacement come with a 3-month warranty covering defects in parts and workmanship. If your new key has an issue within 90 days, we repair or replace it at no charge.",
     },
   ],
 
-  // SEO & Meta - Advanced SEO Strategy
+  // SEO & Meta
   seo: {
-    title: "KeyFoby – Car Key Fob & Locksmith Services Hamilton, ON | 24/7",
+    title: "Car Key Replacement & Key Fob Programming Hamilton | KeyFoby",
     description:
-      "Hamilton's trusted car key replacement & locksmith experts. Lost car keys, key fob programming, transponder keys & emergency lockouts. Licensed & insured. Call (905) 467-6860.",
-    keywords: [
-      // Primary - High Volume
-      "key fob Hamilton",
-      "car key replacement Hamilton",
-      "locksmith Hamilton",
-      "key duplication Hamilton",
-      "lost car keys Hamilton",
-      "car locksmith Hamilton",
+      "Mobile car key replacement, key fob programming and lockouts in Hamilton and nearby. We come to you, 24/7 for emergencies. Call (905) 467-6860.",
 
-      // Long-tail - High Intent
-      "24 hour locksmith Hamilton Ontario",
-      "emergency car key replacement Hamilton",
-      "car key programming Hamilton",
-      "automotive locksmith Hamilton Ontario",
-      "car key replacement cost Hamilton",
-      "all keys lost Hamilton",
-      "replace lost car key Hamilton",
-
-      // Service-specific
-      "transponder key programming Hamilton",
-      "remote key fob replacement Hamilton",
-      "smart key programming Hamilton",
-      "key fob shell replacement Hamilton",
-      "key fob battery replacement Hamilton",
-      "proximity key fob Hamilton",
-      "push button start key Hamilton",
-      "key fob not working Hamilton",
-      "broken key extraction Hamilton",
-
-      // Local SEO - Nearby Cities
-      "locksmith near me Hamilton",
-      "key fob services Hamilton ON",
-      "Burlington key fob replacement",
-      "Oakville car key duplication",
-      "Mississauga locksmith",
-      "Brampton car key replacement",
-      "Toronto key fob programming",
-      "Ancaster locksmith",
-      "Stoney Creek key replacement",
-      "Grimsby locksmith",
-
-      // Emergency & Lockout
-      "car lockout Hamilton",
-      "emergency lockout Hamilton",
-      "locked out of car Hamilton",
-      "car lockout service Hamilton Ontario",
-
-      // Brand & Trust
-      "KeyFoby Hamilton",
-      "best locksmith Hamilton",
-      "professional key services Hamilton",
-      "licensed locksmith Hamilton Ontario",
-      "insured locksmith Hamilton",
-      "same day key replacement Hamilton",
-    ],
-
-    // Local SEO Data
-    localSeo: {
-      businessType: "Locksmith",
-      serviceArea: [
-        "Hamilton, ON",
-        "Burlington, ON",
-        "Oakville, ON",
-        "Mississauga, ON",
-        "Brampton, ON",
-        "Toronto, ON",
-        "Ancaster, ON",
-        "Dundas, ON",
-        "Stoney Creek, ON",
-        "Grimsby, ON",
-      ],
-      coordinates: {
-        lat: 43.2557,
-        lng: -79.8711,
-      },
-    },
-
-    // Advanced Meta Tags
     openGraph: {
-      title: "KeyFoby – Hamilton's Car Key & Locksmith Experts | 24/7 Service",
+      title: "KeyFoby: Mobile Car Key & Key Fob Service in Hamilton",
       description:
-        "Lost car keys? Key fob not working? KeyFoby provides fast, professional automotive key programming, key fob replacement, and emergency lockout services across Hamilton, Burlington, Oakville & GTA. Licensed & insured. Call (905) 467-6860.",
-      image: "/images/keyfobykeys.png?v=2025",
-      type: "business.business",
+        "Car key replacement, key fob programming, all keys lost and lockouts, done at your car across Hamilton and nearby. 24/7 for emergencies. (905) 467-6860.",
+      image: "/images/og/keyfoby-og.png",
+      imageAlt: "KeyFoby: mobile car key and key fob service in Hamilton, Ontario",
     },
 
-    // Schema.org Structured Data
+    // Schema.org structured data: the one business entity, emitted on every
+    // page by the root layout. Other blocks reference it by @id.
     schema: {
       "@context": "https://schema.org",
       "@type": "Locksmith",
+      "@id": `${SITE_URL}/#business`,
       name: "KeyFoby",
-      alternateName: "KeyFoby Keys",
+      url: SITE_URL,
+      logo: `${SITE_URL}/images/KeyFoby-logo/keyfobylogo-500.png`,
+      image: `${SITE_URL}/images/og/keyfoby-og.png`,
       description:
-        "KeyFoby is a licensed and insured automotive locksmith based in Hamilton, Ontario, specializing in car key replacement, key fob programming, transponder keys, smart key programming, and 24/7 emergency lockout services. Serving Hamilton, Burlington, Oakville, Mississauga, Brampton, Toronto, and surrounding communities.",
-      url: "https://www.keyfoby.com",
+        "KeyFoby is a mobile automotive locksmith based in Hamilton, Ontario. Car key replacement, key fob programming, transponder and smart keys, all keys lost and emergency car lockouts, done at your car.",
       telephone: "+1-905-467-6860",
       email: "keyfoby@gmail.com",
-      foundingDate: "2022",
       address: {
         "@type": "PostalAddress",
-        streetAddress: "40 Courtland Ave",
         addressLocality: "Hamilton",
         addressRegion: "ON",
-        postalCode: "L9B 1X6",
         addressCountry: "CA",
       },
-      geo: {
-        "@type": "GeoCoordinates",
-        latitude: 43.2557,
-        longitude: -79.8711,
-      },
-      openingHours: ["Mo-Fr 08:00-18:00", "Sa 09:00-16:00"],
-      priceRange: "$$",
-      currenciesAccepted: "CAD",
-      paymentAccepted: "Cash, Credit Card, Debit Card, E-Transfer",
-      areaServed: [
-        "Hamilton, ON",
-        "Burlington, ON",
-        "Oakville, ON",
-        "Mississauga, ON",
-        "Brampton, ON",
-        "Toronto, ON",
-        "Ancaster, ON",
-        "Dundas, ON",
-        "Stoney Creek, ON",
-        "Grimsby, ON",
+      openingHoursSpecification: [
+        {
+          "@type": "OpeningHoursSpecification",
+          dayOfWeek: [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday",
+          ],
+          opens: "00:00",
+          closes: "23:59",
+        },
       ],
-      serviceType: [
-        "Car Key Replacement",
-        "Key Duplication",
-        "Key Fob Programming",
-        "Transponder Key Programming",
-        "Smart Key Programming",
-        "Emergency Lockout Service",
-        "Key Fob Shell Replacement",
-        "All Keys Lost Service",
-        "Proximity Key Programming",
-        "Broken Key Extraction",
-      ],
+      areaServed: serviceArea.map((city) => ({
+        "@type": "City",
+        name: `${city}, ON`,
+      })),
       hasOfferCatalog: {
         "@type": "OfferCatalog",
-        name: "Automotive Locksmith Services",
+        name: "Automotive locksmith services",
         itemListElement: [
-          {
-            "@type": "Offer",
-            itemOffered: {
-              "@type": "Service",
-              name: "Car Key Replacement",
-              description:
-                "Professional replacement and programming of all car key types including transponder keys, smart keys, and remote key fobs for all makes and models",
-            },
-          },
-          {
-            "@type": "Offer",
-            itemOffered: {
-              "@type": "Service",
-              name: "Emergency Lockout Service",
-              description:
-                "24/7 emergency car lockout assistance across Hamilton, Burlington, Oakville, and the Greater Toronto Area",
-            },
-          },
-          {
-            "@type": "Offer",
-            itemOffered: {
-              "@type": "Service",
-              name: "Key Fob Programming",
-              description:
-                "Programming and reprogramming of keyless entry remote fobs and proximity keys for all vehicle brands",
-            },
-          },
-        ],
+          "Car Key Replacement",
+          "Key Fob Programming",
+          "All Keys Lost",
+          "Emergency Car Lockout",
+          "Transponder Key Programming",
+          "Smart Key Programming",
+          "Key Fob Shell Replacement",
+          "Car Key Cutting and Duplication",
+          "Broken Key Extraction",
+        ].map((name) => ({
+          "@type": "Offer",
+          itemOffered: { "@type": "Service", name },
+        })),
       },
-      aggregateRating: {
-        "@type": "AggregateRating",
-        ratingValue: "5.0",
-        reviewCount: "47",
-        bestRating: "5",
-        worstRating: "1",
-      },
-      sameAs: [
-        "https://www.facebook.com/keyfoby",
-        "https://www.instagram.com/keyfoby",
-        "https://twitter.com/keyfoby",
-      ],
+      sameAs: [GOOGLE_MAPS_URL],
     },
   },
 };

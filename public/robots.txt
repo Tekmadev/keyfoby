@@ -4,9 +4,6 @@ Allow: /
 # Sitemap
 Sitemap: https://www.keyfoby.com/sitemap.xml
 
-# Respectful crawl delay
-Crawl-delay: 1
-
 # Major search engines
 User-agent: Googlebot
 Allow: /

@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Script from "next/script";
+import { businessData } from "@/lib/business-data";
 
 export default function GoogleReviews() {
   const [isVisible, setIsVisible] = useState(false);
@@ -44,7 +45,7 @@ export default function GoogleReviews() {
               <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
             </svg>
             <span className="text-yellow-300 text-sm font-semibold">
-              5-Star Rated
+              Rated {businessData.reviews.rating} on Google
             </span>
           </div>
 
@@ -56,8 +57,19 @@ export default function GoogleReviews() {
           </h2>
 
           <p className="text-lg text-slate-400 max-w-2xl mx-auto">
-            Don't just take our word for it. See what Hamilton residents are
-            saying about our key fob and locksmith services on Google.
+            KeyFoby is rated {businessData.reviews.rating} out of 5 from{" "}
+            {businessData.reviews.countLabel} Google reviews. Customers mention
+            key fob programming, key replacement and the technician coming to
+            them.{" "}
+            <a
+              href={businessData.reviews.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-yellow-300 underline underline-offset-4 hover:text-yellow-200"
+            >
+              Read every review on Google
+            </a>
+            .
           </p>
         </div>
 
@@ -86,7 +98,9 @@ export default function GoogleReviews() {
                       </svg>
                     ))}
                   </div>
-                  <p className="text-slate-400 text-sm">Loading reviews...</p>
+                  <p className="text-slate-400 text-sm">
+                    Latest reviews from Google
+                  </p>
                 </div>
               </div>
             )}
@@ -133,7 +147,10 @@ export default function GoogleReviews() {
             </div>
             <div>
               <p className="text-white font-semibold">Google Reviews</p>
-              <p className="text-slate-400 text-sm">Verified customers</p>
+              <p className="text-slate-400 text-sm">
+                {businessData.reviews.rating} from{" "}
+                {businessData.reviews.countLabel} reviews
+              </p>
             </div>
           </div>
 
@@ -176,8 +193,8 @@ export default function GoogleReviews() {
               </svg>
             </div>
             <div>
-              <p className="text-white font-semibold">Fast Response</p>
-              <p className="text-slate-400 text-sm">15-min average</p>
+              <p className="text-white font-semibold">Quoted on the Phone</p>
+              <p className="text-slate-400 text-sm">Before we head out</p>
             </div>
           </div>
         </div>

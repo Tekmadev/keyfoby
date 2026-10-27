@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     follow: true,
   },
   alternates: {
-    canonical: "https://www.keyfoby.com/warranty/",
+    canonical: "https://www.keyfoby.com/warranty",
   },
 };
 
@@ -468,7 +468,7 @@ export default function WarrantyPolicy() {
                         {item.desc}{" "}
                         {item.contact && (
                           <a
-                            href={`tel:${businessData.contact.phone}`}
+                            href={businessData.contact.phoneHref}
                             className="text-blue-600 dark:text-blue-400 font-semibold hover:underline"
                           >
                             {item.contact}
@@ -649,7 +649,7 @@ export default function WarrantyPolicy() {
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                   <a
-                    href={`tel:${businessData.contact.phone}`}
+                    href={businessData.contact.phoneHref}
                     className="bg-white text-blue-600 px-8 py-4 rounded-xl font-bold hover:bg-blue-50 transition-all duration-300 flex items-center space-x-2 hover:scale-105"
                   >
                     <svg

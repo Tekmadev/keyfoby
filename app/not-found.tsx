@@ -115,7 +115,7 @@ export default function NotFound() {
               </Link>
 
               <a
-                href={`tel:${businessData.contact.phone}`}
+                href={businessData.contact.phoneHref}
                 className="group px-8 py-4 bg-green-500/20 backdrop-blur-sm text-white font-semibold text-lg rounded-full border-2 border-green-400/30 hover:bg-green-500/30 hover:border-green-400/50 transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-green-500/25 w-full sm:w-auto"
               >
                 <span className="flex items-center justify-center">

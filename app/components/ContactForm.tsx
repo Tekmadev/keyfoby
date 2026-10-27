@@ -408,8 +408,8 @@ export default function ContactForm() {
           templateParams,
           EMAILJS_PUBLIC_KEY
         ),
-        // Avoid 308 redirect because `trailingSlash: true` is enabled.
-        fetch("/api/intake/", {
+        // Best effort only: /api is excluded from the static export.
+        fetch("/api/intake", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(intakePayload),
@@ -435,7 +435,9 @@ export default function ContactForm() {
       trackGoogleAdsContact();
       trackGoogleAdsRequestQuote();
 
-      setSubmitMessage("Thank you! We'll get back to you within 2 hours.");
+      setSubmitMessage(
+        `Thank you! We'll get back to you as soon as possible. For an emergency, call ${businessData.contact.phoneDisplay}.`
+      );
       setFormData({
         name: "",
         email: "",
@@ -953,7 +955,7 @@ export default function ContactForm() {
 
               <div className="mt-6 space-y-4 text-slate-300">
                 <a
-                  href={`tel:${businessData.contact.phone}`}
+                  href={businessData.contact.phoneHref}
                   className="flex items-center space-x-3 hover:text-blue-400 transition-colors duration-200 cursor-pointer"
                 >
                   <svg
@@ -985,8 +987,14 @@ export default function ContactForm() {
                       d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
                     />
                   </svg>
-                  <span>{businessData.hours.weekdays}</span>
+                  <span>
+                    {businessData.hours.summary}.{" "}
+                    {businessData.hours.detail}
+                  </span>
                 </div>
+                <p className="text-sm text-slate-400 pl-8">
+                  {businessData.hours.afterHours}
+                </p>
                 <div className="flex items-center space-x-3">
                   <svg
                     className="w-5 h-5 text-blue-400"
@@ -1007,7 +1015,9 @@ export default function ContactForm() {
                       d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
                     />
                   </svg>
-                  <span>{businessData.contact.address.city}</span>
+                  <span>
+                    Mobile service, based in {businessData.contact.address.city}
+                  </span>
                 </div>
               </div>
             </div>
@@ -1018,7 +1028,8 @@ export default function ContactForm() {
                 Service Area
               </h3>
               <p className="text-slate-300 mb-6">
-                We serve Hamilton and the Greater Toronto Area
+                Based in Hamilton. We come to you across Hamilton and these
+                nearby cities.
               </p>
 
               {/* Google Map - Lazy loaded to reduce HTTP requests */}
@@ -1067,32 +1078,14 @@ export default function ContactForm() {
               </div>
 
               {/* Service area details */}
-              <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm text-slate-300">
-                <div className="flex items-center space-x-2">
-                  <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
-                  <span>Hamilton</span>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
-                  <span>Burlington</span>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
-                  <span>Oakville</span>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
-                  <span>Mississauga</span>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
-                  <span>Brampton</span>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
-                  <span>Toronto</span>
-                </div>
-              </div>
+              <ul className="mt-6 grid grid-cols-2 gap-4 text-sm text-slate-300">
+                {businessData.serviceArea.map((city) => (
+                  <li key={city} className="flex items-center space-x-2">
+                    <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
+                    <span>{city}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </div>

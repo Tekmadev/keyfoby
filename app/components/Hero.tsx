@@ -44,39 +44,34 @@ export default function Hero() {
           {/* Main Headline - SEO Optimized - Critical for LCP */}
           <div className="space-y-3 sm:space-y-4">
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-tight">
-              <span className="block" style={{ contentVisibility: "auto" }}>
-                Lost Keys?
-              </span>
+              <span className="block">Car Key &amp; Key Fob</span>
               <span className="block bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-500 bg-clip-text text-transparent">
-                Need a Spare?
+                Replacement in Hamilton
               </span>
               <span className="block text-2xl sm:text-3xl md:text-4xl lg:text-5xl mt-2 sm:mt-4">
-                We've Got You..
+                We Come to You.
               </span>
             </h1>
-
-            {/* SEO-friendly subtitle
-            <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-slate-200 font-medium max-w-4xl mx-auto leading-relaxed">
-              {businessData.tagline}
-            </p> */}
           </div>
 
-          {/* Enhanced Description - SEO Content */}
+          {/* Answer-first intro */}
           <div className="max-w-3xl mx-auto space-y-4 sm:space-y-6">
-            <p className="text-lg sm:text-xl text-slate-300 mb-8 max-w-2xl">
-              Professional automotive key replacement, key fob programming, and
-              emergency lockout services in Hamilton and surrounding areas.
+            <p className="text-lg sm:text-xl text-slate-300 mb-8 max-w-2xl mx-auto">
+              Lost your only key, need a spare, or locked out? KeyFoby is a
+              mobile automotive locksmith: we cut and program car keys and key
+              fobs at your car, across Hamilton and nearby cities. Emergency
+              calls 24/7, and every job is quoted on the phone first.
             </p>
 
             {/* Trust indicators */}
             <div className="flex flex-wrap justify-center gap-4 mb-8 text-sm text-slate-200">
               <span className="flex items-center gap-1">
                 <IconCheck className="w-4 h-4 text-green-400" />
-                Licensed & Insured
+                Licensed &amp; Insured
               </span>
               <span className="flex items-center gap-1">
                 <IconCheck className="w-4 h-4 text-green-400" />
-                Same-Day Service
+                {businessData.stats.keysMade} Keys Made
               </span>
               <span className="flex items-center gap-1">
                 <IconCheck className="w-4 h-4 text-green-400" />
@@ -88,7 +83,7 @@ export default function Hero() {
               </span>
               <span className="flex items-center gap-1">
                 <IconCheck className="w-4 h-4 text-green-400" />
-                24/7 Mobile Service
+                24/7 Emergency Calls
               </span>
             </div>
           </div>
@@ -118,7 +113,7 @@ export default function Hero() {
             </button>
 
             <a
-              href={`tel:${businessData.contact.phone}`}
+              href={businessData.contact.phoneHref}
               className="group w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-white/10 backdrop-blur-sm text-white font-semibold text-base sm:text-lg rounded-full border-2 border-white/30 hover:bg-white/20 hover:border-white/50 transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-white/25"
             >
               <span className="flex items-center justify-center">
@@ -135,10 +130,14 @@ export default function Hero() {
                     d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
                   />
                 </svg>
-                Call Now
+                Call {businessData.contact.phoneDisplay}
               </span>
             </a>
           </div>
+
+          <p className="text-sm text-slate-400 max-w-xl mx-auto px-4">
+            {businessData.hours.afterHours}
+          </p>
 
           {/* Trust Indicators - Mobile optimized */}
           <div className="pt-8 sm:pt-12 border-t border-white/20 mx-4">
@@ -156,7 +155,7 @@ export default function Hero() {
                   />
                 </svg>
                 <span className="font-medium text-sm sm:text-base">
-                  Licensed & Insured
+                  Licensed &amp; Insured
                 </span>
               </div>
 
@@ -168,9 +167,15 @@ export default function Hero() {
                 >
                   <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                 </svg>
-                <span className="font-medium text-sm sm:text-base">
-                  5-Star Service
-                </span>
+                <a
+                  href={businessData.reviews.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-medium text-sm sm:text-base hover:text-white underline-offset-4 hover:underline"
+                >
+                  {businessData.reviews.rating} on Google,{" "}
+                  {businessData.reviews.countLabel} reviews
+                </a>
               </div>
 
               <div className="flex items-center space-x-2">

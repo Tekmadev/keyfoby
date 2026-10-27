@@ -95,8 +95,8 @@ export default function Features() {
             </span>
           </h2>
           <p className="text-lg sm:text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto">
-            We combine cutting-edge technology with trusted craftsmanship to
-            deliver exceptional key services
+            A price on the phone before we come out, and the work done at your
+            car.
           </p>
         </div>
 
@@ -127,7 +127,7 @@ export default function Features() {
 
         {/* Additional trust indicators */}
         <div className="mt-16 pt-16 border-t border-slate-200 dark:border-slate-700">
-          <div className="grid sm:grid-cols-3 gap-8 text-center">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
             <div className="space-y-2">
               <div className="text-3xl font-bold text-blue-500">
                 {businessData.stats.keysMade}
@@ -138,14 +138,22 @@ export default function Features() {
             </div>
             <div className="space-y-2">
               <div className="text-3xl font-bold text-cyan-400">
-                {businessData.stats.support}
+                {businessData.stats.yearsInBusiness}
               </div>
               <div className="text-slate-600 dark:text-slate-300">
-                Support Available
+                Years in Business
               </div>
             </div>
             <div className="space-y-2">
               <div className="text-3xl font-bold text-blue-500">
+                {businessData.stats.support}
+              </div>
+              <div className="text-slate-600 dark:text-slate-300">
+                Emergency Calls
+              </div>
+            </div>
+            <div className="space-y-2">
+              <div className="text-3xl font-bold text-cyan-400">
                 {businessData.stats.satisfaction}
               </div>
               <div className="text-slate-600 dark:text-slate-300">

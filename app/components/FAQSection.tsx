@@ -43,6 +43,7 @@ export default function FAQSection() {
                 onClick={() => toggle(index)}
                 className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500"
                 aria-expanded={openIndex === index}
+                aria-controls={`faq-answer-${index}`}
               >
                 <span className="text-base sm:text-lg font-semibold text-slate-900 dark:text-white leading-snug">
                   {item.question}
@@ -65,13 +66,16 @@ export default function FAQSection() {
                 </svg>
               </button>
 
-              {openIndex === index && (
-                <div className="px-6 pb-5">
-                  <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
-                    {item.answer}
-                  </p>
-                </div>
-              )}
+              {/* Always in the HTML (crawlable); only hidden while collapsed */}
+              <div
+                id={`faq-answer-${index}`}
+                className="px-6 pb-5"
+                hidden={openIndex !== index}
+              >
+                <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
+                  {item.answer}
+                </p>
+              </div>
             </div>
           ))}
         </div>
@@ -81,7 +85,7 @@ export default function FAQSection() {
             Have a different question? We&apos;re happy to help.
           </p>
           <a
-            href={`tel:${businessData.contact.phone}`}
+            href={businessData.contact.phoneHref}
             className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-500 to-cyan-400 text-white font-semibold rounded-full hover:from-blue-600 hover:to-cyan-500 transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-blue-500/50"
           >
             <svg
@@ -98,7 +102,7 @@ export default function FAQSection() {
                 d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
               />
             </svg>
-            Call (905) 467-6860
+            Call {businessData.contact.phoneDisplay}
           </a>
         </div>
       </div>

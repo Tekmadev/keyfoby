@@ -1,0 +1,320 @@
+{
+  "mode": "desktop",
+  "browser": "Chrome/156.0.8078.47",
+  "ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+  "loadAt_s": "1.4",
+  "observed": "2026-10-27T00:20:31.476Z",
+  "rows": [
+    {
+      "t": "0.7",
+      "method": "GET",
+      "status": 200,
+      "err": null,
+      "type": "Script",
+      "url": "https://www.googletagmanager.com/gtag/js?id=AW-17289404018"
+    },
+    {
+      "t": "1.5",
+      "method": "GET",
+      "status": 200,
+      "err": null,
+      "type": "Fetch",
+      "url": "https://grytdgpmewmxbdimpgrr.supabase.co/rest/v1/service_types?select=*&is_active=eq.true&order=display_order.asc"
+    },
+    {
+      "t": "1.5",
+      "method": "OPTIONS",
+      "status": 200,
+      "err": null,
+      "type": "Other",
+      "url": "https://grytdgpmewmxbdimpgrr.supabase.co/rest/v1/service_types?select=*&is_active=eq.true&order=display_order.asc"
+    },
+    {
+      "t": "1.5",
+      "method": "GET",
+      "status": 200,
+      "err": null,
+      "type": "Fetch",
+      "url": "https://firebase.googleapis.com/v1alpha/projects/-/apps/1:291646793044:web:0d115d30401832808554c1/webConfig"
+    },
+    {
+      "t": "1.5",
+      "method": "OPTIONS",
+      "status": 200,
+      "err": null,
+      "type": "Other",
+      "url": "https://firebase.googleapis.com/v1alpha/projects/-/apps/1:291646793044:web:0d115d30401832808554c1/webConfig"
+    },
+    {
+      "t": "1.5",
+      "method": "POST",
+      "status": 200,
+      "err": null,
+      "type": "Fetch",
+      "url": "https://firebaseinstallations.googleapis.com/v1/projects/key-foby/installations"
+    },
+    {
+      "t": "1.5",
+      "method": "OPTIONS",
+      "status": 200,
+      "err": null,
+      "type": "Other",
+      "url": "https://firebaseinstallations.googleapis.com/v1/projects/key-foby/installations"
+    },
+    {
+      "t": "1.7",
+      "method": "GET",
+      "status": 200,
+      "err": null,
+      "type": "Script",
+      "url": "https://googleads.g.doubleclick.net/pagead/viewthroughconversion/17289404018/?random=1793060414027&cv=11&fst=1793060414027&bg=ffffff&guid=ON&async=1&en=gtag.config&gtm=45be6an1v9247775231za208zd9247775231xecxf1&gcd=13l3l3l3l1l1&dma=0&tag_exp=115938465~11593846",
+      "ads": {
+        "kind": "viewthroughconversion",
+        "id": "AW-17289404018",
+        "label": null,
+        "fmt": "4",
+        "en": "gtag.config"
+      }
+    },
+    {
+      "t": "1.7",
+      "method": "POST",
+      "status": 200,
+      "err": "net::ERR_ABORTED",
+      "type": "Fetch",
+      "url": "https://www.google.com/rmkt/collect/17289404018/?random=1793060414027&cv=11&fst=1793060414027&fmt=8&bg=ffffff&guid=ON&async=1&en=gtag.config&gtm=45be6an1v9247775231za208zd9247775231xecxf1&gcd=13l3l3l3l1l1&dma=0&tag_exp=115938465~115938469~118897920~118897930~1"
+    },
+    {
+      "t": "1.7",
+      "method": "GET",
+      "status": 200,
+      "err": null,
+      "type": "Fetch",
+      "url": "https://www.googleadservices.com/pagead/conversion/17289404018/?random=1793060414041&cv=11&fst=1793060414041&fmt=7&bg=ffffff&guid=ON&async=1&en=conversion&gtm=45be6an1v9247775231za200zd9247775231xecxf1&gcd=13l3l3l3l1l1&dma=0&tag_exp=115938465~115938469~1188979",
+      "ads": {
+        "kind": "conversion",
+        "id": "AW-17289404018",
+        "label": "xI8ECM7q0ZEcEPK8nbRA",
+        "fmt": "7",
+        "en": "conversion"
+      }
+    },
+    {
+      "t": "1.7",
+      "method": "GET",
+      "status": 200,
+      "err": null,
+      "type": "Script",
+      "url": "https://www.googletagmanager.com/gtag/js?id=G-BDZE2T9HR0&cx=c&gtm=4e6an1"
+    },
+    {
+      "t": "1.7",
+      "method": "POST",
+      "status": 200,
+      "err": "net::ERR_ABORTED",
+      "type": "Fetch",
+      "url": "https://www.google.com/ccm/collect?rcb=15&frm=0&apvc=1&auid=927099786.1793060414&dt=KeyFoby%20%E2%80%93%20Car%20Key%20Fob%20%26%20Locksmith%20Services%20Hamilton%2C%20ON%20%7C%2024%2F7&tid=AW-17289404018&en=page_view&dl=https%3A%2F%2Fwww.keyfoby.com%2F&scrsrc=",
+      "ccm": {
+        "tid": "AW-17289404018",
+        "en": "page_view",
+        "label": null
+      }
+    },
+    {
+      "t": "1.7",
+      "method": "POST",
+      "status": 204,
+      "err": "net::ERR_ABORTED",
+      "type": "Fetch",
+      "url": "https://ad.doubleclick.net/ccm/s/collect?auid=927099786.1793060414&gtm=45be6an1v9247775231za208zd9247775231xecxf1&fmt=8"
+    },
+    {
+      "t": "2.0",
+      "method": "GET",
+      "status": 200,
+      "err": null,
+      "type": "Script",
+      "url": "https://www.googletagmanager.com/gtag/js?l=dataLayer&id=G-BVYSXDGWQL"
+    },
+    {
+      "t": "2.0",
+      "method": "GET",
+      "status": 200,
+      "err": null,
+      "type": "Script",
+      "url": "https://www.googletagmanager.com/gtag/js?id=G-BVYSXDGWQL&cx=c&gtm=4e6an1"
+    },
+    {
+      "t": "2.0",
+      "method": "GET",
+      "status": 200,
+      "err": null,
+      "type": "Image",
+      "url": "https://www.google.com/pagead/1p-user-list/17289404018/?random=1793060414027&cv=11&fst=1793059200000&bg=ffffff&guid=ON&async=1&en=gtag.config&gtm=45be6an1v9247775231za208zd9247775231xecxf1&gcd=13l3l3l3l1l1&dma=0&tag_exp=115938465~115938469~118897920~118897930~",
+      "ads": {
+        "kind": "1p-user-list",
+        "id": "AW-17289404018",
+        "label": null,
+        "fmt": "3",
+        "en": "gtag.config"
+      }
+    },
+    {
+      "t": "2.0",
+      "method": "GET",
+      "status": 200,
+      "err": null,
+      "type": "Image",
+      "url": "https://www.google.ca/pagead/1p-user-list/17289404018/?random=1793060414027&cv=11&fst=1793059200000&bg=ffffff&guid=ON&async=1&en=gtag.config&gtm=45be6an1v9247775231za208zd9247775231xecxf1&gcd=13l3l3l3l1l1&dma=0&tag_exp=115938465~115938469~118897920~118897930~1",
+      "ads": {
+        "kind": "1p-user-list",
+        "id": "AW-17289404018",
+        "label": null,
+        "fmt": "3",
+        "en": "gtag.config"
+      }
+    },
+    {
+      "t": "2.1",
+      "method": "POST",
+      "status": 204,
+      "err": "net::ERR_ABORTED",
+      "type": "Fetch",
+      "url": "https://analytics.google.com/g/collect?v=2&tid=G-BDZE2T9HR0&gtm=45je6an1v9227905344za208zb9247775231zd9247775231xf1&_p=1793060413771&_gaz=1&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAACAC&cid=721541701.1793060414&frm=0&ibt=1&ngs=1&pscdl=noapi&rcb=13&sr=800x600&uaa=&",
+      "ga4": {
+        "tid": "G-BDZE2T9HR0",
+        "v": "2",
+        "gtm": "45je6an1v9227905344za208zb9247775231zd9247775231xf1",
+        "dl": "https://www.keyfoby.com/",
+        "events": [
+          "page_view"
+        ]
+      }
+    },
+    {
+      "t": "2.1",
+      "method": "POST",
+      "status": 204,
+      "err": null,
+      "type": "Ping",
+      "url": "https://stats.g.doubleclick.net/g/collect?v=2&ngs=1&ibt=1&tid=G-BDZE2T9HR0&cid=721541701.1793060414&gtm=45je6an1v9227905344za208zb9247775231zd9247775231xf1&rcb=13&aip=1&dma=0&gcd=13l3l3l3l1l1&npa=0&frm=0&tag_exp=115616985~115938465~115938469~118897920~11889793",
+      "ga4": {
+        "tid": "G-BDZE2T9HR0",
+        "v": "2",
+        "gtm": "45je6an1v9227905344za208zb9247775231zd9247775231xf1",
+        "dl": null,
+        "events": []
+      }
+    },
+    {
+      "t": "2.5",
+      "method": "GET",
+      "status": 200,
+      "err": "net::ERR_ABORTED",
+      "type": "Fetch",
+      "url": "https://www.google.ca/pagead/1p-conversion/17289404018/?random=1819154452&cv=11&fst=1793060414041&fmt=8&bg=ffffff&guid=ON&async=1&en=conversion&gtm=45be6an1v9247775231za200zd9247775231xecxf1&gcd=13l3l3l3l1l1&dma=0&tag_exp=115938465~115938469~118897920~11889793",
+      "ads": {
+        "kind": "1p-conversion",
+        "id": "AW-17289404018",
+        "label": "xI8ECM7q0ZEcEPK8nbRA",
+        "fmt": "8",
+        "en": "conversion"
+      }
+    },
+    {
+      "t": "2.5",
+      "method": "POST",
+      "status": 204,
+      "err": "net::ERR_ABORTED",
+      "type": "Fetch",
+      "url": "https://www.google-analytics.com/g/collect?v=2&tid=G-BVYSXDGWQL&gtm=45je6an1v9223388896za208zb9247775231zd9247775231xf1&_p=1793060413771&gcd=13l3l3l3l1l1&npa=0&dma=0&_fid=cVOt35J7DbseQfdzQ5I8uk&cid=721541701.1793060414&frm=0&ngs=1&pscdl=noapi&rcb=1&sr=800x600&",
+      "ga4": {
+        "tid": "G-BVYSXDGWQL",
+        "v": "2",
+        "gtm": "45je6an1v9223388896za208zb9247775231zd9247775231xf1",
+        "dl": "https://www.keyfoby.com/",
+        "events": [
+          "page_view"
+        ]
+      }
+    },
+    {
+      "t": "2.2",
+      "method": "POST",
+      "status": 302,
+      "err": null,
+      "type": "Fetch",
+      "url": "https://googleads.g.doubleclick.net/pagead/viewthroughconversion/17289404018/?random=1819154452&cv=11&fst=1793060414041&fmt=8&bg=ffffff&guid=ON&async=1&en=conversion&gtm=45be6an1v9247775231za200zd9247775231xecxf1&gcd=13l3l3l3l1l1&dma=0&tag_exp=115938465~115938",
+      "ads": {
+        "kind": "viewthroughconversion",
+        "id": "AW-17289404018",
+        "label": "xI8ECM7q0ZEcEPK8nbRA",
+        "fmt": "8",
+        "en": "conversion"
+      }
+    },
+    {
+      "t": "2.5",
+      "method": "GET",
+      "status": 302,
+      "err": null,
+      "type": "Fetch",
+      "url": "https://www.google.com/pagead/1p-conversion/17289404018/?random=1819154452&cv=11&fst=1793060414041&fmt=8&bg=ffffff&guid=ON&async=1&en=conversion&gtm=45be6an1v9247775231za200zd9247775231xecxf1&gcd=13l3l3l3l1l1&dma=0&tag_exp=115938465~115938469~118897920~1188979",
+      "ads": {
+        "kind": "1p-conversion",
+        "id": "AW-17289404018",
+        "label": "xI8ECM7q0ZEcEPK8nbRA",
+        "fmt": "8",
+        "en": "conversion"
+      }
+    }
+  ],
+  "pageState": {
+    "gtagType": "function",
+    "gtmKeys": [
+      "AW-17289404018",
+      "G-BDZE2T9HR0",
+      "G-BVYSXDGWQL"
+    ],
+    "dataLayerLen": 9,
+    "dataLayer": [
+      "js | Date",
+      "config | AW-17289404018",
+      "event | conversion | {\"send_to\":\"AW-17289404018/xI8ECM7q0ZEcEPK8nbRA\"}",
+      "config | G-BDZE2T9HR0",
+      "",
+      "",
+      "js | Date",
+      "config | G-BVYSXDGWQL | {\"origin\":\"firebase\",\"update\":true,\"firebase_id\":\"cVOt35J7DbseQfdzQ5I8uk\"}",
+      ""
+    ],
+    "gtagScripts": [
+      "https://www.googletagmanager.com/gtag/js?id=G-BVYSXDGWQL&cx=c&gtm=4e6an1",
+      "https://www.googletagmanager.com/gtag/js?id=G-BDZE2T9HR0&cx=c&gtm=4e6an1",
+      "https://www.googletagmanager.com/gtag/js?l=dataLayer&id=G-BVYSXDGWQL",
+      "https://www.googletagmanager.com/gtag/js?id=AW-17289404018"
+    ],
+    "scrollH": 8599
+  },
+  "consoleMsgs": [],
+  "allHosts": {
+    "www.keyfoby.com": 46,
+    "www.googletagmanager.com": 4,
+    "": 1,
+    "grytdgpmewmxbdimpgrr.supabase.co": 2,
+    "firebase.googleapis.com": 2,
+    "firebaseinstallations.googleapis.com": 2,
+    "googleads.g.doubleclick.net": 2,
+    "www.google.com": 5,
+    "www.googleadservices.com": 1,
+    "ad.doubleclick.net": 1,
+    "www.google.ca": 3,
+    "analytics.google.com": 1,
+    "stats.g.doubleclick.net": 1,
+    "www.google-analytics.com": 1,
+    "static.elfsight.com": 3,
+    "core.service.elfsight.com": 1,
+    "universe-static.elfsightcdn.com": 2,
+    "service-reviews-ultimate.elfsight.com": 4
+  }
+}
