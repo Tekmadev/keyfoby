@@ -1,0 +1,273 @@
+keyword,cluster_id,topic,intent,target_url,source,notes
+car key replacement hamilton,home,hub,planned-transactional,/,gbp:maps #1 (evening; brief said #5); gbp:organic #3; gbp:chip(12 car key replacement); AC:L+; SERP-related,"PRIMARY for /. Echoed + 7 real completions; Hamilton appears in national ""car key replacement"" completions. Incumbent URL: the only KeyFoby URL that ranks (organic #3, gbp-maps.md §2c) and the GBP website link (gbp-maps.md §1). Use ""Hamilton, ON"" to disambiguate"
+car key replacement hamilton ontario,home,hub,planned-transactional,/,gbp:maps #1 (evening; brief said #5),Maps query form in brief (not returned by autocomplete)
+car locksmith hamilton,home,hub,planned-transactional,/,"brief:related; AC:L; SERP-related; gbp:organic #13, absent from pws=0 pack","Echoed, 9 real completions; contaminated by Hamilton OH/NZ"
+automotive locksmith hamilton,home,hub,planned-transactional,/,"gbp:maps #1 on the ""Hamilton Ontario"" form (evening; brief said #8); AC:L","Echoed; also appears under ""car locksmith hamilton"""
+automotive locksmith hamilton ontario,home,hub,planned-transactional,/,gbp:maps #1 (evening; brief said #8),Maps query form in brief
+auto locksmith hamilton,home,hub,planned-transactional,/,AC:L,Real completion of 2 stems
+mobile car key replacement hamilton,home,hub,planned-transactional,/,brief:related; AC:L; SERP-related,"Echoed; completion of 3 stems. ""Mobile"" is the core differentiator; reviews say ""came to my house"""
+mobile car locksmith hamilton,home,hub,planned-transactional,/,AC:L; SERP-related,Completion of 2 stems
+mobile auto locksmith hamilton,home,hub,planned-transactional,/,AC:L,Completion of 2 stems
+mobile locksmith hamilton,home,hub,planned-transactional,/,AC:L,Echoed; generic (residential mixed)
+car key hamilton,home,hub,planned-transactional,/,AC:L,Echoed; 10 real completions
+auto key hamilton,home,hub,planned-transactional,/,AC:L,Real completion
+car key locksmith hamilton,home,hub,planned-transactional,/,AC:L,Completion of 2 stems
+car key maker hamilton,home,hub,planned-transactional,/,AC:L,Real completion
+replacement car keys hamilton,home,hub,planned-transactional,/,AC:L,"Completion of ""lost car keys hamilton""; also ""replacement car key hamilton"""
+same day car key replacement,home,hub,planned-transactional,/,AC:N; gbp:reviews(same day x4),"Modifier, not a page. Use only if true (Truth Table)"
+car key replacement near me,home,hub,planned-transactional,/,AC:N; SERP-related,"Near-me intent is won by GBP/local pack, not a page. Variants: open now, mobile, 24/7, cheap"
+car locksmith near me,home,hub,planned-transactional,/,AC:N,"GBP-driven; needs true hours for ""open now"""
+automotive locksmith near me,home,hub,planned-transactional,/,AC:N,GBP-driven
+locksmith hamilton,home,hub,planned-transactional,/,AC:L,Generic; SERP likely residential-dominated. Secondary only
+car key replacement mobile,home,hub,planned-transactional,/,AC:N,"From ""car key replacement near me mobile"""
+key fob replacement hamilton,svc-key-fob,key-fob,planned-transactional,/services/key-fob-replacement,gbp:chip(13 key fob replacement); AC:L+,"CO-PRIMARY. Echoed + 4 real Hamilton completions; Hamilton appears in national ""key fob replacement"" completions"
+key fob programming hamilton,svc-key-fob,key-fob,planned-transactional,/services/key-fob-replacement,"gbp:maps #1 on the ""Hamilton Ontario"" form (evening; brief said #5); gbp:organic #1; gbp:chip(18 key programming); AC:L+","CO-PRIMARY. Echoed; Hamilton appears in national ""key fob programming"" completions. Same page as replacement: never split"
+key fob programming hamilton ontario,svc-key-fob,key-fob,planned-transactional,/services/key-fob-replacement,gbp:maps #1 (evening; brief said #5),Maps query form in brief
+key fob hamilton,svc-key-fob,key-fob,planned-transactional,/services/key-fob-replacement,AC:L; repo:keywords,"Echoed; ambiguous head term (also apartment fobs, key chains)"
+car key fob replacement hamilton,svc-key-fob,key-fob,planned-transactional,/services/key-fob-replacement,AC:L,Completion of 3 stems
+car key fob hamilton mountain,svc-key-fob,key-fob,planned-transactional,/services/key-fob-replacement,gbp:maps #1 (evening; brief said #6),"Not in autocomplete (""key fob hamilton mountain"" is tail-only). Mountain modifier: see /locations/hamilton-mountain decision"
+key fob copy hamilton,svc-key-fob,key-fob,planned-transactional,/services/key-fob-replacement,AC:L,"Real completion. ""Copy"" = add a fob while one works"
+car key programming hamilton,svc-key-fob,key-fob,planned-transactional,/services/key-fob-replacement,AC:L,Echoed + 7 real completions. Covers chip keys too: link to /services/spare-car-key
+key fob programming near me,svc-key-fob,key-fob,planned-transactional,/services/key-fob-replacement,AC:N,"Variants: prices, cheap, open now, mobile, locksmith"
+key fob replacement near me,svc-key-fob,key-fob,planned-transactional,/services/key-fob-replacement,AC:N; SERP-related,
+mobile key fob programming,svc-key-fob,key-fob,planned-transactional,/services/key-fob-replacement,AC:N,Echoed; 8 completions
+key fob reprogramming,svc-key-fob,key-fob,planned-transactional,/services/key-fob-replacement,AC:N,
+key fob programmer near me,svc-key-fob,key-fob,planned-transactional,/services/key-fob-replacement,AC:N,
+remote start fob,svc-key-fob,key-fob,planned-transactional,/services/key-fob-replacement,AC:N,OEM remote-start fobs are fobs. Aftermarket remote starters: no evidence KeyFoby offers them. TODO(confirm)
+remote start fob hamilton,svc-key-fob,key-fob,planned-transactional,/services/key-fob-replacement,AC:T,Tail-only. No page
+remote start fob programming,svc-key-fob,key-fob,planned-transactional,/services/key-fob-replacement,AC:N,
+smart key hamilton,svc-key-fob,key-fob,planned-transactional,/services/key-fob-replacement,AC:T,Tail-only. Merge smart/proximity into fob page at launch
+proximity key hamilton,svc-key-fob,key-fob,planned-transactional,/services/key-fob-replacement,AC:T,Tail-only
+push to start key hamilton,svc-key-fob,key-fob,planned-transactional,/services/key-fob-replacement,AC:T,Tail-only
+push to start key replacement,svc-key-fob,key-fob,planned-transactional,/services/key-fob-replacement,AC:N,"Echoed; 7 completions incl. Nissan, Mazda, Ford. Section on fob page; split only if Search Console shows demand"
+push to start key fob replacement,svc-key-fob,key-fob,planned-transactional,/services/key-fob-replacement,AC:N,
+smart key replacement,svc-key-fob,key-fob,planned-transactional,/services/key-fob-replacement,AC:N,Echoed; some completions are Malaysian insurer (etiqa): ignore
+smart key programming hamilton,svc-key-fob,key-fob,planned-transactional,/services/key-fob-replacement,repo:keywords,Not tested in autocomplete
+proximity key fob hamilton,svc-key-fob,key-fob,planned-transactional,/services/key-fob-replacement,repo:keywords,Not in autocomplete
+can a locksmith program a key fob,svc-key-fob,key-fob,how-what-informational,/services/key-fob-replacement,AC:N,"Echoed; variants: without the car, without the original, mobile locksmith. FAQ on page"
+can a locksmith program a key fob without the original,svc-key-fob,key-fob,how-what-informational,/services/key-fob-replacement,AC:N,FAQ
+can a mobile locksmith program a key fob,svc-key-fob,key-fob,how-what-informational,/services/key-fob-replacement,AC:N,"FAQ; answer-first ""yes, at your driveway"""
+can i program my own key fob,svc-key-fob,key-fob,how-what-informational,/services/key-fob-replacement,AC:N,"Echoed; per-make variants. Honest FAQ: some older models allow onboard programming, most need tools. TODO(confirm) wording"
+do key fobs lose their programming,guide-fob-fix,key-fob,how-what-informational,/guides/key-fob-not-working,AC:N,Troubleshooting guide
+can you replace a key fob without the original,svc-lost-keys,key-fob,how-what-informational,/services/lost-car-keys,AC:N,No working fob = lost-keys page
+is it safe to buy key fob online canada,guide-dealer,key-fob,how-what-informational,/guides/dealer-vs-locksmith,AC:N,Ties to customer-supplied fob policy. TODO(confirm) policy
+spare car key hamilton,svc-spare-key,spare-key,planned-transactional,/services/spare-car-key,AC:T,"Tail-only, but returns ""replacement car key hamilton"". PRIMARY candidate together with ""car key cutting hamilton"""
+car key cutting hamilton,svc-spare-key,spare-key,planned-transactional,/services/spare-car-key,AC:L; gbp:chip(8 key cutting),PRIMARY. Completion of 2 stems
+automotive key cutting hamilton,svc-spare-key,spare-key,planned-transactional,/services/spare-car-key,AC:L,Completion of 2 stems
+car key copy hamilton,svc-spare-key,spare-key,planned-transactional,/services/spare-car-key,AC:L,Real completion
+key cutting hamilton mountain,svc-spare-key,spare-key,planned-transactional,/services/spare-car-key,brief:related; AC:L; SERP-related,"Echoed. Generic ""key cutting"" mixes house keys. Target only the automotive sense unless KeyFoby cuts house keys (lib/business-data.ts:8 says ""cars and homes""). TODO(confirm)"
+cheapest key cutting hamilton mountain,pricing,spare-key,price-informational,/pricing,AC:L,Real completion; price modifier goes to /pricing
+key cutting hamilton,svc-spare-key,spare-key,planned-transactional,/services/spare-car-key,AC:L,"Echoed; generic, likely hardware-store/residential SERP. Secondary only"
+where to get keys cut hamilton,svc-spare-key,spare-key,planned-transactional,/services/spare-car-key,AC:L,Generic
+spare car key,svc-spare-key,spare-key,planned-transactional,/services/spare-car-key,AC:N,"Echoed; ""maker near me"", ""cost"", ""cut"" variants"
+spare car key maker near me,svc-spare-key,spare-key,planned-transactional,/services/spare-car-key,AC:N,
+car key duplication near me,svc-spare-key,spare-key,planned-transactional,/services/spare-car-key,AC:N,
+key duplication hamilton,svc-spare-key,spare-key,planned-transactional,/services/spare-car-key,repo:keywords,Not tested
+car key cutting near me,svc-spare-key,spare-key,planned-transactional,/services/spare-car-key,AC:N,Echoed; 8 completions
+transponder key programming hamilton,svc-spare-key,spare-key,planned-transactional,/services/spare-car-key,AC:T; repo:keywords,Tail-only. Brief URL /services/transponder-key-programming: merge here (doorway risk)
+transponder key programming,svc-spare-key,spare-key,planned-transactional,/services/spare-car-key,AC:N,National completions skew to tools/software (trade intent)
+chip key programming near me,svc-spare-key,spare-key,planned-transactional,/services/spare-car-key,AC:N,"""Chip key"" is the customer word for transponder"
+laser cut key hamilton,svc-spare-key,spare-key,planned-transactional,/services/spare-car-key,AC:T,"Tail-only. Section, not page"
+can a locksmith make a car key,svc-spare-key,spare-key,how-what-informational,/services/spare-car-key,AC:N,"Echoed; variants: on the spot, with chip, on site"
+can a locksmith make a car key with chip,svc-spare-key,spare-key,how-what-informational,/services/spare-car-key,AC:N,FAQ
+do you need the original car key to make a copy,svc-spare-key,spare-key,how-what-informational,/services/spare-car-key,AC:N,"Answer: no for most cars, routes to lost-keys if none. Auto Key Pro FAQ: one working key is enough"
+broken key extraction hamilton,svc-spare-key,spare-key,emergency-transactional,/services/spare-car-key,AC:T; repo:keywords,Tail-only; not in owner service list (lib/supabase.ts:159-172) but in JSON-LD serviceType (lib/business-data.ts:327). FAQ section only if offered. TODO(confirm)
+broken key extraction,svc-spare-key,spare-key,emergency-transactional,/services/spare-car-key,AC:N,"National completions are DIY tools (bunnings, extractor kit)"
+lost car keys hamilton,svc-lost-keys,lost-keys,emergency-transactional,/services/lost-car-keys,AC:L; repo:keywords,"PRIMARY. Echoed + ""replacement car keys hamilton"""
+all keys lost hamilton,svc-lost-keys,lost-keys,emergency-transactional,/services/lost-car-keys,AC:T; repo:keywords,Tail-only: trade jargon. Brief slug /all-keys-lost; propose /lost-car-keys
+all keys lost,svc-lost-keys,lost-keys,emergency-transactional,/services/lost-car-keys,AC:N,National completions are locksmith tools (Autel KM100): trade intent
+all keys lost near me,svc-lost-keys,lost-keys,emergency-transactional,/services/lost-car-keys,AC:N,Echoed
+lost car key replacement near me,svc-lost-keys,lost-keys,emergency-transactional,/services/lost-car-keys,AC:N,
+lost car keys near me,svc-lost-keys,lost-keys,emergency-transactional,/services/lost-car-keys,AC:N,
+lost all car keys,svc-lost-keys,lost-keys,emergency-transactional,/services/lost-car-keys,AC:N,"Echoed; 8 completions (""what to do"", ""no spare"")"
+lost my car keys no spare what do i do,svc-lost-keys,lost-keys,how-what-informational,/services/lost-car-keys,AC:N,Answer-first intro
+what to do if you lose your car keys,svc-lost-keys,lost-keys,how-what-informational,/services/lost-car-keys,AC:N,"Variants: no spare, push to start, away from home"
+what to do if you lose your car keys push to start,svc-lost-keys,lost-keys,how-what-informational,/services/lost-car-keys,AC:N,
+can a locksmith make a car key without the original,svc-lost-keys,lost-keys,how-what-informational,/services/lost-car-keys,AC:N,FAQ
+can a locksmith make a car key from vin number,svc-lost-keys,lost-keys,how-what-informational,/services/lost-car-keys,AC:N,FAQ: VIN + ownership + ID
+how to get a new car key made without the original,svc-lost-keys,lost-keys,how-what-informational,/services/lost-car-keys,AC:N,
+replace lost car key hamilton,svc-lost-keys,lost-keys,emergency-transactional,/services/lost-car-keys,repo:keywords,Not tested
+how much does it cost to replace a lost car key,pricing,lost-keys,price-informational,/pricing,AC:N,"Price question: full table on /pricing, one-line range on lost-keys page"
+how much to replace a car key without the original,pricing,lost-keys,price-informational,/pricing,AC:N,
+does insurance cover lost car keys,svc-lost-keys,lost-keys,how-what-informational,/services/lost-car-keys,AC:N,"Echoed; 9 completions. A Canadian broker page (brokerlink.ca) reportedly says comprehensive does not cover lost keys; page returned 403, unverified. TODO(confirm)"
+does caa cover lost car keys in ontario,svc-lost-keys,lost-keys,how-what-informational,/services/lost-car-keys,AC:N,"Ontario-specific completion. CAA SCO (caasco.com/auto/roadside-assistance): locksmith help for lost or broken keys capped at $50 Basic, $100 Plus; registered owner must be present"
+does caa replace lost car keys,svc-lost-keys,lost-keys,how-what-informational,/services/lost-car-keys,AC:N,
+does a locksmith need proof of ownership,faq,lost-keys,how-what-informational,/faq,AC:N,"Echoed; also ""what proof does a locksmith need"". Canonical answer on /faq, summary on lost-keys"
+what proof does a locksmith need,faq,lost-keys,how-what-informational,/faq,AC:N,
+locked keys in car hamilton,svc-lockout,lockout,emergency-transactional,/services/emergency-car-lockout,AC:L,PRIMARY. Echoed
+locked out of car hamilton,svc-lockout,lockout,emergency-transactional,/services/emergency-car-lockout,AC:L,Real completion
+car lockout hamilton,svc-lockout,lockout,emergency-transactional,/services/emergency-car-lockout,AC:T; repo:keywords,"Not echoed; Google rewrites to ""car locksmith hamilton"""
+car lockout hamilton ontario,svc-lockout,lockout,emergency-transactional,/services/emergency-car-lockout,AC:T,
+emergency car locksmith hamilton,svc-lockout,lockout,emergency-transactional,/services/emergency-car-lockout,AC:T,"Not echoed; returns ""mobile car locksmith hamilton"""
+emergency lockout hamilton,svc-lockout,lockout,emergency-transactional,/services/emergency-car-lockout,repo:keywords,Not tested
+24 hour car locksmith hamilton,svc-lockout,lockout,emergency-transactional,/services/emergency-car-lockout,AC:T; SERP-related,Tail-only. Only if Truth Table #1 confirms 24/7
+24 hour locksmith hamilton,svc-lockout,lockout,emergency-transactional,/services/emergency-car-lockout,AC:L; repo:keywords,"Echoed + ""24 7 locksmith hamilton"". Use only if true 24/7. ""hamilton mt"" completion is ambiguous (Montana)"
+24 7 locksmith hamilton,svc-lockout,lockout,emergency-transactional,/services/emergency-car-lockout,AC:L,Same caveat
+car lockout service,svc-lockout,lockout,emergency-transactional,/services/emergency-car-lockout,AC:N,"Lockout national completions are mostly DIY kits (Canadian Tire, Princess Auto): exclude kits"
+car lockout service near me,svc-lockout,lockout,emergency-transactional,/services/emergency-car-lockout,AC:N,
+emergency car locksmith near me,svc-lockout,lockout,emergency-transactional,/services/emergency-car-lockout,AC:N,
+who to call for car lockout,svc-lockout,lockout,how-what-informational,/services/emergency-car-lockout,AC:L-stem,"Completion of ""car lockout hamilton"""
+what to do if you lock your keys in your car,svc-lockout,lockout,how-what-informational,/services/emergency-car-lockout,AC:N,"Echoed; ""while it's running"", ""for free"" variants"
+what to do if key is locked in car,svc-lockout,lockout,how-what-informational,/services/emergency-car-lockout,AC:N,
+does caa cover keys locked in car,svc-lockout,lockout,how-what-informational,/services/emergency-car-lockout,AC:N,CAA SCO sends a service representative to gain entry for keys locked inside (caasco.com/auto/roadside-assistance). Answer honestly: CAA is an option
+how much does a locksmith charge to unlock a car,pricing,lockout,price-informational,/pricing,AC:N,"Also ""cost for car lockout"", ""how much for a car lockout"". Range on lockout page; table on /pricing"
+cost for car lockout,pricing,lockout,price-informational,/pricing,AC:L-stem,"Completion of ""car lockout hamilton"""
+key fob repair hamilton,svc-fob-repair,fob-repair,planned-transactional,/services/key-fob-repair,AC:L,PRIMARY. Completion of 2 stems
+car key repair hamilton,svc-fob-repair,fob-repair,planned-transactional,/services/key-fob-repair,AC:L,Real completion
+car key battery replacement hamilton,svc-fob-repair,fob-repair,planned-transactional,/services/key-fob-repair,AC:L,Completion of 2 stems
+car key battery hamilton,svc-fob-repair,fob-repair,planned-transactional,/services/key-fob-repair,AC:L,Real completion
+key fob shell replacement hamilton,svc-fob-repair,fob-repair,planned-transactional,/services/key-fob-repair,AC:T; repo:keywords,Tail-only. Brief slug /key-fob-shell-replacement; propose /key-fob-repair (shell + buttons + battery)
+key fob battery hamilton,svc-fob-repair,fob-repair,planned-transactional,/services/key-fob-repair,AC:T,Tail-only
+key fob battery replacement hamilton,svc-fob-repair,fob-repair,planned-transactional,/services/key-fob-repair,repo:keywords,Not tested
+key fob shell replacement near me,svc-fob-repair,fob-repair,planned-transactional,/services/key-fob-repair,AC:N,"Echoed; ""case"", ""housing"" synonyms"
+key fob case replacement near me,svc-fob-repair,fob-repair,planned-transactional,/services/key-fob-repair,AC:N,
+car key shell replacement near me,svc-fob-repair,fob-repair,planned-transactional,/services/key-fob-repair,AC:N,
+ignition repair hamilton,excluded,fob-repair,planned-transactional,(none: not offered / out of scope),AC:T,Tail-only and no evidence KeyFoby offers it (not in lib/supabase.ts:159-172). No page. TODO(confirm)
+car key replacement hamilton prices,pricing,price,price-informational,/pricing,AC:L,"PRIMARY. Completion of 3 stems; preferred over ""cost"""
+car key replacement hamilton cost,pricing,price,price-informational,/pricing,brief:related; AC:L-stem; SERP-related,"Not echoed; Google offers ""prices"", ""costs"", ""costco"""
+cheapest car key replacement hamilton,pricing,price,price-informational,/pricing,brief:related; AC:L; SERP-related,"Echoed; completion of 2 stems. Copy must not claim ""cheapest"" without proof"
+key fob replacement hamilton prices,pricing,price,price-informational,/pricing,AC:L,Completion of 2 stems
+cheapest key fob replacement hamilton,pricing,price,price-informational,/pricing,AC:L,Completion of 2 stems
+cheap locksmith hamilton,pricing,price,price-informational,/pricing,AC:L,Real completion
+cheapest auto locksmith hamilton,pricing,price,price-informational,/pricing,AC:L,Real completion
+mobile locksmith hamilton prices,pricing,price,price-informational,/pricing,AC:L,Real completion
+car key replacement cost,pricing,price,price-informational,/pricing,AC:N,Echoed; non-CA country completions: ignore
+how much does car key replacement cost,pricing,price,price-informational,/pricing,AC:N,
+how much is a replacement car key,pricing,price,price-informational,/pricing,AC:N,"Per-make completions: kia, toyota, honda, hyundai, bmw, nissan"
+key fob replacement cost,pricing,price,price-informational,/pricing,AC:N,"Per-make: toyota, nissan, hyundai"
+how much is a key fob replacement,pricing,price,price-informational,/pricing,AC:N,
+how much does a key fob cost to replace,pricing,price,price-informational,/pricing,AC:N,
+key fob programming cost,pricing,price,price-informational,/pricing,AC:N,"Echoed; ""locksmith key fob programming cost"""
+how much to program a key fob,pricing,price,price-informational,/pricing,AC:N,"Per-make: dodge, toyota, hyundai, nissan, chevy, honda, ford, mazda"
+how much does a locksmith charge to program a key fob,pricing,price,price-informational,/pricing,AC:N,
+how much does a locksmith charge to make a key,pricing,price,price-informational,/pricing,AC:N,
+how much is a spare car key,pricing,price,price-informational,/pricing,AC:N,Echoed; 8 completions. One-line range on /services/spare-car-key
+spare car key cost,pricing,price,price-informational,/pricing,AC:N,
+how much does it cost to get a car key made by a locksmith,pricing,price,price-informational,/pricing,AC:N,Appears under 3 town stems
+key cutting hamilton prices,pricing,price,price-informational,/pricing,AC:L,Generic (house keys mixed)
+car key replacement costco canada,guide-dealer,price,price-informational,/guides/dealer-vs-locksmith,AC:N; websearch,"Costco/Car Keys Express vans in Ontario since 2025 (carkeysexpress.com news). Also ""car key replacement hamilton costco"""
+key fob replacement canadian tire,guide-dealer,price,price-informational,/guides/dealer-vs-locksmith,AC:N,Retail alternative
+dealership car key replacement cost ontario,guide-dealer,dealer-vs-locksmith,price-informational,/guides/dealer-vs-locksmith,AC:N,"PRIMARY. Also canada, toronto, mississauga variants. Reviews cite dealer savings (brief)"
+dealership car key replacement cost,guide-dealer,dealer-vs-locksmith,price-informational,/guides/dealer-vs-locksmith,AC:N,Echoed
+how much does a key fob cost at a dealership,guide-dealer,dealer-vs-locksmith,price-informational,/guides/dealer-vs-locksmith,AC:N,
+how much to program a key fob at dealership,guide-dealer,dealer-vs-locksmith,price-informational,/guides/dealer-vs-locksmith,AC:N,
+do i have to go to the dealership for a new key fob,guide-dealer,dealer-vs-locksmith,how-what-informational,/guides/dealer-vs-locksmith,AC:N,
+locksmith vs dealer car key replacement,guide-dealer,dealer-vs-locksmith,how-what-informational,/guides/dealer-vs-locksmith,AC:T,Tail completions only
+is it cheaper to get a car key from a locksmith or dealer,guide-dealer,dealer-vs-locksmith,how-what-informational,/guides/dealer-vs-locksmith,AC:T,Tail completion only
+honda dealership car key replacement cost,guide-dealer,dealer-vs-locksmith,price-informational,/guides/dealer-vs-locksmith,AC:N,Link to /car-keys/honda if built
+why is my key fob not working,guide-fob-fix,fob-troubleshooting,how-what-informational,/guides/key-fob-not-working,AC:N,PRIMARY. Echoed; 10 completions
+why is my key fob not working even with a new battery,guide-fob-fix,fob-troubleshooting,how-what-informational,/guides/key-fob-not-working,AC:N,"Strong commercial bridge: battery fixed nothing, so book repair/reprogram"
+key fob not working after battery change,guide-fob-fix,fob-troubleshooting,how-what-informational,/guides/key-fob-not-working,AC:N,
+key fob not working,guide-fob-fix,fob-troubleshooting,how-what-informational,/guides/key-fob-not-working,AC:N; repo:keywords,"Per-make: honda civic, mazda cx-5, chevy equinox, nissan"
+key fob not working hamilton,svc-fob-repair,fob-troubleshooting,planned-transactional,/services/key-fob-repair,repo:keywords,Not tested. Local version routes to repair page
+why is my car key not working,guide-fob-fix,fob-troubleshooting,how-what-informational,/guides/key-fob-not-working,AC:N,"Includes ""in the ignition"""
+how to replace key fob battery,guide-fob-fix,fob-troubleshooting,how-what-informational,/guides/key-fob-not-working,AC:N,"Per-make DIY. Guide section; do not target ""hamilton"""
+how much is a key fob battery,guide-fob-fix,fob-troubleshooting,price-informational,/guides/key-fob-not-working,AC:N,
+what is a transponder key,guide-key-types,key-types,how-what-informational,/guides/car-key-types,AC:N,"Echoed; 8 completions incl. ""what is a chip key"""
+what is a proximity key,guide-key-types,key-types,how-what-informational,/guides/car-key-types,AC:N,Echoed; returns smart key variants
+what is a smart key,guide-key-types,key-types,how-what-informational,/guides/car-key-types,AC:N,
+what is fob in key fob,guide-key-types,key-types,how-what-informational,/guides/car-key-types,AC:L-stem,"Completion of ""key fob hamilton"""
+kia key fob hamilton,make-kia,make,make-specific,/car-keys/kia,"AC:T; gbp:chip ""kia key fob"" (22 reviews, only 1 mentions Kia)","Tail-only locally. National signal AC:N 2 hits across 5 non-make stems. Lowest of the 5 candidates. Not Kia-first: the ""kia key fob"" chip is Google's label for the fob cluster (gbp-maps.md §1). Make order TODO(confirm) from job logs or review text"
+kia key replacement hamilton,make-kia,make,make-specific,/car-keys/kia,AC:T,Tail-only
+hyundai key fob hamilton,make-hyundai,make,make-specific,/car-keys/hyundai,AC:T,Tail-only locally. National signal AC:N 7 hits across 5 non-make stems. Candidate; launch only with real jobs and prices. GBP reviews naming Hyundai: 0 of 222. Order TODO(confirm) from job logs
+hyundai key replacement hamilton,make-hyundai,make,make-specific,/car-keys/hyundai,AC:T,Tail-only
+toyota key fob hamilton,make-toyota,make,make-specific,/car-keys/toyota,AC:T,Tail-only locally. National signal AC:N 8 hits across 5 non-make stems. Candidate; launch only with real jobs and prices. GBP reviews naming Toyota: 2 of 222. Order TODO(confirm) from job logs
+toyota key replacement hamilton,make-toyota,make,make-specific,/car-keys/toyota,AC:T,Tail-only
+honda key fob hamilton,make-honda,make,make-specific,/car-keys/honda,AC:T,Tail-only locally. National signal AC:N 7 hits across 5 non-make stems. Candidate; launch only with real jobs and prices. GBP reviews naming Honda: 6 of 222. Order TODO(confirm) from job logs
+honda key replacement hamilton,make-honda,make,make-specific,/car-keys/honda,AC:T,Tail-only
+nissan key fob hamilton,make-nissan,make,make-specific,/car-keys/nissan,AC:T,Tail-only locally. National signal AC:N 8 hits across 5 non-make stems. Candidate; launch only with real jobs and prices. GBP reviews naming Nissan: 2 of 222. Order TODO(confirm) from job logs
+nissan key replacement hamilton,make-nissan,make,make-specific,/car-keys/nissan,AC:T,Tail-only
+kia key fob replacement hamilton,make-kia,make,make-specific,/car-keys/kia,AC:T,"Tail completion of ""kia key fob replacement h"""
+kia key fob replacement,make-kia,make,make-specific,/car-keys/kia,AC:N,"From ""kia key fob"" stem"
+kia key fob replacement cost,make-kia,make,price-informational,/car-keys/kia,AC:N,Price row on make page + /pricing
+how much is a kia key fob replacement,make-kia,make,price-informational,/car-keys/kia,AC:N,
+replacement kia key fob cost,make-kia,make,price-informational,/car-keys/kia,AC:N,
+kia key fob not working,make-kia,make,how-what-informational,/car-keys/kia,AC:N,
+how much is a replacement car key kia,make-kia,make,price-informational,/car-keys/kia,AC:N,
+hyundai key fob replacement canada,make-hyundai,make,make-specific,/car-keys/hyundai,AC:N,
+hyundai key fob programming cost,make-hyundai,make,price-informational,/car-keys/hyundai,AC:N,
+key fob replacement cost toyota,make-toyota,make,price-informational,/car-keys/toyota,AC:N,
+key fob replacement cost nissan,make-nissan,make,price-informational,/car-keys/nissan,AC:N,
+nissan push to start key replacement,make-nissan,make,make-specific,/car-keys/nissan,AC:N,
+ford key fob hamilton,makes-index,make,make-specific,/car-keys/,AC:T,Tail-only. Row in /car-keys/ index table until real jobs justify a page
+ford key replacement hamilton,makes-index,make,make-specific,/car-keys/,AC:T,Tail-only
+jeep key fob hamilton,makes-index,make,make-specific,/car-keys/,AC:T,Tail-only. Row in /car-keys/ index table until real jobs justify a page (group Jeep/Dodge/Ram: shared Stellantis fobs)
+jeep key replacement hamilton,makes-index,make,make-specific,/car-keys/,AC:T,Tail-only
+dodge key fob hamilton,makes-index,make,make-specific,/car-keys/,AC:T,Tail-only. Row in /car-keys/ index table until real jobs justify a page (group Jeep/Dodge/Ram: shared Stellantis fobs)
+dodge key replacement hamilton,makes-index,make,make-specific,/car-keys/,AC:T,Tail-only
+ram key fob hamilton,makes-index,make,make-specific,/car-keys/,AC:T,Tail-only. Row in /car-keys/ index table until real jobs justify a page (group Jeep/Dodge/Ram: shared Stellantis fobs)
+ram key replacement hamilton,makes-index,make,make-specific,/car-keys/,AC:T,Tail-only
+chevrolet key fob hamilton,makes-index,make,make-specific,/car-keys/,AC:T,Tail-only. Row in /car-keys/ index table until real jobs justify a page (group Chevrolet/GMC)
+chevrolet key replacement hamilton,makes-index,make,make-specific,/car-keys/,AC:T,Tail-only
+gmc key fob hamilton,makes-index,make,make-specific,/car-keys/,AC:T,Tail-only. Row in /car-keys/ index table until real jobs justify a page (group Chevrolet/GMC)
+gmc key replacement hamilton,makes-index,make,make-specific,/car-keys/,AC:T,Tail-only
+mazda key fob hamilton,makes-index,make,make-specific,/car-keys/,AC:T,Tail-only. Row in /car-keys/ index table until real jobs justify a page
+mazda key replacement hamilton,makes-index,make,make-specific,/car-keys/,AC:T,Tail-only
+subaru key fob hamilton,makes-index,make,make-specific,/car-keys/,AC:T,Tail-only. Row in /car-keys/ index table until real jobs justify a page
+subaru key replacement hamilton,makes-index,make,make-specific,/car-keys/,AC:T,Tail-only
+volkswagen key fob hamilton,makes-index,make,make-specific,/car-keys/,AC:T,Tail-only. Row in /car-keys/ index table until real jobs justify a page
+volkswagen key replacement hamilton,makes-index,make,make-specific,/car-keys/,AC:T,Tail-only
+how much to program a key fob ford,makes-index,make,price-informational,/car-keys/,AC:N,
+how much to program a key fob chevy,makes-index,make,price-informational,/car-keys/,AC:N,Chevy national hits are mostly DIY Silverado programming
+how much to program a key fob dodge,makes-index,make,price-informational,/car-keys/,AC:N,
+mazda push to start key replacement,makes-index,make,make-specific,/car-keys/,AC:N,
+locksmith hamilton mountain,loc-mountain,location,location-specific,/locations/hamilton-mountain,AC:L; SERP-related,"Echoed. Page only with unique Mountain content; else section on /. ""hamilton mt"" completions are ambiguous (Montana)"
+car key hamilton mountain,loc-mountain,location,location-specific,/locations/hamilton-mountain,AC:T,Tail-only
+key fob hamilton mountain,loc-mountain,location,location-specific,/locations/hamilton-mountain,AC:T,"Tail-only; brief Maps query ""car key fob Hamilton Mountain"" #6"
+car key replacement burlington,loc-burlington,location,location-specific,/locations/burlington,AC:L; comp:autokeypro,"Echoed for both stems + ""automotive locksmith burlington ontario"". Contaminated by Burlington NC/VT. Mr. Key Pro (633 reviews) is based here. Keep if Truth Table #4 confirms"
+car locksmith burlington,loc-burlington,location,location-specific,/locations/burlington,AC:L,
+car key replacement oakville,loc-oakville,location,location-specific,/locations/oakville,AC:L; comp:autokeypro,"Echoed for both stems + ""automotive locksmith oakville"". Keep if served"
+car locksmith oakville,loc-oakville,location,location-specific,/locations/oakville,AC:L,
+car key replacement grimsby,loc-grimsby,location,location-specific,/locations/grimsby,AC:L; comp:autokeypro,"Echoed, but list contains UK results (Grimsby, England): signal unreliable. Keep only if served with real jobs"
+car locksmith grimsby,loc-grimsby,location,location-specific,/locations/grimsby,AC:L,
+car key replacement ancaster,loc-index,location,location-specific,/locations/,AC:T; comp:autokeypro,"Autocomplete rewrites to ""Lancaster"": no local signal. Inside City of Hamilton. Index section at launch"
+car locksmith ancaster,loc-index,location,location-specific,/locations/,AC:T,
+car key replacement dundas,loc-index,location,location-specific,/locations/,AC:T,Tail-only. Index section
+car locksmith dundas,loc-index,location,location-specific,/locations/,AC:T,
+car key replacement stoney creek,loc-index,location,location-specific,/locations/,AC:T; comp:autokeypro,Tail-only. Index section
+car locksmith stoney creek,loc-index,location,location-specific,/locations/,AC:T,
+car key replacement waterdown,loc-index,location,location-specific,/locations/,AC:T; comp:autokeypro,"Tail-only. Index section (Waterdown is in Flamborough, City of Hamilton)"
+car locksmith waterdown,loc-index,location,location-specific,/locations/,AC:T,
+car key replacement binbrook,loc-index,location,location-specific,/locations/,AC:T,"Tail-only. Index section (Glanbrook, City of Hamilton)"
+car locksmith binbrook,loc-index,location,location-specific,/locations/,AC:T,
+car key replacement flamborough,loc-index,location,location-specific,/locations/,AC:T,Tail-only. Index section
+car locksmith flamborough,loc-index,location,location-specific,/locations/,AC:T,
+car key replacement caledonia,loc-index,location,location-specific,/locations/,AC:T; comp:autokeypro,Tail-only. Haldimand County. Index only if served
+car locksmith caledonia,loc-index,location,location-specific,/locations/,AC:T,
+automotive locksmith burlington ontario,loc-burlington,location,location-specific,/locations/burlington,AC:L,
+automotive locksmith oakville,loc-oakville,location,location-specific,/locations/oakville,AC:L,
+car key replacement toronto,excluded,location,location-specific,(none: not offered / out of scope),AC:N,"Real national completion, but far from service base. Remove from areaServed unless Truth Table #4 confirms"
+car key replacement mississauga,excluded,location,location-specific,(none: not offered / out of scope),AC:N,Same
+car key replacement brampton,excluded,location,location-specific,(none: not offered / out of scope),AC:N,Same
+mississauga locksmith,excluded,location,location-specific,(none: not offered / out of scope),repo:keywords,Currently in meta keywords; remove unless served
+keyfoby,home,brand,navigational-brand,/,AC:N,"Autocomplete returns generic ""key fob"" terms: brand not recognised; ""keyfoby hamilton"" tail-only. Brand ≈ generic term, and app.keyfoby.com shares the brand"
+keyfoby hamilton,home,brand,navigational-brand,/,AC:T,
+keyfoby reviews,reviews,brand,navigational-brand,/reviews,not tested,Navigational; link GBP
+keyfoby phone number,contact,brand,navigational-brand,/contact,not tested,NAP page
+is keyfoby licensed and insured,faq,trust,how-what-informational,/faq,repo:faq (lib/business-data.ts),Claim unverified (brief §2). TODO(confirm) what can be published
+licensed locksmith hamilton ontario,faq,trust,how-what-informational,/faq,repo:keywords,"No provincial locksmith licence found in Ontario (Locksmiths Licensing Act, 1996 appears only as a bill; status unverified). Do not target until Truth Table #2"
+insured locksmith hamilton,faq,trust,how-what-informational,/faq,repo:keywords,TODO(confirm) insurer
+car key warranty,warranty,trust,how-what-informational,/warranty,repo,Site states 3 months (app/warranty/page.tsx:77; lib/business-data.ts:181). Keep legal URL
+how much does it cost to replace a key for my car,pricing,price,price-informational,/pricing,PAA,"PAA on ""car key replacement hamilton"" (gbp-maps.md §2c). AEO #1"
+how much should it cost to replace a key,pricing,price,price-informational,/pricing,PAA,"PAA on ""car key replacement hamilton"". AEO #1"
+can you program a car key without the original,svc-lost-keys,lost-keys,how-what-informational,/services/lost-car-keys,PAA,"PAA on ""car key replacement hamilton"". AEO #6"
+where can i get a remote starter installed in hamilton ontario,excluded,out-of-scope,planned-transactional,(none: not offered / out of scope),PAA,"PAA on ""car key replacement hamilton"". Aftermarket remote starters: no evidence KeyFoby offers them (Truth Table #11). No page; Ads negative unless offered"
+how much does it normally cost to program a key fob,pricing,price,price-informational,/pricing,PAA,"PAA on ""key fob programming hamilton"". AEO #2"
+how much does it cost to program a car key fob,pricing,price,price-informational,/pricing,PAA,"PAA on ""key fob programming hamilton"". AEO #2"
+does home depot reprogram key fobs,guide-dealer,dealer-vs-locksmith,how-what-informational,/guides/dealer-vs-locksmith,PAA,"PAA on ""key fob programming hamilton"". Retail alternatives (Home Depot, Costco, Canadian Tire) belong in the comparison guide. AEO #5"
+can you program a key fob without going to the dealership,guide-dealer,dealer-vs-locksmith,how-what-informational,/guides/dealer-vs-locksmith,PAA,"PAA on ""key fob programming hamilton"". AEO #5"
+how much does a locksmith cost in hamilton,pricing,price,price-informational,/pricing,PAA,"PAA on ""car locksmith hamilton"". Call-out, lockout and after-hours rows. AEO #3"
+what do i do if i have locked my keys in my car,svc-lockout,lockout,how-what-informational,/services/emergency-car-lockout,PAA,"PAA on ""car locksmith hamilton"". Same answer as ""what to do if you lock your keys in your car"". AEO #4"
+can my car get locked with a key inside,svc-lockout,lockout,how-what-informational,/services/emergency-car-lockout,PAA,"PAA on ""car locksmith hamilton"". AEO #4"
+do you need a license to be a locksmith in ontario,faq,trust,how-what-informational,/faq,PAA,"PAA on ""car locksmith hamilton"". Answer depends on Truth Table #2; no provincial licence found (unverified). AEO #7"
+mobile key fob programming hamilton,svc-key-fob,key-fob,planned-transactional,/services/key-fob-replacement,SERP-related,"Related search on ""key fob programming hamilton"""
+free key fob programming hamilton,pricing,price,price-informational,/pricing,SERP-related,"Related search on ""key fob programming hamilton"". No ""free"" claim unless a real offer exists. TODO(confirm)"
+car key fob programming hamilton,svc-key-fob,key-fob,planned-transactional,/services/key-fob-replacement,SERP-related,"Related search on ""key fob programming hamilton"""
+key fob programming hamilton cost,pricing,price,price-informational,/pricing,SERP-related,"Related search on ""key fob programming hamilton"""
+auto key programming near me,svc-key-fob,key-fob,planned-transactional,/services/key-fob-replacement,SERP-related,"Related search on ""key fob programming hamilton"". Near-me intent is won mostly by the GBP"
+chevy key fob programming hamilton,makes-index,make,make-specific,/car-keys/,SERP-related,"Related search on the personalized ""key fob programming hamilton"" load only. Chevrolet/GMC row on the make index"
+cheapest car locksmith hamilton,pricing,price,price-informational,/pricing,SERP-related,"Related search on ""car locksmith hamilton"". Copy must not claim ""cheapest"" without proof"
+best car locksmith hamilton,home,hub,planned-transactional,/,SERP-related,"Related search on ""car locksmith hamilton"". No ""best"" claim; support with the real GBP rating and count"
+auto key pro hamilton,excluded,out-of-scope,navigational-brand,(none: not offered / out of scope),SERP-related,Competitor brand (related search on all 3 SERPs). No page; bidding on it is a client decision
+auto key pro rymal,excluded,out-of-scope,navigational-brand,(none: not offered / out of scope),SERP-related,Competitor brand. No page
+alpha locksmith hamilton,excluded,out-of-scope,navigational-brand,(none: not offered / out of scope),SERP-related,Competitor brand. No page

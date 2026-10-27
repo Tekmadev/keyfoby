@@ -1,0 +1,4 @@
+# ads.txt file for KeyFoby
+# This business does not currently use ad monetization
+# For more information, visit https://www.keyfoby.com
+
