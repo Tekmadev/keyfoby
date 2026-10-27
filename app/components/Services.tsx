@@ -1,17 +1,9 @@
 import { businessData } from "@/lib/business-data";
 
-const serviceAreaDetails = [
-  { city: "Hamilton", detail: "Primary service hub, fastest response" },
-  { city: "Burlington", detail: "Same-day service available" },
-  { city: "Oakville", detail: "Same-day service available" },
-  { city: "Mississauga", detail: "Mobile service available" },
-  { city: "Brampton", detail: "Mobile service available" },
-  { city: "Toronto", detail: "Mobile service available" },
-  { city: "Ancaster", detail: "Same-day service available" },
-  { city: "Dundas", detail: "Same-day service available" },
-  { city: "Stoney Creek", detail: "Same-day service available" },
-  { city: "Grimsby", detail: "Mobile service available" },
-];
+const serviceAreaDetails = businessData.serviceArea.map((city) => ({
+  city,
+  detail: city === "Hamilton" ? "Home base" : "Mobile service",
+}));
 
 export default function Services() {
   const services = [
@@ -46,20 +38,18 @@ export default function Services() {
         {/* Section header - SEO Enhanced */}
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white mb-6">
-            Professional Key Fob & Locksmith Services in Hamilton
+            Car Key &amp; Key Fob Services in Hamilton
           </h2>
           <p className="text-lg sm:text-xl text-slate-600 dark:text-slate-300 max-w-4xl mx-auto mb-4">
-            <strong>Hamilton's Premier Key Specialists</strong> - Expert
-            automotive key programming and emergency lockout services. Serving
-            Hamilton, Burlington, Oakville, and Greater Toronto Area with
-            same-day solutions.
+            A mobile car key service based in Hamilton. We cut and program
+            keys at your car and handle car lockouts, across Hamilton and
+            nearby cities. Car keys only: no house or business locks.
           </p>
 
-          {/* Additional SEO content */}
           <div className="text-base text-slate-500 dark:text-slate-400 max-w-3xl mx-auto">
             <p>
-              🔧 All Makes & Models • 🚗 Transponder Keys • 📱 Smart Key
-              Programming • ⚡ Emergency Service • 🛡️ Licensed & Insured
+              Most makes &amp; models · Transponder keys · Smart keys ·
+              Emergency lockouts · Licensed &amp; insured
             </p>
           </div>
         </div>
@@ -112,9 +102,8 @@ export default function Services() {
             Areas We Serve
           </h3>
           <p className="text-slate-600 dark:text-slate-400 text-center mb-8 max-w-2xl mx-auto">
-            KeyFoby provides mobile locksmith services across Hamilton and the
-            surrounding communities. We come to you, so there is no need to tow your
-            vehicle.
+            KeyFoby is based in Hamilton and comes to you across these cities.
+            We work at your car, so there is no need to tow it.
           </p>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
             {serviceAreaDetails.map(({ city, detail }) => (

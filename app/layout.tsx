@@ -28,7 +28,6 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://www.keyfoby.com"),
   title: businessData.seo.title,
   description: businessData.seo.description,
-  keywords: businessData.seo.keywords.join(", "),
   authors: [{ name: businessData.name }],
   robots: {
     index: true,
@@ -86,7 +85,7 @@ export const metadata: Metadata = {
         url: businessData.seo.openGraph.image,
         width: 1200,
         height: 630,
-        alt: "KeyFoby Keys - Professional Key Fob and Locksmith Services in Hamilton",
+        alt: businessData.seo.openGraph.imageAlt,
       },
     ],
     locale: "en_CA",
@@ -97,8 +96,6 @@ export const metadata: Metadata = {
     title: businessData.seo.openGraph.title,
     description: businessData.seo.openGraph.description,
     images: [businessData.seo.openGraph.image],
-    creator: "@KeyFoby",
-    site: "@KeyFoby",
   },
 };
 
@@ -110,18 +107,7 @@ export default function RootLayout({
   return (
     <html lang="en-CA" className="scroll-smooth">
       <head>
-        {/* DNS prefetch for external domains - non-blocking */}
-        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-        <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
-
-        {/* Preconnect to CDN for faster asset loading */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-
+        {/* Fonts are self-hosted by next/font, so no Google Fonts preconnect */}
         {/* Preload critical hero image for faster LCP */}
         <link
           rel="preload"
@@ -134,7 +120,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {/* Structured Data for SEO - Moved to body to prevent render blocking */}
+        {/* The one business entity (Locksmith, @id /#business) for every page */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

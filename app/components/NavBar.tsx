@@ -16,7 +16,8 @@ import { trackPhoneClick, trackWhatsAppClick } from "@/lib/analytics";
 export default function NavBar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  const navItems = [
+  // The KeyFoby App (app.keyfoby.com) link is hidden from the car-owner site.
+  const navItems: { name: string; link: string; external?: boolean }[] = [
     {
       name: "Services",
       link: "/#services",
@@ -28,11 +29,6 @@ export default function NavBar() {
     {
       name: "Contact",
       link: "/#contact",
-    },
-    {
-      name: "📱 App",
-      link: "https://app.keyfoby.com",
-      external: true, // Flag to indicate external link
     },
   ];
 
@@ -190,7 +186,7 @@ export default function NavBar() {
           <NavItems items={navItems} className="text-white" />
           <div className="flex items-center gap-4 ml-auto">
             <a
-              href={`tel:${businessData.contact.phone}`}
+              href={businessData.contact.phoneHref}
               onClick={() => trackPhoneClick()}
               className="hidden lg:flex items-center space-x-2 px-4 py-2 text-sm text-white hover:text-blue-300 transition-colors duration-200 rounded-lg hover:bg-white/10 whitespace-nowrap"
             >
@@ -213,7 +209,7 @@ export default function NavBar() {
             </a>
             {/* Desktop Social Lead Buttons */}
             <div className="flex items-center gap-3 relative z-[70]">
-              <FacebookLeadButton />
+              {businessData.social.facebook && <FacebookLeadButton />}
               <WhatsAppIconButton />
             </div>
           </div>
@@ -250,7 +246,7 @@ export default function NavBar() {
             {/* Mobile contact info */}
             <div className="border-t border-white/20 pt-4 mt-4">
               <a
-                href={`tel:${businessData.contact.phone}`}
+                href={businessData.contact.phoneHref}
                 className="flex items-center space-x-3 text-white hover:text-blue-300 py-3 px-2 rounded-lg hover:bg-white/10 transition-all duration-200"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
@@ -273,7 +269,9 @@ export default function NavBar() {
 
             {/* Social Lead Buttons */}
             <div className="flex items-center justify-center gap-4 mt-6">
-              <FacebookLeadButton onClick={() => setIsMobileMenuOpen(false)} />
+              {businessData.social.facebook && (
+                <FacebookLeadButton onClick={() => setIsMobileMenuOpen(false)} />
+              )}
               <WhatsAppIconButton onClick={() => setIsMobileMenuOpen(false)} />
             </div>
           </MobileNavMenu>
