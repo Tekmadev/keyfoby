@@ -29,6 +29,7 @@ export default function CarSelector({
 }: CarSelectorProps) {
   const [makeSearch, setMakeSearch] = useState("");
   const [modelSearch, setModelSearch] = useState("");
+  const [isManualMake, setIsManualMake] = useState(false);
   const [isManualModel, setIsManualModel] = useState(false);
 
   // Get years (static list - no API call)
@@ -67,7 +68,7 @@ export default function CarSelector({
 
   // Reset make when year changes
   useEffect(() => {
-    if (year && make) {
+    if (year && make && !isManualMake) {
       // If year changed and make was already selected, reset it
       const makeExists = makes.some((m) => m.name === make);
       if (!makeExists && !makesLoading) {
@@ -75,7 +76,7 @@ export default function CarSelector({
         setMakeSearch("");
       }
     }
-  }, [year, makes, makesLoading]);
+  }, [year, makes, makesLoading, isManualMake]);
 
   // Reset model when make changes
   useEffect(() => {
@@ -97,6 +98,17 @@ export default function CarSelector({
     setMakeSearch("");
     setModelSearch("");
     setIsManualModel(false);
+  };
+
+  // Handle manual make toggle (make not in the list)
+  const handleManualMakeToggle = () => {
+    setIsManualMake(!isManualMake);
+    onMakeChange("");
+    onModelChange("");
+    setMakeSearch("");
+    setModelSearch("");
+    // A typed make may not be in vPIC, so let the model be typed too
+    setIsManualModel(!isManualMake);
   };
 
   // Handle make change
@@ -147,61 +159,88 @@ export default function CarSelector({
 
       {/* Make Dropdown */}
       <div>
-        <label
-          htmlFor="vehicle-make"
-          className="block text-sm font-medium text-slate-300 mb-2"
-        >
-          Vehicle Make <span className="text-red-400">*</span>
-          {!year && (
-            <span className="text-slate-500 text-xs ml-1">
-              (Select year first)
-            </span>
-          )}
-        </label>
+        <div className="flex items-center justify-between mb-2">
+          <label
+            htmlFor="vehicle-make"
+            className="block text-sm font-medium text-slate-300"
+          >
+            Vehicle Make <span className="text-red-400">*</span>
+            {!year && (
+              <span className="text-slate-500 text-xs ml-1">
+                (Select year first)
+              </span>
+            )}
+          </label>
 
-        {/* Search input for makes (if list is long) */}
-        {showMakeSearch && year && !makesLoading && (
+          {/* Manual entry toggle - only show once a year is chosen */}
+          {year && (
+            <button
+              type="button"
+              onClick={handleManualMakeToggle}
+              className="text-xs text-blue-400 hover:text-blue-300 transition-colors"
+            >
+              {isManualMake ? "Use Dropdown" : "Make not listed?"}
+            </button>
+          )}
+        </div>
+
+        {isManualMake ? (
           <input
             type="text"
-            placeholder="Search makes..."
-            value={makeSearch}
-            onChange={(e) => setMakeSearch(e.target.value)}
-            className="w-full px-4 py-2 mb-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-sm"
+            id="vehicle-make"
+            value={make}
+            onChange={(e) => onMakeChange(e.target.value)}
+            placeholder="Enter make (e.g., Honda)"
+            className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
           />
-        )}
+        ) : (
+          <>
+            {/* Search input for makes (if list is long) */}
+            {showMakeSearch && year && !makesLoading && (
+              <input
+                type="text"
+                placeholder="Search makes..."
+                value={makeSearch}
+                onChange={(e) => setMakeSearch(e.target.value)}
+                className="w-full px-4 py-2 mb-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-sm"
+              />
+            )}
 
-        <select
-          id="vehicle-make"
-          value={make}
-          onChange={(e) => handleMakeChange(e.target.value)}
-          disabled={!year || makesLoading}
-          className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-        >
-          <option value="">
-            {!year
-              ? "Select year first"
-              : makesLoading
-              ? "Loading makes..."
-              : "Select Make"}
-          </option>
-          {filteredMakes.map((m, index) => (
-            <option key={`${m.id}-${m.name}-${index}`} value={m.name}>
-              {m.name}
-            </option>
-          ))}
-        </select>
+            <select
+              id="vehicle-make"
+              value={make}
+              onChange={(e) => handleMakeChange(e.target.value)}
+              disabled={!year || makesLoading}
+              className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              <option value="">
+                {!year
+                  ? "Select year first"
+                  : makesLoading
+                  ? "Loading makes..."
+                  : "Select Make"}
+              </option>
+              {filteredMakes.map((m, index) => (
+                <option key={`${m.id}-${m.name}-${index}`} value={m.name}>
+                  {m.name}
+                </option>
+              ))}
+            </select>
 
-        {makesError && (
-          <p className="mt-1 text-sm text-red-400">
-            Error loading makes. Please try again.
-          </p>
+            {makesError && (
+              <p className="mt-1 text-sm text-red-400">
+                Error loading makes. Use &quot;Make not listed?&quot; to type it.
+              </p>
+            )}
+            {makeSearch && filteredMakes.length === 0 && !makesLoading && (
+              <p className="mt-1 text-sm text-slate-400">
+                No makes found for &quot;{makeSearch}&quot;. Use &quot;Make not
+                listed?&quot; to type it.
+              </p>
+            )}
+          </>
         )}
         {makeError && <p className="mt-1 text-sm text-red-400">{makeError}</p>}
-        {makeSearch && filteredMakes.length === 0 && !makesLoading && (
-          <p className="mt-1 text-sm text-slate-400">
-            No makes found for "{makeSearch}"
-          </p>
-        )}
       </div>
 
       {/* Model Field - Dropdown or Manual Entry */}

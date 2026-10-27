@@ -9,6 +9,29 @@ const NHTSA_BASE_URL = "https://vpic.nhtsa.dot.gov/api/vehicles";
 // Allowed vehicle types for filtering
 const ALLOWED_VEHICLE_TYPES = ["car", "van", "truck", "mpv"] as const;
 
+// Give up on a slow vPIC request so the form never hangs on "Loading..."
+const REQUEST_TIMEOUT_MS = 6000;
+
+/**
+ * Makes shown when vPIC is down, slow or returns nothing, so the quote form
+ * can always be submitted (vPIC returned 503 during the Phase 0 audit).
+ */
+const FALLBACK_MAKE_NAMES = [
+  "Acura", "Alfa Romeo", "Audi", "BMW", "Buick", "Cadillac", "Chevrolet",
+  "Chrysler", "Dodge", "Fiat", "Ford", "Genesis", "GMC", "Honda", "Hyundai",
+  "Infiniti", "Jaguar", "Jeep", "Kia", "Land Rover", "Lexus", "Lincoln",
+  "Mazda", "Mercedes-Benz", "Mini", "Mitsubishi", "Nissan", "Porsche", "Ram",
+  "Subaru", "Tesla", "Toyota", "Volkswagen", "Volvo",
+];
+
+export const FALLBACK_MAKES: VehicleMake[] = FALLBACK_MAKE_NAMES.map(
+  (name, index) => ({ id: index + 1, name })
+);
+
+function fetchWithTimeout(url: string): Promise<Response> {
+  return fetch(url, { signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS) });
+}
+
 /**
  * NHTSA API Response Types
  */
@@ -98,7 +121,7 @@ export function getCommonYears(): number[] {
  */
 async function fetchMakesByType(vehicleType: string): Promise<VehicleMake[]> {
   try {
-    const response = await fetch(
+    const response = await fetchWithTimeout(
       `${NHTSA_BASE_URL}/GetMakesForVehicleType/${vehicleType}?format=json`
     );
 
@@ -144,6 +167,11 @@ export async function fetchMakes(): Promise<VehicleMake[]> {
       }
     });
 
+    // vPIC down or empty: fetchMakesByType swallows errors, so fall back here
+    if (uniqueMakes.size === 0) {
+      return FALLBACK_MAKES;
+    }
+
     // Convert to array and sort alphabetically
     const sortedMakes = Array.from(uniqueMakes.values()).sort((a, b) =>
       a.name.localeCompare(b.name)
@@ -152,7 +180,7 @@ export async function fetchMakes(): Promise<VehicleMake[]> {
     return sortedMakes;
   } catch (error) {
     console.error("Error fetching makes:", error);
-    throw new Error("Failed to load vehicle makes. Please try again later.");
+    return FALLBACK_MAKES;
   }
 }
 
@@ -217,7 +245,7 @@ export async function fetchModelsForMakeAndYear(
 ): Promise<VehicleModel[]> {
   try {
     const encodedMake = encodeURIComponent(make);
-    const response = await fetch(
+    const response = await fetchWithTimeout(
       `${NHTSA_BASE_URL}/GetModelsForMakeYear/make/${encodedMake}/modelyear/${year}?format=json`
     );
 
