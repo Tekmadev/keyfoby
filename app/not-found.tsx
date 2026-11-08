@@ -1,9 +1,20 @@
-"use client";
-
+import type { Metadata } from "next";
 import Link from "next/link";
 import { businessData } from "@/lib/business-data";
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
+
+// A missing page must not inherit the homepage's title, "index, follow" and
+// canonical from the root layout. (Next also injects its own noindex tag.)
+export const metadata: Metadata = {
+  title: `Page not found | ${businessData.name}`,
+  robots: {
+    index: false,
+    follow: true,
+    googleBot: { index: false, follow: true },
+  },
+  alternates: { canonical: null },
+};
 
 export default function NotFound() {
   return (

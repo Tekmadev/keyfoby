@@ -1,0 +1,14 @@
+# Never upload these to Vercel (applies to CLI deploys; Git deploys never see
+# gitignored files anyway). Vercel's built-in ignore list skips .env.local but
+# NOT .env, which holds server-only secrets (OpenAI key, owner token).
+.env
+.env.*
+.firebase
+.firebaserc
+firebase.json
+
+# The unfinished OpenAI intake route and its automation must never reach a
+# Vercel build. scripts/build.js also hides app/api during the static build.
+app/api
+automation
+_api_excluded

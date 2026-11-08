@@ -2,13 +2,15 @@
   "name": "keyfoby",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "22.x"
+  },
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "node scripts/build.js",
-    "export": "next build",
+    "export": "npm run build",
     "start": "next start",
     "lint": "next lint",
-    "deploy": "next build && next export",
     "deploy:all": "npm run build && firebase deploy",
     "verify": "node scripts/verify-build.js"
   },
@@ -22,7 +24,7 @@
     "firebase": "^11.9.1",
     "libphonenumber-js": "^1.12.9",
     "motion": "^12.19.1",
-    "next": "^16.0.7",
+    "next": "^16.4.5",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "tailwind-merge": "^3.3.1"
