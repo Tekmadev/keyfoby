@@ -5,11 +5,11 @@
 **Where it goes:** a new section at the top of `/privacy-policy`, titled "Quote requests on keyfoby.com". The existing app sections stay word for word, because the KeyFoby mobile app links to this page. See "Notes for the build" below.
 
 **Before publishing, confirm these:**
-1. **Supabase region:** in the Supabase dashboard, Project Settings → General → Region, for project `grytdgpmewmxbdimpgrr`. Replace `[Supabase region]` with it, e.g. "Canada (Central)" or "United States (East)".
-2. **How long you keep job records for tax.** It's usually 6 years in Canada; your accountant can confirm. Replace `[6 years]` if different.
+1. ~~Supabase region~~: confirmed 2026-11-10, East US (Ohio), `us-east-2`.
+2. ~~How long you keep job records for tax~~: confirmed 2026-11-10, 6 years.
 3. **Google Ads remarketing:** in Google Ads → Tools → Audience manager. If remarketing is on, keep the last sentence of "Analytics and ads". If it is off, you can delete that sentence.
 4. **Resend sending region:** on the Resend Domains page, when you add `send.keyfoby.com`. Use North Virginia (us-east-1), which matches "United States" in the text.
-5. **Two promises only you can keep:** "We only contact you about the quote you asked for" and "If you call, we do not record the call". Delete either one if it is not true for how you work.
+5. ~~Two promises only you can keep~~: confirmed true by the owner 2026-11-10 ("We only contact you about the quote you asked for"; "If you call, we do not record the call").
 6. **Other services:** delete each line under "Other services on the site" for anything the new design no longer uses (the make list from NHTSA, the Elfsight reviews widget, the Google map).
 
 This is plain-language policy text, not legal advice. Have it reviewed if you want that certainty.
@@ -42,7 +42,7 @@ We do not store your IP address with your quote request.
 
 **Who handles your information for us**
 - **Vercel** hosts the website and runs the form's server code (United States). Like any web host, Vercel keeps short-lived technical logs of requests, such as IP address and browser type, for security and troubleshooting.
-- **Supabase** stores quote requests in our database ([Supabase region]).
+- **Supabase** stores quote requests in our database (United States, Ohio).
 - **Resend** sends us an email with the details of your request. Resend stores its data in the United States and keeps a copy of sent emails for 30 days.
 - **Google (Gmail)** holds that email in our inbox (outside Canada, mainly the United States).
 - **Cloudflare** runs the bot check (United States, with a global network).
@@ -58,7 +58,7 @@ Apart from Cloudflare's use of bot-check signals described above, these provider
 
 We delete the notification emails on the same schedule. Deleted data may stay in our providers' backups for a short time.
 
-If you hire us, we also keep a record of the job (such as your name, your car and the work done) in our business records for [6 years], as tax law requires.
+If you hire us, we also keep a record of the job (such as your name, your car and the work done) in our business records for 6 years, as tax law requires.
 
 **Other services on the site.** These load from other companies when you use the page, so those companies can see your IP address and may set cookies. Each follows its own privacy policy.
 - The list of car makes and models comes from the US government's NHTSA vPIC service. It sees the year and make you pick.

@@ -95,3 +95,21 @@ export const trackPageView = (pageName: string) => {
     page_location: window.location.href,
   });
 };
+
+// ---------------------------------------------------------------------------
+// New site (Night Shift): one helper for the page's data-track actions.
+// Sends the same event to Firebase Analytics (via trackEvent) and to the GA4
+// property through the existing gtag (send_to keeps it out of Google Ads).
+// Params are short labels only (where on the page, which key type): never a
+// name, phone number, car or town typed by the visitor.
+// ---------------------------------------------------------------------------
+type SiteEventParams = Record<string, string | number | undefined>;
+
+export const trackSiteEvent = (eventName: string, parameters: SiteEventParams = {}) => {
+  const params: Record<string, string | number> = {};
+  for (const [k, v] of Object.entries(parameters)) if (v !== undefined && v !== "") params[k] = v;
+  trackEvent(eventName, params);
+  if (typeof window !== "undefined" && typeof window.gtag === "function") {
+    window.gtag("event", eventName, { ...params, send_to: "G-BDZE2T9HR0" });
+  }
+};

@@ -1,27 +1,37 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Archivo, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+import "./site.css";
 import { businessData } from "@/lib/business-data";
 import AnalyticsProvider from "@/app/components/AnalyticsProvider";
 import Script from "next/script";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+// Night Shift type: Archivo (variable width, condensed caps for display) and
+// JetBrains Mono labels. Self-hosted by next/font with size-adjusted fallbacks.
+const archivo = Archivo({
+  variable: "--font-archivo",
   subsets: ["latin"],
-  display: "swap", // Prevent render blocking
-  preload: false, // Don't preload to reduce initial load
+  axes: ["wdth"],
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-jbmono",
   subsets: ["latin"],
-  display: "swap", // Prevent render blocking
-  preload: false, // Don't preload to reduce initial load
+  weight: "500",
+  display: "swap",
+  preload: false,
+  // Every monospace font has the same 0.6em advance, so the system mono is a
+  // shift-free fallback (next/font's Arial-based one is wider and wraps lines).
+  adjustFontFallback: false,
+  fallback: ["ui-monospace", "SFMono-Regular", "Menlo", "monospace"],
 });
 
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
+  viewportFit: "cover",
+  themeColor: "#0A0C0F",
 };
 
 export const metadata: Metadata = {
@@ -105,21 +115,22 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en-CA" className="scroll-smooth">
+    <html
+      lang="en-CA"
+      className={`${archivo.variable} ${jetbrainsMono.variable}`}
+      suppressHydrationWarning
+    >
       <head>
-        {/* Fonts are self-hosted by next/font, so no Google Fonts preconnect */}
-        {/* Preload critical hero image for faster LCP */}
-        <link
-          rel="preload"
-          href="/images/herobannerKF.webp"
-          as="image"
-          type="image/webp"
-          fetchPriority="high"
+        {/* Fonts are self-hosted by next/font, so no Google Fonts preconnect.
+            The "js" class switches the no-JS fallbacks (key picker :target
+            panels, form notice) to their scripted versions before first paint. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: "document.documentElement.classList.add('js')",
+          }}
         />
       </head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body>
         {/* The one business entity (Locksmith, @id /#business) for every page */}
         <script
           type="application/ld+json"

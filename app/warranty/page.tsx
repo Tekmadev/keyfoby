@@ -1,13 +1,17 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import { businessData } from "@/lib/business-data";
-import NavBar from "@/app/components/NavBar";
-import Footer from "@/app/components/Footer";
+import SiteHeader from "@/app/components/site/SiteHeader";
+import SiteFooter from "@/app/components/site/SiteFooter";
+import { pageSocial } from "@/app/components/site/social";
+
+const TITLE = "3-Month Service Warranty | KeyFoby Automotive Locksmith Hamilton";
+const DESCRIPTION =
+  "KeyFoby provides a 3-month warranty on all car key replacement and key fob programming services in Hamilton, Ontario. Learn what's covered.";
 
 export const metadata: Metadata = {
-  title: "3-Month Service Warranty | KeyFoby Automotive Locksmith Hamilton",
-  description:
-    "KeyFoby provides a 3-month warranty on all car key replacement and key fob programming services in Hamilton, Ontario. Learn what's covered.",
+  title: TITLE,
+  description: DESCRIPTION,
   robots: {
     index: true,
     follow: true,
@@ -15,6 +19,7 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://www.keyfoby.com/warranty",
   },
+  ...pageSocial("/warranty", TITLE, DESCRIPTION),
 };
 
 export default function WarrantyPolicy() {
@@ -22,19 +27,19 @@ export default function WarrantyPolicy() {
 
   return (
     <>
-      <NavBar />
-      <main className="min-h-screen bg-gradient-to-b from-slate-50 to-white dark:from-slate-900 dark:to-slate-800">
+      <SiteHeader />
+      <main id="main" className="legal dark">
         {/* Hero Section */}
-        <section className="relative bg-gradient-to-r from-blue-600 to-cyan-500 py-20">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center">
-              <div className="inline-block mb-4">
-                <span className="text-6xl">🛡️</span>
+        <section className="legal-hero">
+          <div className="legal-hero__in">
+            <div className="legal-hero__body">
+              <div className="legal-hero__icon" aria-hidden="true">
+                <span>🛡️</span>
               </div>
-              <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+              <h1>
                 Service Warranty Policy
               </h1>
-              <p className="text-xl text-blue-100">
+              <p className="legal-hero__sub">
                 Your protection and our commitment to quality service
               </p>
             </div>
@@ -710,7 +715,7 @@ export default function WarrantyPolicy() {
                 → Privacy Policy
               </Link>
               <Link
-                href="/#contact"
+                href="/#quote"
                 className="text-blue-600 dark:text-blue-400 hover:underline text-sm font-medium"
               >
                 → Contact Us
@@ -719,7 +724,7 @@ export default function WarrantyPolicy() {
           </div>
         </article>
       </main>
-      <Footer />
+      <SiteFooter />
     </>
   );
 }

@@ -21,7 +21,7 @@
  *   TURNSTILE_SECRET_KEY    Cloudflare Turnstile secret
  *   RESEND_API_KEY          Resend API key (sending access only)
  *   LEAD_NOTIFY_TO          owner inbox, e.g. keyfoby@gmail.com
- *   LEAD_NOTIFY_FROM        e.g. "KeyFoby Website <leads@send.keyfoby.com>"
+ *   LEAD_NOTIFY_FROM        e.g. "KeyFoby Website <leads@keyfoby.com>"
  *   SUPABASE_URL / SUPABASE_PUBLISHABLE_KEY (fall back to the NEXT_PUBLIC_SUPABASE_* values)
  *   LEAD_ALLOWED_ORIGINS    optional, comma-separated; defaults to the keyfoby.com
  *                           origins plus this project's own Vercel URLs
@@ -210,7 +210,12 @@ export function buildEmail(ref: string, lead: Record<string, unknown>, phone: st
   const listed = s("town") && s("town").toLowerCase() !== "other" ? s("town") : "";
   const town = listed || (s("other_town") ? `${s("other_town")} (outside the list)` : "Town not given");
   const working = s("has_working_key") === "lost" ? "ALL KEYS LOST" : s("has_working_key") === "spare" ? "Has a working key (needs a spare)" : "Not said";
-  const ignition = s("ignition") === "push" ? "Push-to-start" : s("ignition") === "key" ? "Turn key" : "Not said";
+  const ign = s("ignition"), kt = s("key_type");
+  // A smart key normally goes with push-to-start, and blade/remote/flip keys with a turn-key ignition.
+  // The form pre-fills that, but a few cars differ, so an unusual pair is flagged instead of refused.
+  const oddPair = (kt === "smart" && ign === "key") || (["blade", "remote", "flip"].includes(kt) && ign === "push");
+  const ignition = (ign === "push" ? "Push-to-start" : ign === "key" ? "Turn key" : "Not said") +
+    (oddPair ? " (unusual for this key type: confirm on the call)" : "");
   const details = typeof lead.details === "string" && lead.details.trim() ? lead.details.trim() : "None";
   const pretty = `(${phone.slice(2, 5)}) ${phone.slice(5, 8)}-${phone.slice(8)}`;
   const when = receivedAt.toLocaleString("en-CA", { timeZone: "America/Toronto", dateStyle: "medium", timeStyle: "short" });
