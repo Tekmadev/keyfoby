@@ -3,7 +3,8 @@
 -- Written from the inventory the owner ran on 2026-11-10 (01_inventory.sql).
 --
 -- KEEPS: the website's schema "website" (leads, towns, consent_versions,
---        settings) and public.submit_website_lead. Nothing the website
+--        settings, and lead_events if the history script was run) and
+--        public.submit_website_lead. Nothing the website
 --        needs is touched.
 -- REMOVES: the app's 10 tables (and their data, policies and indexes),
 --          1 view, 15 functions, 3 sign-up triggers on auth.users,

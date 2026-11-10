@@ -106,6 +106,12 @@ export function initPicker(): Cleanup | void {
     otherWrap: byId("f-other-wrap"),
   };
   const igPush = byId<HTMLInputElement>("ig-push");
+  const igKey = byId<HTMLInputElement>("ig-key");
+  const igNote = byId("f-ign-note");
+  // The key type tells us the ignition for almost every car: a smart key goes with push-to-start,
+  // keys with a metal blade (blade, remote, flip) turn in the ignition. A few cars are exceptions
+  // (twist-knob smart keys, flip key + push start), so it is a default the person can change.
+  const IGN: Record<string, "key" | "push"> = { smart: "push", blade: "key", remote: "key", flip: "key" };
   let igAuto = false, igUser = false, haveUser = false;
   const tag = (id: string, onState: boolean) => { const t = qs<HTMLElement>(`[data-carried-for="${id}"]`); if (t) t.hidden = !onState; };
   const carryTo = (el: HTMLInputElement | HTMLSelectElement | null, val: string) => {
@@ -113,10 +119,23 @@ export function initPicker(): Cleanup | void {
     el.value = val;
     tag(el.id, !!val);
   };
+  const ignNote = () => {
+    if (!igNote || !F.key) return;
+    const want = IGN[F.key.value];
+    const got = igPush?.checked ? "push" : igKey?.checked ? "key" : "";
+    let text = "";
+    if (want && got && got !== want) text = "That's unusual for this key, and that's fine: some cars are different. We'll confirm on the call.";
+    else if (want && igAuto && !igUser) text = "Filled in from your key type. Change it if your car is different.";
+    igNote.textContent = text;
+    igNote.hidden = !text;
+  };
+  // A new key type always re-sets the ignition to match it (the person can still change it after).
   const syncIgnition = () => {
-    if (!igPush || igUser || !F.key) return;
-    if (F.key.value === "smart") { igPush.checked = true; igAuto = true; }
-    else if (igAuto) { igPush.checked = false; igAuto = false; }
+    if (!igPush || !igKey || !F.key) return;
+    const want = IGN[F.key.value];
+    if (want) { igPush.checked = want === "push"; igKey.checked = want === "key"; igAuto = true; igUser = false; }
+    else if (igAuto) { igPush.checked = false; igKey.checked = false; igAuto = false; }
+    ignNote();
   };
   const syncOther = () => { if (F.otherWrap && F.town) F.otherWrap.hidden = F.town.value !== "other"; };
   function carry() {
@@ -140,7 +159,7 @@ export function initPicker(): Cleanup | void {
   });
   if (F.town) cleanups.push(on(F.town, "change", () => { F.town!.dataset.user = "1"; tag("f-town", false); syncOther(); }));
   if (F.key) cleanups.push(on(F.key, "change", () => { F.key!.dataset.user = "1"; tag("f-key", false); syncIgnition(); }));
-  qsa<HTMLInputElement>('#quote-form input[name="ignition"]').forEach((r) => cleanups.push(on(r, "change", () => { igUser = true; })));
+  qsa<HTMLInputElement>('#quote-form input[name="ignition"]').forEach((r) => cleanups.push(on(r, "change", () => { igUser = true; ignNote(); })));
   qsa<HTMLInputElement>('#quote-form input[name="have"]').forEach((r) => cleanups.push(on(r, "change", () => { haveUser = true; tag("f-have", false); })));
 
   function refresh() {

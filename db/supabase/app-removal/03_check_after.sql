@@ -12,9 +12,10 @@ union all
 select 'no app accounts left',
        not exists (select 1 from auth.users)
 union all
-select 'website: 4 tables still there',
+select 'website: its tables are still there',
        (select count(*) from pg_class c join pg_namespace n on n.oid = c.relnamespace
-         where n.nspname = 'website' and c.relkind = 'r') = 4
+         where n.nspname = 'website' and c.relkind = 'r'
+           and c.relname in ('leads', 'towns', 'consent_versions', 'settings')) = 4
 union all
 select 'website: submit_website_lead still there',
        to_regprocedure('public.submit_website_lead(text,jsonb)') is not null;

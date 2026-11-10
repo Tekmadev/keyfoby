@@ -47,7 +47,7 @@ Go to Project → Settings → Environment Variables. Use type **Sensitive** for
 | `TURNSTILE_SECRET_KEY` | Turnstile secret key | yes |
 | `RESEND_API_KEY` | Resend API key | yes |
 | `LEAD_NOTIFY_TO` | `keyfoby@gmail.com` | no |
-| `LEAD_NOTIFY_FROM` | `KeyFoby Website <leads@keyfoby.com>` | no |
+| `LEAD_NOTIFY_FROM` | `KeyFoby Web Query <leads@keyfoby.com>` | no |
 | `NEXT_PUBLIC_TURNSTILE_SITE_KEY` | Turnstile site key | no (public) |
 
 `NEXT_PUBLIC_TURNSTILE_SITE_KEY` is built into the page when Vercel builds the site. If you add or change it after a deploy, **redeploy**: until then the quote form shows "Online quote requests are switched off right now". To check a deploy, view the page source of the homepage and look for `data-sitekey="` followed by your site key (not `data-sitekey=""`).

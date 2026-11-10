@@ -89,6 +89,7 @@ export default function Quote() {
                 <input type="radio" id="ig-push" name="ignition" value="push" />
                 <label htmlFor="ig-push"><Ic name="power" />Push-to-start</label>
               </div>
+              <p className="hint" id="f-ign-note" aria-live="polite" hidden></p>
             </fieldset>
             <div className="field">
               <span className="label-like" id="photo-l">Photo of your key <span className="opt">(optional)</span></span>
