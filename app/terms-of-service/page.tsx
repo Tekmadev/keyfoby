@@ -1,13 +1,17 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import { businessData } from "@/lib/business-data";
-import NavBar from "@/app/components/NavBar";
-import Footer from "@/app/components/Footer";
+import SiteHeader from "@/app/components/site/SiteHeader";
+import SiteFooter from "@/app/components/site/SiteFooter";
+import { pageSocial } from "@/app/components/site/social";
+
+const TITLE = "Terms of Service | KeyFoby Automotive Locksmith Hamilton";
+const DESCRIPTION =
+  "Terms of service for KeyFoby key fob and locksmith services in Hamilton, Ontario. Review our service terms, warranty, and conditions.";
 
 export const metadata: Metadata = {
-  title: "Terms of Service | KeyFoby Automotive Locksmith Hamilton",
-  description:
-    "Terms of service for KeyFoby key fob and locksmith services in Hamilton, Ontario. Review our service terms, warranty, and conditions.",
+  title: TITLE,
+  description: DESCRIPTION,
   robots: {
     index: true,
     follow: true,
@@ -15,6 +19,7 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://www.keyfoby.com/terms-of-service",
   },
+  ...pageSocial("/terms-of-service", TITLE, DESCRIPTION),
 };
 
 export default function TermsOfService() {
@@ -22,24 +27,24 @@ export default function TermsOfService() {
 
   return (
     <>
-      <NavBar />
-      <main className="min-h-screen bg-gradient-to-b from-slate-50 to-white dark:from-slate-900 dark:to-slate-800">
+      <SiteHeader />
+      <main id="main" className="legal dark">
         {/* Hero Section */}
-        <section className="relative bg-gradient-to-r from-blue-600 to-cyan-500 py-20">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center">
-              <div className="inline-block mb-4">
-                <span className="text-6xl">📜</span>
+        <section className="legal-hero">
+          <div className="legal-hero__in">
+            <div className="legal-hero__body">
+              <div className="legal-hero__icon" aria-hidden="true">
+                <span>📜</span>
               </div>
-              <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+              <h1>
                 Terms of Service
               </h1>
-              <p className="text-xl text-blue-100 mb-6">
+              <p className="legal-hero__sub">
                 Please read these terms carefully before using KeyFoby
               </p>
-              <div className="inline-flex items-center space-x-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full">
+              <div className="legal-hero__date">
                 <svg
-                  className="w-5 h-5 text-white"
+                  aria-hidden="true"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -51,7 +56,7 @@ export default function TermsOfService() {
                     d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
                   />
                 </svg>
-                <span className="text-white text-sm font-medium">
+                <span>
                   Last Updated: {lastUpdated}
                 </span>
               </div>
@@ -1194,7 +1199,7 @@ export default function TermsOfService() {
           <div className="text-center py-8">
             <Link
               href="/privacy-policy"
-              className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-semibold rounded-lg hover:from-blue-700 hover:to-cyan-600 transition-all shadow-lg hover:shadow-xl"
+              className="btn btn--primary btn--lg"
             >
               <span className="mr-2">🔒</span>
               View Privacy Policy
@@ -1223,7 +1228,7 @@ export default function TermsOfService() {
           </div>
         </article>
       </main>
-      <Footer />
+      <SiteFooter />
     </>
   );
 }

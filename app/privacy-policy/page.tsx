@@ -1,13 +1,17 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import { businessData } from "@/lib/business-data";
-import NavBar from "@/app/components/NavBar";
-import Footer from "@/app/components/Footer";
+import SiteHeader from "@/app/components/site/SiteHeader";
+import SiteFooter from "@/app/components/site/SiteFooter";
+import { pageSocial } from "@/app/components/site/social";
+
+const TITLE = "Privacy Policy | KeyFoby Automotive Locksmith Hamilton";
+const DESCRIPTION =
+  "KeyFoby privacy policy: how we collect, use, and protect your personal information for our automotive locksmith and key fob services in Hamilton, Ontario.";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | KeyFoby Automotive Locksmith Hamilton",
-  description:
-    "KeyFoby privacy policy: how we collect, use, and protect your personal information for our automotive locksmith and key fob services in Hamilton, Ontario.",
+  title: TITLE,
+  description: DESCRIPTION,
   robots: {
     index: true,
     follow: true,
@@ -15,31 +19,32 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://www.keyfoby.com/privacy-policy",
   },
+  ...pageSocial("/privacy-policy", TITLE, DESCRIPTION),
 };
 
 export default function PrivacyPolicy() {
-  const lastUpdated = "December 5, 2025";
+  const lastUpdated = "November 10, 2026";
 
   return (
     <>
-      <NavBar />
-      <main className="min-h-screen bg-gradient-to-b from-slate-50 to-white dark:from-slate-900 dark:to-slate-800">
+      <SiteHeader />
+      <main id="main" className="legal dark">
         {/* Hero Section */}
-        <section className="relative bg-gradient-to-r from-blue-600 to-cyan-500 py-20">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center">
-              <div className="inline-block mb-4">
-                <span className="text-6xl">🔒</span>
+        <section className="legal-hero">
+          <div className="legal-hero__in">
+            <div className="legal-hero__body">
+              <div className="legal-hero__icon" aria-hidden="true">
+                <span>🔒</span>
               </div>
-              <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+              <h1>
                 Privacy Policy
               </h1>
-              <p className="text-xl text-blue-100 mb-6">
+              <p className="legal-hero__sub">
                 Your privacy matters to us
               </p>
-              <div className="inline-flex items-center space-x-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full">
+              <div className="legal-hero__date">
                 <svg
-                  className="w-5 h-5 text-white"
+                  aria-hidden="true"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -51,7 +56,7 @@ export default function PrivacyPolicy() {
                     d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
                   />
                 </svg>
-                <span className="text-white text-sm font-medium">
+                <span>
                   Last Updated: {lastUpdated}
                 </span>
               </div>
@@ -61,24 +66,6 @@ export default function PrivacyPolicy() {
 
         {/* Content */}
         <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          {/* Important Notice */}
-          <div className="bg-amber-50 dark:bg-amber-900/20 border-l-4 border-amber-500 p-6 rounded-r-lg mb-12">
-            <div className="flex items-start">
-              <span className="text-2xl mr-3">⚠️</span>
-              <div>
-                <h3 className="text-lg font-semibold text-amber-900 dark:text-amber-100 mb-2">
-                  Legal Notice
-                </h3>
-                <p className="text-amber-800 dark:text-amber-200 text-sm leading-relaxed">
-                  This Privacy Policy should be reviewed by a qualified legal
-                  professional before publication. It is provided as a template
-                  and may need to be customized based on your specific business
-                  practices and jurisdiction requirements.
-                </p>
-              </div>
-            </div>
-          </div>
-
           {/* Navigation Links */}
           <div className="mb-12 p-6 bg-blue-50 dark:bg-slate-800 rounded-xl border border-blue-200 dark:border-slate-700">
             <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">
@@ -86,6 +73,7 @@ export default function PrivacyPolicy() {
             </h3>
             <div className="grid md:grid-cols-2 gap-3">
               {[
+                "Quote requests on keyfoby.com",
                 "Introduction",
                 "Information We Collect",
                 "How We Use Your Information",
@@ -106,6 +94,213 @@ export default function PrivacyPolicy() {
               ))}
             </div>
           </div>
+
+          {/* Website quote requests (docs/legal/PRIVACY_WEBSITE_SECTION.md) */}
+          <section
+            id="quote-requests-on-keyfoby.com"
+            className="mb-12 scroll-mt-8 bg-slate-50 dark:bg-slate-800/50 rounded-xl p-8"
+          >
+            <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-6">
+              Quote requests on keyfoby.com
+            </h2>
+            <div className="space-y-4 text-slate-700 dark:text-slate-300 leading-relaxed">
+              <p>
+                This section explains what happens to your information when you
+                ask us for a quote on keyfoby.com. The other sections of this
+                policy cover the KeyFoby mobile app.
+              </p>
+              <p>
+                <strong>Who we are.</strong> KeyFoby, a mobile car key
+                locksmith. Mailing address: 40 Courtland Ave, Hamilton, ON L9B
+                1X6. Phone:{" "}
+                <a href="tel:+19054676860" className="text-blue-600 dark:text-blue-400 underline">
+                  (905) 467-6860
+                </a>
+                . Email:{" "}
+                <a href="mailto:keyfoby@gmail.com" className="text-blue-600 dark:text-blue-400 underline">
+                  keyfoby@gmail.com
+                </a>
+                .
+              </p>
+              <h3 className="text-xl font-semibold text-slate-900 dark:text-white pt-2">
+                What we collect when you send the quote form
+              </h3>
+              <ul className="list-disc ml-6 space-y-2">
+                <li>
+                  What you tell us about your key: key type, whether you still
+                  have a working key, and the ignition type.
+                </li>
+                <li>Your car: year, make and model.</li>
+                <li>Where the car is: town.</li>
+                <li>
+                  Your name and phone number. We do not ask for your email
+                  address.
+                </li>
+                <li>
+                  Anything else you choose to type in the &quot;details&quot;
+                  box. Please don&apos;t include sensitive information there.
+                </li>
+                <li>
+                  Proof of your consent: the exact wording you agreed to, the
+                  date and time, and, if you withdraw it, when.
+                </li>
+                <li>
+                  How you found us: the page you sent the form from, and, if you
+                  came from an ad, the campaign tags and Google Ads click ID in
+                  the link.
+                </li>
+                <li>
+                  Our own notes about your request and its status (for example,
+                  quoted or booked).
+                </li>
+              </ul>
+              <p>We do not store your IP address with your quote request.</p>
+              <p>
+                <strong>Why we use it.</strong> To prepare your price, to call
+                or text you about this quote and the job, and to know which of
+                our ads work. We only contact you about the quote you asked for.
+              </p>
+              <p>
+                <strong>Stopping messages.</strong> You can withdraw your
+                consent at any time. Reply STOP to any text from us, call (905)
+                467-6860 or email keyfoby@gmail.com. We act on it within 10
+                business days.
+              </p>
+              <p>
+                <strong>Bot protection.</strong> The form uses Cloudflare
+                Turnstile to check that a person, not a bot, is sending it.
+                Turnstile looks at signals from your browser and device,
+                including your IP address. Cloudflare also uses these signals to
+                improve its bot detection. See Cloudflare&apos;s Turnstile
+                privacy policy:{" "}
+                <a
+                  href="https://www.cloudflare.com/turnstile-privacy-policy/"
+                  className="text-blue-600 dark:text-blue-400 underline break-words"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  https://www.cloudflare.com/turnstile-privacy-policy/
+                </a>
+                .
+              </p>
+              <h3 className="text-xl font-semibold text-slate-900 dark:text-white pt-2">
+                Who handles your information for us
+              </h3>
+              <ul className="list-disc ml-6 space-y-2">
+                <li>
+                  <strong>Vercel</strong> hosts the website and runs the
+                  form&apos;s server code (United States). Like any web host,
+                  Vercel keeps short-lived technical logs of requests, such as
+                  IP address and browser type, for security and
+                  troubleshooting.
+                </li>
+                <li>
+                  <strong>Supabase</strong> stores quote requests in our
+                  database (United States, Ohio).
+                </li>
+                <li>
+                  <strong>Resend</strong> sends us an email with the details of
+                  your request. Resend stores its data in the United States and
+                  keeps a copy of sent emails for 30 days.
+                </li>
+                <li>
+                  <strong>Google (Gmail)</strong> holds that email in our inbox
+                  (outside Canada, mainly the United States).
+                </li>
+                <li>
+                  <strong>Cloudflare</strong> runs the bot check (United States,
+                  with a global network).
+                </li>
+              </ul>
+              <p>
+                Apart from Cloudflare&apos;s use of bot-check signals described
+                above, these providers process your information only to provide
+                their service to us. Your information may therefore be processed
+                and stored outside Canada, and may be accessible to authorities
+                there under their laws.
+              </p>
+              <p>
+                <strong>WhatsApp and phone.</strong> If you message us on
+                WhatsApp instead, WhatsApp (Meta) handles that conversation
+                under its own terms and privacy policy. If you call, we do not
+                record the call.
+              </p>
+              <p>
+                <strong>How long we keep it.</strong> We review and delete old
+                quote requests regularly, at least every three months:
+              </p>
+              <ul className="list-disc ml-6 space-y-2">
+                <li>
+                  Spam and test entries: once they are more than 30 days old.
+                </li>
+                <li>
+                  Requests that did not become a job: once 12 months have
+                  passed since our last update to them.
+                </li>
+                <li>
+                  Requests that became a job: once 3 years have passed since our
+                  last update to them (normally when the job is done), so we can
+                  show the consent you gave.
+                </li>
+              </ul>
+              <p>
+                We delete the notification emails on the same schedule. Deleted
+                data may stay in our providers&apos; backups for a short time.
+              </p>
+              <p>
+                If you hire us, we also keep a record of the job (such as your
+                name, your car and the work done) in our business records for 6
+                years, as tax law requires.
+              </p>
+              <p>
+                <strong>Other services on the site.</strong> These load from
+                other companies when you use the page, so those companies can
+                see your IP address and may set cookies. Each follows its own
+                privacy policy.
+              </p>
+              <ul className="list-disc ml-6 space-y-2">
+                <li>The Google reviews panel is shown by Elfsight.</li>
+              </ul>
+              <p>
+                <strong>Your choices.</strong> You can ask us what we hold about
+                you, ask us to correct it, or ask us to delete it. Call (905)
+                467-6860 or email keyfoby@gmail.com. If you are not satisfied
+                with our answer, you can contact the Office of the Privacy
+                Commissioner of Canada (priv.gc.ca).
+              </p>
+              <p>
+                <strong>Analytics and ads.</strong> keyfoby.com uses Google
+                Analytics and Google Ads tags to measure visits and the results
+                of our ads. These tags set cookies in your browser. You can
+                block them in your browser settings, or install Google&apos;s
+                opt-out add-on:{" "}
+                <a
+                  href="https://tools.google.com/dlpage/gaoptout"
+                  className="text-blue-600 dark:text-blue-400 underline break-words"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  https://tools.google.com/dlpage/gaoptout
+                </a>
+                . Google may use them to show you our ads on other sites; you
+                can turn that off at{" "}
+                <a
+                  href="https://adssettings.google.com"
+                  className="text-blue-600 dark:text-blue-400 underline break-words"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  https://adssettings.google.com
+                </a>
+                .
+              </p>
+            </div>
+          </section>
+
+          {/* Scope of the numbered sections */}
+          <p className="mb-12 text-slate-600 dark:text-slate-400 text-sm">
+            Sections 1–11 cover the KeyFoby mobile app.
+          </p>
 
           {/* Introduction */}
           <section id="introduction" className="mb-12 scroll-mt-8">
@@ -1137,12 +1332,6 @@ export default function PrivacyPolicy() {
                   </span>
                 </li>
               </ul>
-              <p className="text-slate-700 dark:text-slate-300 mt-4">
-                <strong>Disclaimer:</strong> This Privacy Policy is provided as
-                a comprehensive template. We strongly recommend consulting with
-                a qualified legal professional to ensure it meets all applicable
-                legal requirements for your jurisdiction.
-              </p>
             </div>
           </section>
 
@@ -1150,7 +1339,7 @@ export default function PrivacyPolicy() {
           <div className="text-center py-8">
             <Link
               href="/terms-of-service"
-              className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-semibold rounded-lg hover:from-blue-700 hover:to-cyan-600 transition-all shadow-lg hover:shadow-xl"
+              className="btn btn--primary btn--lg"
             >
               <span className="mr-2">📜</span>
               View Terms of Service
@@ -1171,7 +1360,7 @@ export default function PrivacyPolicy() {
           </div>
         </article>
       </main>
-      <Footer />
+      <SiteFooter />
     </>
   );
 }

@@ -29,13 +29,13 @@ Follow `db/supabase/README.md`. You run 1 script, make 1 secret on your Mac, pas
 ## 3. Resend: emails to you (free plan: 3,000 a month, 100 a day)
 
 1. Sign up at https://resend.com, preferably with keyfoby@gmail.com.
-2. Go to **Domains** → **Add domain** → `send.keyfoby.com`, with region **North Virginia (us-east-1)**.
+2. **Done 2026-11-10:** Resend verified the domain **`keyfoby.com`**, using records only on subdomains (`send`, `rsend`, `resend._domainkey`). The root MX/SPF records for Namecheap email forwarding are unchanged (checked with dig).
    - Use the `send.` subdomain, not `keyfoby.com` itself. That way your Namecheap email forwarding is never touched.
 3. Resend shows a few DNS records: MX and TXT, or CNAME. **Add exactly those records at Namecheap**: Domain List → keyfoby.com → Advanced DNS → Add new record.
    - Their names all end in `send` (for example `send`, `resend._domainkey.send`).
    - Do **not** change or delete any existing record. Leave alone the 5 `eforward` MX records, the SPF TXT, `app`, `www` and `@`.
    - Then press **Verify** in Resend. It usually takes minutes, sometimes up to 72 hours.
-4. **API Keys** → **Create**: name `keyfoby-website`, permission **Sending access**, domain `send.keyfoby.com`. Copy it. It becomes `RESEND_API_KEY`.
+4. **API Keys** → **Create**: name `keyfoby-website`, permission **Sending access**, domain `keyfoby.com`. Copy it. It becomes `RESEND_API_KEY`.
 
 ## 4. Vercel: environment variables (after the Vercel project exists)
 
@@ -47,8 +47,10 @@ Go to Project → Settings → Environment Variables. Use type **Sensitive** for
 | `TURNSTILE_SECRET_KEY` | Turnstile secret key | yes |
 | `RESEND_API_KEY` | Resend API key | yes |
 | `LEAD_NOTIFY_TO` | `keyfoby@gmail.com` | no |
-| `LEAD_NOTIFY_FROM` | `KeyFoby Website <leads@send.keyfoby.com>` | no |
+| `LEAD_NOTIFY_FROM` | `KeyFoby Website <leads@keyfoby.com>` | no |
 | `NEXT_PUBLIC_TURNSTILE_SITE_KEY` | Turnstile site key | no (public) |
+
+`NEXT_PUBLIC_TURNSTILE_SITE_KEY` is built into the page when Vercel builds the site. If you add or change it after a deploy, **redeploy**: until then the quote form shows "Online quote requests are switched off right now". To check a deploy, view the page source of the homepage and look for `data-sitekey="` followed by your site key (not `data-sitekey=""`).
 
 `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY` are already on the list of 12 to copy over. The function reuses them.
 

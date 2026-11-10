@@ -21,7 +21,7 @@
  *   TURNSTILE_SECRET_KEY    Cloudflare Turnstile secret
  *   RESEND_API_KEY          Resend API key (sending access only)
  *   LEAD_NOTIFY_TO          owner inbox, e.g. keyfoby@gmail.com
- *   LEAD_NOTIFY_FROM        e.g. "KeyFoby Website <leads@send.keyfoby.com>"
+ *   LEAD_NOTIFY_FROM        e.g. "KeyFoby Website <leads@keyfoby.com>"
  *   SUPABASE_URL / SUPABASE_PUBLISHABLE_KEY (fall back to the NEXT_PUBLIC_SUPABASE_* values)
  *   LEAD_ALLOWED_ORIGINS    optional, comma-separated; defaults to the keyfoby.com
  *                           origins plus this project's own Vercel URLs
