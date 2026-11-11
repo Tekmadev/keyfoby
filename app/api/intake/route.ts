@@ -91,7 +91,7 @@ export async function POST(req: Request) {
 }
 
 /**
- * Owner-only endpoint: list recent intakes for an internal dashboard / React Native app.
+ * Owner-only endpoint: list recent intakes for an internal dashboard.
  * Protected via `Authorization: Bearer ${AUTOMATION_OWNER_TOKEN}`.
  */
 export async function GET(req: Request) {

@@ -1,8 +1,8 @@
 # Privacy policy: website section (draft)
 
-**Status:** draft, 2026-11-07. Reviewed against the code and the database. It goes live **at the same time as the new quote form** (Phase 4), not before. Today's site still sends leads through EmailJS, and this text describes the new setup.
+**Status:** published in `app/privacy-policy/page.tsx` on 2026-11-10; the page (not this draft) is the source of truth since then, including the optional customer email added the same day (live once that change is deployed). The privacy policy is now **website-only**: the KeyFoby mobile app is discontinued (owner decision 2026-11-10), so the old app sections were removed. The page is built from the text below and expanded (what we do not collect, the `kf_attr` session storage, other services, cross-border processing, security, rights, children, changes). If the two differ, the page wins. First drafted 2026-11-07 and reviewed against the code and the database.
 
-**Where it goes:** a new section at the top of `/privacy-policy`, titled "Quote requests on keyfoby.com". The existing app sections stay word for word, because the KeyFoby mobile app links to this page. See "Notes for the build" below.
+**Where it is:** the whole `/privacy-policy` page. Terms of use (`app/terms-of-service/page.tsx`) are also website-only since 2026-11-10.
 
 **Before publishing, confirm these:**
 1. ~~Supabase region~~: confirmed 2026-11-10, East US (Ohio), `us-east-2`.
@@ -10,7 +10,12 @@
 3. **Google Ads remarketing:** in Google Ads → Tools → Audience manager. If remarketing is on, keep the last sentence of "Analytics and ads". If it is off, you can delete that sentence.
 4. **Resend sending region:** on the Resend Domains page, when you add `send.keyfoby.com`. Use North Virginia (us-east-1), which matches "United States" in the text.
 5. ~~Two promises only you can keep~~: confirmed true by the owner 2026-11-10 ("We only contact you about the quote you asked for"; "If you call, we do not record the call").
-6. **Other services:** delete each line under "Other services on the site" for anything the new design no longer uses (the make list from NHTSA, the Elfsight reviews widget, the Google map).
+6. ~~Other services~~: checked 2026-11-10 against the new design. It loads the Elfsight reviews panel, Google Analytics and Ads tags, Firebase Analytics and WhatsApp links; the NHTSA make list and the Google map are gone, so they were removed below.
+7. **Who can see requests:** does anyone besides KeyFoby (for example the website developer) have access to Supabase, Resend, Vercel or the Gmail inbox? The page no longer says "Only KeyFoby looks at your request". If only KeyFoby has access, that sentence can go back in; if the developer does, add "and the company that maintains our website, when it needs to fix a problem".
+8. **Calls, texts, WhatsApp and email:** how long are these messages (and photos) kept? The page says what we get and why, but gives no time for these. Add it to "How long we keep it" once known.
+9. **History log:** has `db/supabase/2026-11-10_02_lead_history.sql` been run in Supabase? The page says we "may" keep a dated record of changes, including earlier names and phone numbers.
+10. **All-keys-lost jobs:** do you keep a copy or note of the customer's ID, registration or proof of ownership? If yes, add it to the job-records sentence; if you only look at them, say so.
+11. **Firebase Hosting:** the page says copies of the site may also be served by Google Firebase Hosting during the move. Remove that sentence after step 6 of `docs/VERCEL_MIGRATION.md` (Firebase Hosting switched off).
 
 This is plain-language policy text, not legal advice. Have it reviewed if you want that certainty.
 
@@ -18,7 +23,7 @@ This is plain-language policy text, not legal advice. Have it reviewed if you wa
 
 ## Quote requests on keyfoby.com
 
-This section explains what happens to your information when you ask us for a quote on keyfoby.com. The other sections of this policy cover the KeyFoby mobile app.
+This policy explains what happens to your information when you ask us for a quote on keyfoby.com.
 
 **Who we are.** KeyFoby, a mobile car key locksmith. Mailing address: 40 Courtland Ave, Hamilton, ON L9B 1X6. Phone: (905) 467-6860. Email: keyfoby@gmail.com.
 
@@ -61,9 +66,7 @@ We delete the notification emails on the same schedule. Deleted data may stay in
 If you hire us, we also keep a record of the job (such as your name, your car and the work done) in our business records for 6 years, as tax law requires.
 
 **Other services on the site.** These load from other companies when you use the page, so those companies can see your IP address and may set cookies. Each follows its own privacy policy.
-- The list of car makes and models comes from the US government's NHTSA vPIC service. It sees the year and make you pick.
 - The Google reviews panel is shown by Elfsight.
-- The map is shown by Google Maps.
 
 **Your choices.** You can ask us what we hold about you, ask us to correct it, or ask us to delete it. Call (905) 467-6860 or email keyfoby@gmail.com. If you are not satisfied with our answer, you can contact the Office of the Privacy Commissioner of Canada (priv.gc.ca).
 
@@ -73,11 +76,9 @@ If you hire us, we also keep a record of the job (such as your name, your car an
 
 ### Notes for the build (not part of the policy text)
 
-- The consent checkbox must show exactly the stored wording, version `2026-11-07`, matching the SQL seed character for character: "Yes, KeyFoby ((905) 467-6860, keyfoby@gmail.com) may contact me by phone or text about this quote. I can withdraw consent at any time. Our mailing address is in our privacy policy." Link "privacy policy" to `/privacy-policy`.
-- The form sends `consent_version: "2026-11-07"` and a `client_request_id` made with `crypto.randomUUID()` when the visitor presses Send, and reused only when re-sending the same details. If they edit any field after an error, the database treats it as a new request anyway. It renders the Turnstile widget with `action: "quote"`, shows the widget's privacy link, and includes a hidden, empty `website` input as a honeypot.
-- On the existing page, keep the app sections word for word, but:
-  - add this section to the Quick Navigation list;
-  - add a one-line scope note above section 1 ("Sections 1–N cover the KeyFoby mobile app"), so the app's "no cookies" statement doesn't read as covering the website;
-  - remove the "template" legal-notice banner when "Last updated" is bumped, and the "provided as a comprehensive template" paragraph in the closing Important Legal Notice (the governing-law and compliance lines can stay).
+- The consent checkbox must show exactly the stored wording, version `2026-11-10` (seeded by `db/supabase/2026-11-10_03_lead_email.sql`; the earlier `2026-11-07` wording without "email" stays valid for old records), character for character: "Yes, KeyFoby ((905) 467-6860, keyfoby@gmail.com, 40 Courtland Ave, Hamilton, ON L9B 1X6) may contact me by phone, text or email about this quote. I can withdraw consent at any time." Keep the "How we handle your details: Privacy policy" link under the form.
+- The form sends `consent_version: "2026-11-10"`, an optional `email` (the customer then gets one confirmation email with their KF reference, containing none of the text they typed), and a `client_request_id` made with `crypto.randomUUID()` when the visitor presses Send, and reused only when re-sending the same details. If they edit any field after an error, the database treats it as a new request anyway. It renders the Turnstile widget with `action: "quote"`, shows the widget's privacy link, and includes a hidden, empty `website` input as a honeypot.
+- The page is website-only (2026-11-10). The old app sections, the "template" notices and the GDPR/CCPA compliance list were removed.
+- Review changes on the page (2026-11-10), not copied into the draft above: a "When you call, text, WhatsApp or email us" paragraph; the Turnstile check loads when the form comes into view; the Analytics opt-out add-on blocks Google Analytics only; quoted price, appointment time and change history in "Our own notes"; a deletion caveat for records the law requires, a 30-day answer time and the owner as the person responsible for privacy.
 - Owner routine: label test submissions as `spam`. Run `db/supabase/2026-11-07_01_website_leads_retention.sql` monthly or quarterly, and delete the matching Gmail notifications at the same time. When someone replies STOP, fill in `consent_withdrawn_at`.
 - If Phase 4 adds a consent banner or drops the Firebase SDK, update the "Analytics and ads" paragraph to match.

@@ -116,6 +116,12 @@ export default function Quote() {
                 <p className="err" id="e-phone" aria-live="polite"></p>
               </div>
             </div>
+            <div className="field">
+              <label htmlFor="f-email">Email <span className="opt">(optional, for a confirmation)</span></label>
+              <input className="input" id="f-email" name="email" type="email" inputMode="email" maxLength={254} autoComplete="email" aria-describedby="f-email-h e-email" />
+              <p className="hint" id="f-email-h">We&apos;ll email you your reference number. We still call or text you with the price.</p>
+              <p className="err" id="e-email" aria-live="polite"></p>
+            </div>
             <div className="hp" aria-hidden="true">
               <label htmlFor="f-website">Leave this field empty</label>
               <input id="f-website" name="website" type="text" tabIndex={-1} autoComplete="off" defaultValue="" />
@@ -123,7 +129,7 @@ export default function Quote() {
             <div className="check-wrap">
               <label className="check" htmlFor="f-consent">
                 <input type="checkbox" id="f-consent" name="consent" aria-describedby="e-consent" required />
-                <span>Yes, KeyFoby ((905) 467-6860, keyfoby@gmail.com) may contact me by phone or text about this quote. I can withdraw consent at any time. Our mailing address is in our <a href="/privacy-policy">privacy policy</a>.</span>
+                <span>Yes, KeyFoby ((905) 467-6860, keyfoby@gmail.com, 40 Courtland Ave, Hamilton, ON L9B 1X6) may contact me by phone, text or email about this quote. I can withdraw consent at any time.</span>
               </label>
               <p className="err" id="e-consent" aria-live="polite"></p>
             </div>
@@ -140,6 +146,7 @@ export default function Quote() {
           <div className="form__ok" id="form-ok" role="status" aria-live="polite" tabIndex={-1}>
             <strong>Got it. Thanks.</strong>
             <p id="form-ok-ref" hidden>Your reference is <span className="ref" id="form-ok-ref-v"></span>.</p>
+            <p id="form-ok-mail" hidden>We&apos;ve emailed you a confirmation. If it&apos;s not in your inbox, check your spam folder.</p>
             <p>We&apos;ll call you back with a price. If you&apos;re locked out, call <a className="link" href={TEL} data-track="call" data-track-loc="form-ok">{PHONE}</a> now.</p>
           </div>
         </div>

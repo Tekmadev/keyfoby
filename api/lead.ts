@@ -21,7 +21,9 @@
  *   TURNSTILE_SECRET_KEY    Cloudflare Turnstile secret
  *   RESEND_API_KEY          Resend API key (sending access only)
  *   LEAD_NOTIFY_TO          owner inbox, e.g. keyfoby@gmail.com
- *   LEAD_NOTIFY_FROM        e.g. "KeyFoby Website <leads@keyfoby.com>"
+ *   LEAD_NOTIFY_FROM        e.g. "KeyFoby Web Query <leads@keyfoby.com>"
+ *   LEAD_CONFIRM_FROM       optional; address for customer confirmations (display name is
+ *                           always "KeyFoby"); defaults to the LEAD_NOTIFY_FROM address
  *   SUPABASE_URL / SUPABASE_PUBLISHABLE_KEY (fall back to the NEXT_PUBLIC_SUPABASE_* values)
  *   LEAD_ALLOWED_ORIGINS    optional, comma-separated; defaults to the keyfoby.com
  *                           origins plus this project's own Vercel URLs
@@ -37,7 +39,7 @@ const LIMITS: Record<string, number> = {
   key_type: 10, has_working_key: 10, vehicle_year: 4, vehicle_make: 40, vehicle_model: 60,
   ignition: 10, town: 60, other_town: 80, customer_name: 80, phone: 40, details: 1000,
   consent_version: 40, page_path: 200, utm_source: 100, utm_medium: 100, utm_campaign: 100,
-  gclid: 200, client_request_id: 36,
+  gclid: 200, client_request_id: 36, email: 254,
 };
 
 /** Hidden attribution fields: the visitor cannot fix these, so they are cut, never rejected. */
@@ -175,7 +177,7 @@ async function verifyTurnstile(deps: Deps, token: string): Promise<"ok" | "fail"
   }
 }
 
-type RpcResult = { ok: true; id: string; ref: string; createdAt?: string; duplicate: boolean; notify: boolean; floodAlert: boolean } | { ok: false; message: string; status: number };
+type RpcResult = { ok: true; id: string; ref: string; createdAt?: string; duplicate: boolean; notify: boolean; confirm: boolean; floodAlert: boolean } | { ok: false; message: string; status: number };
 
 async function submitToSupabase(deps: Deps, lead: Record<string, unknown>): Promise<RpcResult> {
   const url = deps.env.SUPABASE_URL || deps.env.NEXT_PUBLIC_SUPABASE_URL;
@@ -191,11 +193,11 @@ async function submitToSupabase(deps: Deps, lead: Record<string, unknown>): Prom
       signal: AbortSignal.timeout(8000),
     });
     const data = (await res.json().catch(() => ({}))) as {
-      id?: string; ref?: string; created_at?: string; duplicate?: boolean; notify?: boolean; flood_alert?: boolean; message?: string;
+      id?: string; ref?: string; created_at?: string; duplicate?: boolean; notify?: boolean; confirm?: boolean; flood_alert?: boolean; message?: string;
     };
     if (res.ok && data.id && data.ref) {
       return { ok: true, id: data.id, ref: data.ref, createdAt: data.created_at, duplicate: data.duplicate === true,
-        notify: data.notify !== false, floodAlert: data.flood_alert === true };
+        notify: data.notify !== false, confirm: data.confirm === true, floodAlert: data.flood_alert === true };
     }
     return { ok: false, message: data.message || `http_${res.status}`, status: res.status };
   } catch (e) {
@@ -227,6 +229,7 @@ export function buildEmail(ref: string, lead: Record<string, unknown>, phone: st
   const rows: [string, string][] = [
     ["Name", s("customer_name")],
     ["Phone", pretty],
+    ["Email", normaliseEmail(lead.email) || "Not given"],
     ["Key", keyLabel],
     ["Working key?", working],
     ["Car", vehicle],
@@ -235,7 +238,7 @@ export function buildEmail(ref: string, lead: Record<string, unknown>, phone: st
     ["Details", details],
     ["Received", `${when} (Toronto time)`],
     ["Came from", source],
-    ["Consent", `Phone/text about this quote (wording ${s("consent_version")})`],
+    ["Consent", `${s("consent_version") === "2026-11-07" ? "Phone/text" : "Phone, text or email"} about this quote (wording ${s("consent_version")})`],
   ];
   const text = [`New quote request ${ref}`, "", ...rows.map(([k, v]) => `${k}: ${v.replace(/\r?\n/g, "\n    ")}`), "", `Call: tel:${phone}`, `WhatsApp: https://wa.me/${phone.slice(1)}`,
     project ? `All leads: https://supabase.com/dashboard/project/${project}/editor (schema "website", table "leads")` : ""].join("\n");
@@ -253,6 +256,103 @@ ${project ? `<p style="margin-top:16px;font-size:13px"><a href="https://supabase
 }
 
 type MailResult = "sent" | "maybe_sent" | "failed" | "not_configured";
+
+/** Fixed business details for the customer email (same as lib/business-data.ts). */
+const BUSINESS = {
+  name: "KeyFoby",
+  phone: "(905) 467-6860",
+  tel: "+19054676860",
+  address: "40 Courtland Ave, Hamilton, ON L9B 1X6",
+  site: "https://www.keyfoby.com",
+  email: "keyfoby@gmail.com",
+};
+
+/** Same rule as the database: one plain, lower-case address. */
+export function normaliseEmail(raw: unknown): string | null {
+  if (typeof raw !== "string") return null;
+  const v = raw.trim().toLowerCase();
+  if (!v || v.length > 254) return null;
+  return /^[a-z0-9_%+'-]+(\.[a-z0-9_%+'-]+)*@([a-z0-9]([a-z0-9-]*[a-z0-9])?\.)+[a-z]{2,}$/.test(v) ? v : null;
+}
+
+/**
+ * Confirmation to the customer. On purpose it contains NO text the visitor typed
+ * (name, car, town, details): only our fixed wording, the KF reference, the key type
+ * from a fixed list and the phone number in our own format. So nobody can use the
+ * form to send their own message to someone else's inbox.
+ */
+export function buildCustomerEmail(ref: string, lead: Record<string, unknown>, phone: string) {
+  const kt = typeof lead.key_type === "string" ? lead.key_type : "";
+  const key = KEY_LABELS.get(kt);
+  const pretty = `(${phone.slice(2, 5)}) ${phone.slice(5, 8)}-${phone.slice(8)}`;
+  const what = key ? `your quote request for a ${key.replace(/ \(push-to-start\)$/, "").toLowerCase()}` : "your quote request";
+  const subject = `We got your quote request ${ref} | KeyFoby`;
+  const text = [
+    `Thanks for contacting KeyFoby.`,
+    ``,
+    `We received ${what}. Your reference is ${ref}.`,
+    `We'll call or text you at ${pretty} with a price.`,
+    ``,
+    `Locked out right now? Call ${BUSINESS.phone}.`,
+    `Need to add something? Reply to this email.`,
+    ``,
+    `KeyFoby, mobile car key locksmith`,
+    `${BUSINESS.address} | ${BUSINESS.site} | ${BUSINESS.email}`,
+    `You're getting this one email because you asked us for a quote. Don't want emails from us? Reply "unsubscribe" or email ${BUSINESS.email} and we won't email you again. Privacy: ${BUSINESS.site}/privacy-policy`,
+  ].join("\n");
+  const html = `<!doctype html><html><body style="font-family:Arial,Helvetica,sans-serif;color:#111;max-width:560px">
+<h2 style="margin:0 0 12px">Thanks for contacting KeyFoby</h2>
+<p style="margin:0 0 8px">We received ${escapeHtml(what)}. Your reference is <strong>${escapeHtml(ref)}</strong>.</p>
+<p style="margin:0 0 16px">We'll call or text you at <strong>${escapeHtml(pretty)}</strong> with a price.</p>
+<p style="margin:0 0 8px">Locked out right now? Call <a href="tel:${BUSINESS.tel}">${escapeHtml(BUSINESS.phone)}</a>.</p>
+<p style="margin:0 0 16px">Need to add something? Just reply to this email.</p>
+<p style="margin:24px 0 0;font-size:12px;color:#666">KeyFoby, mobile car key locksmith<br>${escapeHtml(BUSINESS.address)} · <a href="${BUSINESS.site}">keyfoby.com</a> · ${escapeHtml(BUSINESS.email)}<br>You're getting this one email because you asked us for a quote. Don't want emails from us? Reply &quot;unsubscribe&quot; or email ${escapeHtml(BUSINESS.email)} and we won't email you again. <a href="${BUSINESS.site}/privacy-policy">Privacy policy</a></p>
+</body></html>`;
+  return { subject, html, text };
+}
+
+/** One Resend send with a stable idempotency key; one retry on 429/5xx/network. */
+async function sendViaResend(
+  deps: Deps, idemKey: string, payload: Record<string, unknown>,
+): Promise<MailResult> {
+  const key = deps.env.RESEND_API_KEY;
+  if (!key) return "not_configured";
+  const sleep = deps.sleep || ((ms: number) => new Promise<void>((r) => setTimeout(r, ms)));
+  for (let attempt = 0; attempt < 2; attempt++) {
+    if (attempt > 0) await sleep(800);
+    try {
+      const res = await deps.fetch("https://api.resend.com/emails", {
+        method: "POST",
+        headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json", "Idempotency-Key": idemKey },
+        body: JSON.stringify(payload),
+        signal: AbortSignal.timeout(6000),
+      });
+      if (res.ok) return "sent";
+      if (res.status === 409) return "maybe_sent";
+      if (res.status !== 429 && res.status < 500) return "failed";
+    } catch {
+      /* timeout or network: retry once with the same idempotency key */
+    }
+  }
+  return "failed";
+}
+
+async function confirmToCustomer(
+  deps: Deps, ref: string, id: string, lead: Record<string, unknown>, phone: string,
+): Promise<MailResult | "no_email"> {
+  const to = normaliseEmail(lead.email);
+  if (!to) return "no_email";
+  const fromEnv = deps.env.LEAD_CONFIRM_FROM || deps.env.LEAD_NOTIFY_FROM || "";
+  const addr = /<([^>]+)>/.exec(fromEnv)?.[1] || fromEnv.trim();
+  if (!addr) return "not_configured";
+  const replyTo = (deps.env.LEAD_NOTIFY_TO || "").split(",")[0].trim();
+  let mail: ReturnType<typeof buildCustomerEmail>;
+  try { mail = buildCustomerEmail(ref, lead, phone); } catch { return "failed"; }
+  return sendViaResend(deps, `website-lead/customer/${id}`, {
+    from: `KeyFoby <${addr}>`, to: [to], subject: mail.subject, html: mail.html, text: mail.text,
+    ...(replyTo ? { reply_to: replyTo } : {}), tags: [{ name: "type", value: "website_lead_confirmation" }],
+  });
+}
 
 async function notifyOwner(
   deps: Deps, ref: string, id: string, lead: Record<string, unknown>, phone: string, createdAt?: string, floodAlert = false,
@@ -280,7 +380,11 @@ async function notifyOwner(
       const res = await deps.fetch("https://api.resend.com/emails", {
         method: "POST",
         headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json", "Idempotency-Key": `website-lead/${floodAlert ? "flood/" : ""}${id}` },
-        body: JSON.stringify({ from, to: to.split(",").map((t) => t.trim()).filter(Boolean), subject: mail.subject, html: mail.html, text: mail.text, tags: [{ name: "type", value: "website_lead" }] }),
+        body: JSON.stringify({
+          from, to: to.split(",").map((t) => t.trim()).filter(Boolean), subject: mail.subject, html: mail.html, text: mail.text,
+          ...(!floodAlert && normaliseEmail(lead.email) ? { reply_to: normaliseEmail(lead.email) } : {}),
+          tags: [{ name: "type", value: "website_lead" }],
+        }),
         signal: AbortSignal.timeout(6000),
       });
       if (res.ok) return "sent";
@@ -345,6 +449,13 @@ export function createHandler(deps: Deps) {
       }
       const phone = normalisePhone(typeof lead.phone === "string" ? lead.phone : "");
       if (!phone) return fail(422, "invalid", "phone");
+      // Optional email: normalised once here and sent to the database in that form,
+      // so the stored address, the owner email and the confirmation always agree.
+      if (typeof lead.email === "string" && lead.email.trim()) {
+        const em = normaliseEmail(lead.email);
+        if (!em) return fail(422, "invalid", "email");
+        lead.email = em;
+      } else delete lead.email;
 
       const saved = await submitToSupabase(deps, lead);
       if (!saved.ok) {
@@ -356,6 +467,9 @@ export function createHandler(deps: Deps) {
         }
         const field = fieldFromDbMessage(msg);
         if (field && !["unknown_field", "consent_version", "lead", "client_request_id"].includes(field)) return fail(422, "invalid", field);
+        if (/^invalid:(consent_version|unknown_field)$/.test(msg)) {
+          console.error("lead: DB schema is older than the website code; run db/supabase/2026-11-10_03_lead_email.sql");
+        }
         console.error(`lead: store failed (${saved.status} ${oneLine(msg, 80)})`);
         return fail(502, "server");
       }
@@ -368,16 +482,20 @@ export function createHandler(deps: Deps) {
         console.error(`lead: stored ${saved.ref}; email skipped (over 20 requests this hour)`);
         return json({ ok: true, ref: saved.ref });
       }
-      let mail: MailResult = "failed";
-      try {
-        mail = await notifyOwner(deps, saved.ref, saved.id, lead, phone, saved.createdAt, saved.floodAlert);
-      } catch {
-        mail = "failed";
-      }
+      // Owner email and (if they gave an address, and we're not in a flood) the customer's
+      // confirmation go out together.
+      const [mailR, confR] = await Promise.allSettled([
+        notifyOwner(deps, saved.ref, saved.id, lead, phone, saved.createdAt, saved.floodAlert),
+        saved.confirm ? confirmToCustomer(deps, saved.ref, saved.id, lead, phone) : Promise.resolve("no_email" as const),
+      ]);
+      const mail: MailResult = mailR.status === "fulfilled" ? mailR.value : "failed";
+      const conf = confR.status === "fulfilled" ? confR.value : "failed";
+      const emailed = conf === "sent" || conf === "maybe_sent";
+      if (conf === "failed") console.error(`lead: stored ${saved.ref}; customer confirmation email FAILED`);
       if (mail === "not_configured") console.error(`lead: stored ${saved.ref}; owner email NOT CONFIGURED (set RESEND_API_KEY, LEAD_NOTIFY_TO, LEAD_NOTIFY_FROM)`);
       else if (mail === "maybe_sent") console.warn(`lead: stored ${saved.ref}; owner email probably sent (Resend 409 on retry)`);
       else if (mail === "failed") console.error(`lead: stored ${saved.ref}; owner email FAILED`);
-      return json({ ok: true, ref: saved.ref });
+      return json({ ok: true, ref: saved.ref, emailed });
     } catch (e) {
       console.error(`lead: unhandled ${e instanceof Error ? e.name : "error"}`);
       return fail(500, "server");

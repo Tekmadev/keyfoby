@@ -67,9 +67,9 @@ The response intentionally **does not** return AI output to the public client.
 - `400`: missing required fields
 - `500`: unexpected server error
 
-## Owner endpoints (for internal web app / React Native app)
+## Owner endpoints (for internal admin tools)
 
-These endpoints are designed so you can build **one shared intake review experience** across web and mobile.
+These endpoints are designed so you can build **one intake review screen** for internal admin tools.
 
 ### `GET /api/intake/?limit=20`
 

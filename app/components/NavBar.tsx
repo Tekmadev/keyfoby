@@ -16,7 +16,6 @@ import { trackPhoneClick, trackWhatsAppClick } from "@/lib/analytics";
 export default function NavBar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  // The KeyFoby App (app.keyfoby.com) link is hidden from the car-owner site.
   const navItems: { name: string; link: string; external?: boolean }[] = [
     {
       name: "Services",
