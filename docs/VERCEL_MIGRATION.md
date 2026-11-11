@@ -27,9 +27,8 @@ Visitor's browser ──► www.keyfoby.com (Firebase Hosting site key-foby, sta
 | **Supabase** `grytdgpmewmxbdimpgrr` | browser, read-only (`service_types`) | Live | Set the 2 `NEXT_PUBLIC_SUPABASE_*` vars, with the **same values**. Nothing else. |
 | **Firebase Analytics** (project `key-foby`) | browser | Live, every page | Set the 7 `NEXT_PUBLIC_FIREBASE_*` vars. It doesn't depend on Firebase Hosting, so it keeps working on Vercel. |
 | **gtag** (GA4 + Ads) | browser | Live, every page | IDs are hard-coded, so they move as is. (The page-load Ads conversion is still on and still awaits your answer from the Truth Table.) |
-| NHTSA, Elfsight, Maps, WhatsApp | browser | Live | No change. Elfsight may have a domain allowlist (not verified). |
+| Elfsight, WhatsApp, Google review links | browser | Live | No change. Elfsight may have a domain allowlist (not verified). The NHTSA lookup and the Maps embed were removed with the new design (2026-11-10). |
 | **`/api/intake` + `automation/`** (OpenAI) | would be server | **Not deployed.** `scripts/build.js` moves `app/api` aside during the build. | Must stay off. See section 3. |
-| Newsletter (`NewsletterSignup.tsx`, `AppPromo.tsx`) | — | Dead code, not in the build | None. |
 
 **Keys:** only public-by-design keys ship: the Supabase anon key, the Firebase web key and the EmailJS public key. No service-role key, OpenAI key or owner token appears in `out/`, the build cache or git history (re-checked). The local `.env` holds 15 names: the 12 `NEXT_PUBLIC_*` above, plus `OPENAI_API_KEY`, `OPENAI_MODEL` and `AUTOMATION_OWNER_TOKEN`, which must **not** go to Vercel.
 
@@ -44,21 +43,16 @@ Visitor's browser ──► www.keyfoby.com (Firebase Hosting site key-foby, sta
 - **Deploys:** by hand from this laptop with `firebase deploy`. No CI, no previews. Every deploy dirties the tracked `.firebase/hosting.b3V0.cache`.
 - **Behaviour to keep:** clean URLs (`/warranty`), no trailing slash (`/warranty/` → `/warranty`), real 404 for unknown paths, apex → www.
 
-### The two apps that share this backend (new since Phase 0)
+### The KeyFoby mobile app (historical note)
 
-1. **KeyFoby mobile app** (React Native/Expo, `/Users/shajeed/Coding/Projects/React Native/keyfobyapp`, GitHub `Tekmadev/keyfobyapp`). Its whole backend (accounts, Google sign-in, transactions, inventory) is the **same Supabase project** the website reads, with the **same anon key**.
-   - Its sign-up screens open `https://keyfoby.com/privacy-policy` and `/terms-of-service` (`AuthScreen.tsx:211,217`, `CompleteProfileScreen.tsx:132,138`).
-   - A `BEFORE INSERT ON auth.users` trigger reads `newsletter_subscribers` (migration 024). Dropping that table would break **every app sign-up**.
-2. **app.keyfoby.com landing**: Firebase site `app-keyfoby`, same Firebase project.
-
-So: **any Supabase change "for the website" is a change to the mobile app's live database.** The hosting move itself needs no Supabase change at all.
+At the time of this check, the KeyFoby mobile app used the **same Supabase project** (with the same anon key) and opened `/privacy-policy` and `/terms-of-service` from its sign-up screens; `app.keyfoby.com` was its landing page (Firebase site `app-keyfoby`, same Firebase project). On 2026-11-10 the owner decided to discontinue the app (it will be remade later) and to make Privacy and Terms about the website only. Until the app's data is removed from Supabase (`db/supabase/app-removal/`), treat any Supabase change as touching the app's tables too.
 
 ## 2. Rules for the move (what must not break)
 
 1. Change **only two DNS records**: apex A and www CNAME. Keep NS at Namecheap. Leave MX, SPF, the `app` CNAME and TXT, `hosting-site`, and `_acme-challenge` alone. Vercel may ask for one extra `_vercel` TXT to prove ownership.
-2. Apex → www stays a permanent redirect **that keeps the path**, because the mobile app links to `keyfoby.com/privacy-policy`.
-3. `/privacy-policy` and `/terms-of-service` keep their URLs **and their app content** until the app's legal text has a new home.
-4. Firebase project `key-foby` **never** gets deleted. It still runs the website's analytics and app.keyfoby.com. Retirement means a 301 release on **`--site key-foby` only**. Never a bare `hosting:disable`, and never anything on `app-keyfoby`.
+2. Apex → www stays a permanent redirect **that keeps the path**, so old links such as `keyfoby.com/privacy-policy` keep working.
+3. `/privacy-policy` and `/terms-of-service` keep their URLs. Since 2026-11-10 they cover the website only.
+4. Firebase project `key-foby` **never** gets deleted. It still runs the website's Firebase Analytics (and app.keyfoby.com while that site exists). Retirement means a 301 release on **`--site key-foby` only**. Never a bare `hosting:disable`, and never anything on `app-keyfoby`.
 5. Supabase: no change for the move. Same anon key value. Never put a service-role key in Vercel.
 6. `/api/intake` stays off (section 3).
 7. Firebase stays live as the rollback for at least 7 days after cutover. Its www certificate stops renewing once www points at Vercel (current cert runs to about 30 Dec 2026), so retire it before then.
@@ -88,20 +82,20 @@ Deleting the route, `automation/` and the client POST is the real fix. That fall
 | 2 | **Create the Vercel project** in the Pro team, linked to GitHub `Tekmadev/keyfoby` (previews on every PR). **Merge step 1 first**, so the first production build already has `vercel.json`. Add the **12** `NEXT_PUBLIC_*` vars to Production and Preview, piped from `.env` so no value is printed. **Not** the OpenAI or automation vars. | Me, with your go | Your go |
 | 3 | **Preview check** on the `*.vercel.app` URL: clean URLs, slash redirects (Vercel uses 308; also permanent), 404s, headers, sitemap, robots, ads.txt, the legal pages, the service list from Supabase, analytics firing (no headless loads of production; preview only). One real test lead to confirm EmailJS delivery, if you OK sending one; check the EmailJS and Elfsight allowlists. | Me, you for the dashboard checks | — |
 | 4 | **Add domains** `keyfoby.com` + `www.keyfoby.com` to the project, apex → www permanent. Lower the apex A and www CNAME TTL to 300 at Namecheap **≥ 24 h before** cutover. | You (Namecheap), me (Vercel) | — |
-| 5 | **DNS cutover:** apex A → Vercel's IP, www CNAME → Vercel's target (values from the Vercel domain screen). Verify HTTPS, redirects, the form and the mobile app's legal links, then watch for 72 h. **Rollback:** put the two old records back (`199.36.158.100`, `key-foby.web.app`). | You (Namecheap), me (checks) | **DNS cutover go** |
+| 5 | **DNS cutover:** apex A → Vercel's IP, www CNAME → Vercel's target (values from the Vercel domain screen). Verify HTTPS, redirects, the form and the legal pages, then watch for 72 h. **Rollback:** put the two old records back (`199.36.158.100`, `key-foby.web.app`). | You (Namecheap), me (checks) | **DNS cutover go** |
 | 6 | **Retire Firebase Hosting for the website**, ≥ 7 days after a clean cutover and before about 30 Dec: deploy a 301-to-www release to `--site key-foby` only, so `key-foby.web.app` copies redirect. Leave project `key-foby`, site `app-keyfoby` and Firebase Analytics alone. Then remove `.firebase/` from git, update `DEPLOYMENT.md`, and drop the `hosting-site` TXT later. | Me, with your go | **Firebase shutdown go** |
 
 Effort on my side: about a day of work for steps 1–3, then mostly waiting (TTL, the 72 h watch, the 7-day hold).
 
 ## 5. Found along the way (not blockers for the move)
 
-- **Leads are stored nowhere.** If EmailJS fails or hits its quota, the lead is lost. Phase 4 already plans a stored lead with an owner alert. That table must not touch the mobile app's tables (or the website gets its own Supabase project).
+- **Leads are stored nowhere.** If EmailJS fails or hits its quota, the lead is lost. Phase 4 already plans a stored lead with an owner alert. (The mobile app is discontinued as of 2026-11-10; leads now live in the `website` schema.)
 - **The EmailJS auto-reply could be abused as a relay** if it sends to `{{email}}`, because the IDs are public. Check the template settings in the EmailJS dashboard.
 - **The same OpenAI key** is in this repo's `.env` and in `keyfoby-ai/.env`. Rotating one breaks the other.
-- **The Terms page** the website's quote form links to is the app's Terms ("the App" ×56). Fixing it needs the app's legal text moved first (rule 3).
+- **The Terms page** was the app's Terms ("the App" ×56). Fixed 2026-11-10: Privacy and Terms now cover the website only.
 - **The service dropdown** filters `is_active` only, so app-archived rows could appear in it.
 - **No consent banner:** tags load before any consent. This belongs to the Phase 4 privacy work.
-- **Doc drift:** `DEPLOYMENT.md` and `FIREBASE_SUBDOMAIN_SETUP.md` are stale (SPA rewrite, `trailingSlash: true`, a wrong site ID). Don't follow them during cutover.
+- **Doc drift:** `DEPLOYMENT.md` is stale (SPA rewrite, `trailingSlash: true`, a wrong site ID). Don't follow it during cutover. (`FIREBASE_SUBDOMAIN_SETUP.md`, also stale, was deleted 2026-11-10.)
 
 ## 6. Step 1: what the prep PR changes (branch `chore/vercel-prep`)
 

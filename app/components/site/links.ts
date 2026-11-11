@@ -18,7 +18,7 @@ export const WA_PHOTO = waLink("Hi KeyFoby, here's a photo of my car key for a q
 export const REVIEWS_URL = reviews.url;
 
 /** Stored with every quote request (CASL proof); must match the SQL seed. */
-export const CONSENT_VERSION = "2026-11-07";
+export const CONSENT_VERSION = "2026-11-10";
 
 export type KeyType = "blade" | "remote" | "flip" | "smart";
 

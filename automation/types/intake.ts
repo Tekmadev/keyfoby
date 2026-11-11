@@ -3,7 +3,7 @@ export type IgnitionType = "Key Start" | "Push Button Start" | "Unknown";
 /**
  * Structured payload sent from the public contact form to `/api/intake`.
  * This is intentionally business-focused (not UI-focused) so it can be reused
- * by future clients (e.g. React Native mobile app, internal admin tools).
+ * by future clients (e.g. internal admin tools).
  */
 export type IntakePayload = {
   // Customer contact

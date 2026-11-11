@@ -706,7 +706,7 @@ export default function WarrantyPolicy() {
                 href="/terms-of-service"
                 className="text-blue-600 dark:text-blue-400 hover:underline text-sm font-medium"
               >
-                → Terms of Service
+                → Terms of Use
               </Link>
               <Link
                 href="/privacy-policy"

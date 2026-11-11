@@ -17,6 +17,8 @@ They never touch the app's tables, triggers, policies or extensions. A grep of a
 | `2026-11-07_01_website_leads_verify.sql` | Twelve checks; every row should say `true`. | No |
 | `2026-11-07_01_website_leads_retention.sql` | Clean-up, **at least every 3 months** (the privacy policy promises it): a preview first, then a delete you run on purpose. Delete the matching Gmail notifications at the same time. | Only step 2 |
 | `2026-11-07_01_website_leads_rollback.sql` | Removes it all. Refuses while any lead is stored. | Removes |
+| `2026-11-10_02_lead_history.sql` (+ `_rollback`) | History log `website.lead_events`, `form_version` and empty job columns for the future app. **Run 2026-11-10.** | Adds only |
+| `2026-11-10_03_lead_email.sql` | Optional customer `email` column, consent wording `2026-11-10` ("phone, text or email"), and the lead function accepting `email`. Must run **before** the website version with the email field goes live. | Adds only |
 
 ## What it creates
 
@@ -88,7 +90,7 @@ If something fails halfway, nothing is left behind, because the script runs in o
 
 - The **Vercel function** `api/lead.ts` is built and tested. It checks the form and the Cloudflare Turnstile bot check, calls `submit_website_lead`, then emails you the lead through Resend. It goes live with the new form. Account and key setup is in `docs/LEAD_SETUP.md`.
 - **Form changes in the new design:**
-  - Consent wording becomes the stored version: "…by phone or text…", with no "email", plus a link to the privacy policy for the mailing address. The form sends `consent_version: "2026-11-07"`.
+  - Consent wording is the stored version `2026-11-10` ("…by phone, text or email…"), plus a link to the privacy policy for the mailing address.
   - The photo field is replaced by "Send a photo on WhatsApp", unless you want photo storage (decision below).
   - The make/model split in the picker must handle two-word makes.
 - **Privacy policy:** the website section is drafted in `docs/legal/PRIVACY_WEBSITE_SECTION.md` (a few items to confirm). It goes live with the form.

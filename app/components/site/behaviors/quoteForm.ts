@@ -34,6 +34,7 @@ const FIELDS: Record<string, [string, string, string]> = {
   other_town: ["e-other", "f-other", "Type the town the car is in."],
   customer_name: ["e-name", "f-name", "Enter your name."],
   phone: ["e-phone", "f-phone", "Enter a 10-digit phone number."],
+  email: ["e-email", "f-email", "Check your email address, or leave it empty."],
   details: ["e-details", "f-details", "Shorten this to 1,000 characters or less."],
   consent: ["e-consent", "f-consent", "Tick the box so we can contact you."],
 };
@@ -50,6 +51,12 @@ function uuid(): string {
 }
 
 /** Same rule as the API and the database: +1 and 10 digits, area code not starting with 0 or 1. */
+/** Optional email: empty is fine; otherwise one plain address (the database checks it again). */
+function emailOk(raw: string): boolean {
+  const v = raw.trim();
+  return v === "" || (v.length <= 254 && /^[a-z0-9_%+'-]+(\.[a-z0-9_%+'-]+)*@([a-z0-9]([a-z0-9-]*[a-z0-9])?\.)+[a-z]{2,}$/.test(v.toLowerCase()));
+}
+
 function phoneOk(raw: string): boolean {
   let digits = raw.replace(/\D/g, "");
   if (digits.length === 11 && digits.startsWith("1")) digits = digits.slice(1);
@@ -248,6 +255,8 @@ export function initQuoteForm(): Cleanup | void {
     else if (town) lead.town = town;
     lead.customer_name = one(f.name.value);
     lead.phone = f.phone.value.trim();
+    const email = (f.email?.value || "").trim();
+    if (email) lead.email = email;
     const details = f.details.value.trim();
     if (details) lead.details = details;
     lead.consent = f.consent.checked === true;
@@ -267,6 +276,7 @@ export function initQuoteForm(): Cleanup | void {
       ["e-details", [f.details], Array.from(f.details.value.trim()).length <= 1000 ? "" : FIELDS.details[2]],
       ["e-name", [f.name], f.name.value.trim() ? "" : FIELDS.customer_name[2]],
       ["e-phone", [f.phone], phoneOk(f.phone.value) ? "" : FIELDS.phone[2]],
+      ["e-email", [f.email], emailOk(f.email?.value || "") ? "" : FIELDS.email[2]],
       ["e-consent", [f.consent], f.consent.checked ? "" : FIELDS.consent[2]],
     ];
     checks.forEach(([errId, inputs, msg]) => {
@@ -285,8 +295,10 @@ export function initQuoteForm(): Cleanup | void {
     if (on) { btn.setAttribute("aria-busy", "true"); btn.textContent = "Sending…"; }
     else { btn.removeAttribute("aria-busy"); btn.innerHTML = btnHtml; }
   }
-  function succeed(ref: string | null, lead: Record<string, unknown>) {
+  function succeed(ref: string | null, lead: Record<string, unknown>, emailed = false) {
     form!.hidden = true;
+    const mailRow = byId("form-ok-mail");
+    if (mailRow) mailRow.hidden = !emailed;
     const refRow = byId("form-ok-ref");
     const refVal = byId("form-ok-ref-v");
     if (ref && refRow && refVal) { refVal.textContent = ref; refRow.hidden = false; }
@@ -325,7 +337,7 @@ export function initQuoteForm(): Cleanup | void {
     lead.client_request_id = requestId;
     const usedToken = token;
     setBusy(true);
-    let data: { ok?: boolean; ref?: string | null; error?: string; field?: string } = {};
+    let data: { ok?: boolean; ref?: string | null; emailed?: boolean; error?: string; field?: string } = {};
     try {
       const res = await fetch("/api/lead", {
         method: "POST",
@@ -339,7 +351,7 @@ export function initQuoteForm(): Cleanup | void {
     }
     resetWidget(); /* a Turnstile token works once; get a fresh one for any retry */
     setBusy(false);
-    if (data.ok) { succeed(typeof data.ref === "string" ? data.ref : null, lead); return; }
+    if (data.ok) { succeed(typeof data.ref === "string" ? data.ref : null, lead, data.emailed === true); return; }
     switch (data.error) {
       case "invalid": {
         const m = data.field ? FIELDS[data.field] : undefined;
